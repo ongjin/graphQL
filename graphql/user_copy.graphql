@@ -1,0 +1,42 @@
+type Users_Temp {
+  USER_NO: Int
+  USER_ID: String
+  USER_PW: String
+  USER_EMAIL: String
+  USER_PHONE: String
+  USER_JADATE: String
+  USER_NAME: String
+}
+
+type Query {
+  getUsers1(dbName: String!): [Users_Temp!]
+  # getUsers: [Users_Temp!]
+  getUser1(USER_NO: Int!): Users_Temp!
+  # findOneBy({USER_NO: userNo}): [Users_Temp!]!
+}
+
+type Mutation {
+  createUser1(input: CreateUserInput!): Users_Temp!
+  deleteUser1(USER_NO: Int!): Boolean!
+  updateUser1(input: UpdateUserInput!): Users_Temp!
+}
+
+input CreateUserInput {
+  USER_NO: Int!
+  USER_ID: String!
+  USER_PW: String!
+  USER_EMAIL: String!
+  USER_PHONE: String!
+  USER_JADATE: String!
+  USER_NAME: String!
+}
+
+input UpdateUserInput {
+  USER_NO: Int!
+  USER_ID: String!
+  USER_PW: String!
+  USER_EMAIL: String!
+  USER_PHONE: String!
+  USER_JADATE: String!
+  USER_NAME: String!
+}

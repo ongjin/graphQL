@@ -1,0 +1,82 @@
+type Member {
+  # CHAIN_NO: String!
+  # MS_NO: String!
+  # CHAIN_HQ_YN: String!
+  # MS_ID: String!
+  # PASSWD: String!
+  # MS_TYPE: String!
+  # MS_NM: String!
+  # MS_ENG_NM: String!  # CHAIN_AREA: String!
+  address: String!
+  addressBunji: String!
+  bankCd: String!
+  acctCd: String!
+  acctNm: String!
+  bizFg: String!
+  vatType: String!
+  openDate: String
+  startDate: String
+  useYn: String!
+  headMsg: String
+  tailMsg: String
+  openFg: String!
+  lCategoryCd: String
+  sCategoryCd: String
+  createId: String!
+  createDtime: String!
+  lastId: String!
+  lastDtime: String!
+  mainChainYn: String!
+
+  nocostFg: String!
+  ucostFg: String!
+  usupriceFg: String!
+  msFg: String
+  seat: Int
+
+  sapMsCd: String
+  eMasterNm: String
+  eMailAddr: String
+  eHpNo: String
+  newZipNo: String
+  newAddress: String
+  newAddressBunji: String
+  streetFg: String
+  taxRefRatio: Int
+  kkaUseYn: String
+
+  yellowidKey: String
+  usercode: String
+  deptcode: String
+  resendYn: String
+  msId: String!
+  passwd: String!
+  msType: String!
+  MS_NO: String!
+  msNm: String!
+  msEngNm: String
+  CHAIN_NO: String!
+  chainHqYn: String!
+  chainArea: String!
+  bizNo: String!
+  bsType: String!
+  bsKind: String!
+  masterNm: String!
+  resiNo: String!
+  telNo: String!
+  hpNo: String
+  emgNo: String!
+  faxNo: String
+  eMail: String
+  homepage: String
+  zipNo: String!
+  billAddr: String!
+}
+
+type Query {
+  getMembers(dbName: String!): [Member]!
+  # getMembers: [Member]!
+  getMember(MS_NO: String!, CHAIN_NO: String): Member!
+}
+
+

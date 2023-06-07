@@ -1,0 +1,42 @@
+type SalesHD {
+  SALE_DATE: String!
+  MS_NO: String!
+  POS_NO: String!
+  BILL_NO: String!
+  CHAIN_NO: String!
+  CHAIN_AREA: String!
+  SALE_FG: String!
+  SALE_DTIME: String!
+  SALE_TOT: Int!
+  SALE_AMT: Int!
+  CASH_AMT: Int!
+  CARD_AMT: Int!
+  ETC_AMT: Int!
+  DC_AMT: Int!
+  salesDTs: [SalesDT!]!
+}
+type SalesDT {
+  SALE_DATE: String!
+  MS_NO: String!
+  POS_NO: String!
+  BILL_NO: String!
+  LINE_NO: String!
+
+  CHAIN_NO: String!
+  CHAIN_AREA: String!
+  SALE_FG: String!
+  GOODS_CD: String!
+  PACK_FG: String!
+
+  UPRICE: Int!
+  UCOST: Int!
+  SALE_QTY: Int!
+  SALE_TOT: Int!
+  SALE_AMT: Int!
+  DC_AMT: Int!
+  salesHD: SalesHD!
+}
+
+type Query {
+  getSales: [SalesHD!]!
+}
