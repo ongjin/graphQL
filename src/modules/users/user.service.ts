@@ -44,6 +44,25 @@ export class UserService {
         return test.find()
         // return this.commonService.getRepository<Users_Temp>(Users_Temp, dbName);
     }
+    async getU(dbName: string, current: number, limit: number): Promise<Users_Temp[]> {
+        // 페이지네이션 로직 구현
+        const offset = (current - 1) * limit;
+        // 데이터베이스 쿼리 실행
+        const users = await this.usersTempRepository.find({
+            skip: offset,
+            take: limit,
+            order: {USER_NO: 'ASC'}
+        });
+        return users;
+        // 페이지네이션1
+        // const offset = (current - 1) * limit;
+        // const query = this.usersTempRepository.createQueryBuilder('user');
+
+        // query.skip(offset).take(limit).orderBy('USER_NO', 'ASC');
+
+        // return query.getMany();
+
+    }
 
     private repoTest(dbName: string) {
         if (dbName === 'webkiosk') {

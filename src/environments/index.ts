@@ -1,8 +1,15 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
+// const dotenv = require('dotenv');
+import * as dotenv from 'dotenv';
 
-// environment
-const NODE_ENV: string = process.env.NODE_ENV || 'development'
+const NODE_ENV: string = process.env.NODE_ENV
+if(NODE_ENV){
+    dotenv.config()
+}
+
+const WEBKIOSK_DB_PORT: number = Number(process.env.WEBKIOSK_DB_PORT) || 9070;
+const NODE_PORT: number = Number(process.env.NODE_PORT) || 3030 
+
+
 
 // author
 const AUTHOR: string = process.env.AUTHOR || 'Chnirt'
@@ -51,7 +58,6 @@ const enviroment = {
         url: MLAB_URL
     }
 }
-const TYPEORM = enviroment[NODE_ENV]
 
 // jsonwebtoken
 const ISSUER: string = process.env.ISSUER || 'Chnirt corp'
@@ -109,14 +115,12 @@ const STRIPE_SECRET_KEY: string = process.env.STRIPE_SECRET_KEY || 'xxx'
 const STRIPE_PLAN: string = process.env.STRIPE_PLAN || 'xxx'
 
 export {
-    NODE_ENV,
     AUTHOR,
     PRIMARY_COLOR,
     DOMAIN,
     END_POINT,
     VOYAGER,
     FE_URL,
-    TYPEORM,
     STATIC,
     MLAB_USER,
     MLAB_PASS,
@@ -154,5 +158,7 @@ export {
     GOOGLE_APPLICATION_CREDENTIALS,
     STRIPE_PUBLIC_KEY,
     STRIPE_SECRET_KEY,
-    STRIPE_PLAN
+    STRIPE_PLAN,
+    WEBKIOSK_DB_PORT,
+    NODE_PORT,
 }

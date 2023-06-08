@@ -8,3 +8,5 @@ export * from './cacheResult.decorator'
 export * from './header.decorator'
 export * from './log.decorator'
 export * from './measureTime.decorator'
+
+export * from './pagination.decorator'

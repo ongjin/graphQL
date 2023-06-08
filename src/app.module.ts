@@ -1,10 +1,10 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
-import { CacheModule, Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
+import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
 import { 
+    GraphQL_Module,
+    JWT_Module,
     MemberModule,
     SalesModule,
     Users_TempsModule,
@@ -20,8 +20,8 @@ import {
     DatabaseModule,
     LoggingInterceptor,
     ValidationPipe,
+    HttpExceptionFilter,
 } from './shared';
-import { HttpExceptionFilter } from './shared/exceptions/bad-request.filter';
 
 
 @Module({
@@ -30,16 +30,18 @@ import { HttpExceptionFilter } from './shared/exceptions/bad-request.filter';
             secret: 'SECRET_KEY',
             signOptions: { expiresIn: '1h' }
         }),
-        GraphQLModule.forRoot<ApolloDriverConfig>({
-            driver: ApolloDriver,
-            // gql ui 배포환경에서는 false
-            playground: true,
-            typePaths: ['./**/*.graphql'],
-            formatError,
-            context: ({ req }) => ({ headers: req.headers }),
-        }),
-        Users_TempsModule,
+        // JWT_Module,
+        GraphQL_Module,
+        // GraphQLModule.forRoot<ApolloDriverConfig>({
+        //     driver: ApolloDriver,
+        //     // gql ui 배포환경에서는 false
+        //     playground: true,
+        //     typePaths: ['./**/*.graphql'],
+        //     formatError,
+        //     context: ({ req }) => ({ headers: req.headers }),
+        // }),
         DatabaseModule,
+        Users_TempsModule,
         MemberModule,
         SalesModule,
         Users_Temps_Copy_Module,
@@ -69,10 +71,10 @@ import { HttpExceptionFilter } from './shared/exceptions/bad-request.filter';
             provide: APP_INTERCEPTOR,
             useClass: TransformInterceptor
         },
-        {
-            provide: APP_PIPE,
-            useClass: ValidationPipe
-        }
+        // {
+        //     provide: APP_PIPE,
+        //     useClass: ValidationPipe
+        // }
     ]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 // transform.interceptor.ts
 
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common';
+import { isArray } from 'class-validator';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -14,9 +15,17 @@ import { map } from 'rxjs/operators';
 export class TransformInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         return next.handle().pipe(
-            map((data) => {
+            map((data: any) => {
                 // console.log('data', data);
-                // delete data.USER_NO
+                
+                // if(isArray(data)){
+                //     data.map(val => delete val.MS_NO)
+                //     data.map(val => delete val.USER_NO)
+                // }else{
+                //     delete data.USER_NO
+                //     delete data.MS_NO
+                // }
+                
                 
                 return data;
             }),

@@ -35,6 +35,7 @@ type Users_Temp {
 
 type Query {
   getUsers(dbName: String!): [Users_Temp!]
+  getU(dbName: String, limit: Int, current: Int): [Users_Temp]
   # getUsers: [Users_Temp!]
   getUser(userNo: Int!): Users_Temp!
   # findOneBy({USER_NO: userNo}): [Users_Temp!]!

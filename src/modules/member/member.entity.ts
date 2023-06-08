@@ -85,30 +85,30 @@ export class Member {
     @Column("varchar2", { name: "OPEN_FG", length: 1, default: () => "'1'" })
     openFg: string;
 
-    @Column("varchar2", { name: "L_CATEGORY_CD", nullable: true, length: 3 })
-    lCategoryCd: string | null;
+    // @Column("varchar2", { name: "L_CATEGORY_CD", nullable: true, length: 3 })
+    // lCategoryCd: string | null;
 
-    @Column("varchar2", { name: "S_CATEGORY_CD", nullable: true, length: 2 })
-    sCategoryCd: string | null;
+    // @Column("varchar2", { name: "S_CATEGORY_CD", nullable: true, length: 2 })
+    // sCategoryCd: string | null;
 
     @Column("varchar2", { name: "CREATE_ID", length: 20 })
     createId: string;
 
-    @Column("varchar2", { name: "CREATE_DTIME", length: 14 })
-    createDtime: string;
+    // @Column("varchar2", { name: "CREATE_DTIME", length: 14 })
+    // createDtime: string;
 
     @Column("varchar2", { name: "LAST_ID", length: 20 })
     lastId: string;
 
-    @Column("varchar2", { name: "LAST_DTIME", length: 14 })
-    lastDtime: string;
+    // @Column("varchar2", { name: "LAST_DTIME", length: 14 })
+    // lastDtime: string;
 
-    @Column("varchar2", {
-        name: "MAIN_CHAIN_YN",
-        length: 1,
-        default: () => "'N'",
-    })
-    mainChainYn: string;
+    // @Column("varchar2", {
+    //     name: "MAIN_CHAIN_YN",
+    //     length: 1,
+    //     default: () => "'N'",
+    // })
+    // mainChainYn: string;
 
     @Column("char", { name: "NOCOST_FG", length: 1, default: () => "'N'" })
     nocostFg: string;
@@ -119,20 +119,20 @@ export class Member {
     @Column("char", { name: "USUPRICE_FG", length: 1, default: () => "'1'" })
     usupriceFg: string;
 
-    @Column("varchar2", { name: "MS_FG", nullable: true, length: 1 })
-    msFg: string | null;
+    // @Column("varchar2", { name: "MS_FG", nullable: true, length: 1 })
+    // msFg: string | null;
 
-    @Column("number", {
-        name: "SEAT",
-        nullable: true,
-        precision: 10,
-        scale: 0,
-        default: () => "0",
-    })
-    seat: number | null;
+    // @Column("number", {
+    //     name: "SEAT",
+    //     nullable: true,
+    //     precision: 10,
+    //     scale: 0,
+    //     default: () => "0",
+    // })
+    // seat: number | null;
 
-    @Column("varchar2", { name: "SAP_MS_CD", nullable: true, length: 10 })
-    sapMsCd: string | null;
+    // @Column("varchar2", { name: "SAP_MS_CD", nullable: true, length: 10 })
+    // sapMsCd: string | null;
 
     @Column("varchar2", { name: "E_MASTER_NM", nullable: true, length: 20 })
     eMasterNm: string | null;
@@ -164,33 +164,33 @@ export class Member {
     })
     streetFg: string | null;
 
-    @Column("number", {
-        name: "TAX_REF_RATIO",
-        nullable: true,
-        precision: 2,
-        scale: 0,
-    })
-    taxRefRatio: number | null;
+    // @Column("number", {
+    //     name: "TAX_REF_RATIO",
+    //     nullable: true,
+    //     precision: 2,
+    //     scale: 0,
+    // })
+    // taxRefRatio: number | null;
 
-    @Column("varchar2", {
-        name: "KKA_USE_YN",
-        nullable: true,
-        length: 1,
-        default: () => "'N'",
-    })
-    kkaUseYn: string | null;
+    // @Column("varchar2", {
+    //     name: "KKA_USE_YN",
+    //     nullable: true,
+    //     length: 1,
+    //     default: () => "'N'",
+    // })
+    // kkaUseYn: string | null;
 
-    @Column("varchar2", { name: "YELLOWID_KEY", nullable: true, length: 40 })
-    yellowidKey: string | null;
+    // @Column("varchar2", { name: "YELLOWID_KEY", nullable: true, length: 40 })
+    // yellowidKey: string | null;
 
-    @Column("char", { name: "USERCODE", nullable: true, length: 30 })
-    usercode: string | null;
+    // @Column("char", { name: "USERCODE", nullable: true, length: 30 })
+    // usercode: string | null;
 
-    @Column("char", { name: "DEPTCODE", nullable: true, length: 30 })
-    deptcode: string | null;
+    // @Column("char", { name: "DEPTCODE", nullable: true, length: 30 })
+    // deptcode: string | null;
 
-    @Column("varchar2", { name: "RESEND_YN", nullable: true, length: 1 })
-    resendYn: string | null;
+    // @Column("varchar2", { name: "RESEND_YN", nullable: true, length: 1 })
+    // resendYn: string | null;
 
     @Column("varchar2", { name: "MS_ID", length: 8 })
     msId: string;
