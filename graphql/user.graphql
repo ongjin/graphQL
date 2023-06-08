@@ -48,21 +48,21 @@ type Mutation {
 }
 
 input CreateUserInput {
-  USER_NO: Int!
-  USER_ID: String!
-  USER_PW: String!
-  USER_EMAIL: String!
-  USER_PHONE: String!
-  USER_JADATE: String!
-  USER_NAME: String!
+  USER_NO: Int
+  USER_ID: String
+  USER_PW: String
+  USER_EMAIL: String
+  USER_PHONE: String
+  USER_JADATE: String
+  USER_NAME: String
 }
 
 input UpdateUserInput {
-  USER_NO: Int!
-  USER_ID: String!
-  USER_PW: String!
-  USER_EMAIL: String!
-  USER_PHONE: String!
-  USER_JADATE: String!
-  USER_NAME: String!
+  USER_NO: Int
+  USER_ID: String
+  USER_PW: String
+  USER_EMAIL: String
+  USER_PHONE: String
+  USER_JADATE: String
+  USER_NAME: String
 }

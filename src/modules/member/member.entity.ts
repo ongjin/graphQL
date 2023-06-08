@@ -1,47 +1,10 @@
-// import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, Unique, ManyToOne, JoinColumn } from 'typeorm';
-
-
-// @Entity({ name: 'MMEMBSTB' })
-// export class Member {
-//     @PrimaryColumn()
-//     MS_NO: string;
-
-//     @Column()
-//     MS_ID: string;
-
-//     @Column()
-//     CHAIN_NO: string;
-
-//     @Column()
-//     CHAIN_HQ_YN: string;
-
-//     @Column()
-//     PASSWD: string;
-
-//     @Column()
-//     MS_TYPE: string;
-
-//     @Column()
-//     MS_NM: string;
-
-//     @Column({ nullable: true })
-//     MS_ENG_NM: string;
-
-//     @Column()
-//     CHAIN_AREA: string;
-
-// }
-
-
-
-
 import { Column, Entity, Index, PrimaryColumn } from "typeorm";
 
 @Index("MMEMBSX0", ["msId"], { unique: true })
-@Index("MMEMBSX1", ["MS_NO"], { unique: true })
-@Index("MMEMBSX2", ["CHAIN_NO", "MS_NO"], {})
-@Index("MMEMBSX3", ["chainHqYn", "MS_NO"], {})
-@Index("MMEMBSX4", ["CHAIN_NO", "chainHqYn", "MS_NO"], {})
+@Index("MMEMBSX1", ["msNo"], { unique: true })
+@Index("MMEMBSX2", ["chainNo", "msNo"], {})
+@Index("MMEMBSX3", ["chainHqYn", "msNo"], {})
+@Index("MMEMBSX4", ["chainNo", "chainHqYn", "msNo"], {})
 @Index("MMEMBSX5", ["zipNo"], {})
 @Index("MMEMBSX6", ["chainHqYn", "openDate"], {})
 @Entity({ name: 'MMEMBSTB' })
@@ -169,6 +132,7 @@ export class Member {
     //     nullable: true,
     //     precision: 2,
     //     scale: 0,
+    //     default: "",
     // })
     // taxRefRatio: number | null;
 
@@ -202,8 +166,8 @@ export class Member {
     msType: string;
 
     // @Column("varchar2", { length: 6 })
-    @PrimaryColumn()
-    MS_NO: string;
+    @PrimaryColumn({ name: "MS_NO" })
+    msNo: string;
 
     @Column("varchar2", { name: "MS_NM", length: 30 })
     msNm: string;
@@ -211,8 +175,8 @@ export class Member {
     @Column("varchar2", { name: "MS_ENG_NM", nullable: true, length: 40 })
     msEngNm: string | null;
 
-    @Column("varchar2", { length: 4, default: () => "'0000'" })
-    CHAIN_NO: string;
+    @Column("varchar2", { name: "CHAIN_NO", length: 4, default: () => "'0000'" })
+    chainNo: string;
 
     @Column("varchar2", { name: "CHAIN_HQ_YN", length: 1, default: () => "'N'" })
     chainHqYn: string;
@@ -253,7 +217,7 @@ export class Member {
     @Column("varchar2", { name: "HOMEPAGE", nullable: true, length: 50 })
     homepage: string | null;
 
-    
+
     @Column("varchar2", { name: "ZIP_NO", length: 6 })
     zipNo: string;
 

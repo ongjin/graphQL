@@ -8,8 +8,6 @@ import { CreateUserInput } from './dto/create-user.input';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { CommonService } from 'src/shared';
 
-import { ModuleRef } from '@nestjs/core';
-import { getEntityManagerToken } from '@nestjs/typeorm';
 
 
 
@@ -17,28 +15,16 @@ import { getEntityManagerToken } from '@nestjs/typeorm';
 // @UseFilters(CatchException)
 export class UserService {
     constructor(
-        private readonly commonService: CommonService,
-        @InjectRepository(Users_Temp, 'webkiosk')
-        private readonly usersTempRepository: Repository<Users_Temp>,
-        @InjectRepository(Users_Temp)
-        private readonly usersTempRepository2: Repository<Users_Temp>,
-
-        private dataSource: DataSource,
-        private moduleRef: ModuleRef,
-        private connection: Connection
+        // private readonly commonService: CommonService,
+        // @InjectRepository(Users_Temp, 'webkiosk') private readonly usersTempRepository: Repository<Users_Temp>,
+        @InjectRepository(Users_Temp) private readonly usersTempRepository: Repository<Users_Temp>,
     ) { }
-
-    private async loadEntityManager(systemId: string): Promise<EntityManager> {
-        return this.moduleRef.get(getEntityManagerToken(systemId), {
-            strict: false
-        });
-    }
 
     async getUsers(dbName: string): Promise<Users_Temp[]> {
         // this.usersTempRepository.find({where : {USER_NO: Between(1, 22)}, order: {USER_NO: 'desc'}})
         // return this.usersTempRepository.find()
 
-        return (await this.commonService.getRepository('webkiosk', Users_Temp)).find()
+        // return (await this.commonService.getRepository('default', Users_Temp)).find()
 
         const test = this.repoTest(dbName)
         return test.find()
@@ -69,7 +55,7 @@ export class UserService {
         if (dbName === 'webkiosk') {
             return this.usersTempRepository
         } else {
-            return this.usersTempRepository2
+            return this.usersTempRepository
         }
     }
 
@@ -81,6 +67,21 @@ export class UserService {
     }
 
     async createUser(input: CreateUserInput): Promise<Users_Temp> {
+        const newUser: Users_Temp = {
+            ...input
+            // USER_NO: input.USER_NO,
+            // USER_EMAIL: input.USER_EMAIL,
+            // USER_ID: input.USER_ID,
+            // USER_JADATE: input.USER_JADATE,
+            // USER_NAME: input.USER_NAME,
+            // USER_PHONE: input.USER_PHONE,
+            // USER_PW: input.USER_PW
+        };
+
+        return this.usersTempRepository.save(newUser)
+    }
+
+    async createU(input: CreateUserInput): Promise<Users_Temp> {
         const newUser: Users_Temp = {
             ...input
             // USER_NO: input.USER_NO,

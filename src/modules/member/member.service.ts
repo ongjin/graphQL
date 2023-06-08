@@ -7,7 +7,7 @@ import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 export class MemberService {
 
     constructor(
-        @InjectRepository(Member, 'default')
+        @InjectRepository(Member)
         private readonly memberRepository: Repository<Member>,
 
     ) { }
@@ -29,9 +29,9 @@ export class MemberService {
         const offset = (current - 1) * limit;
         // 데이터베이스 쿼리 실행
         const users = await this.memberRepository.find({
+            order: { msNo: 'ASC' },
             skip: offset,
             take: limit,
-            order: { MS_NO: 'ASC' }
         });
         return users;
         // const result = this.memberRepository.find()
@@ -40,8 +40,8 @@ export class MemberService {
         // return result
     }
 
-    async getMember(MS_NO: string, CHAIN_NO: string): Promise<Member> {
-        const member = this.memberRepository.findOneBy({ MS_NO, CHAIN_NO })
+    async getMember(msNo: string, chainNo: string): Promise<Member> {
+        const member = this.memberRepository.findOneBy({ msNo, chainNo })
         return member || null
     }
 

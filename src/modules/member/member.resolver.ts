@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Context } from '@nestjs/graphql';
 import { Member } from './member.entity';
 import { InjectRepository, InjectDataSource } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -18,12 +18,13 @@ export class MemberResolver {
     }
 
     @Query(() => [Member])
-    async getMembersPage(@Args('dbName') dbName: string,  @Args('current') current: number, @Args('limit') limit: number): Promise<Member[]> {
+    async getMembersPage(@Args('dbName') dbName: string, @Args('current') current: number, @Args('limit') limit: number): Promise<Member[]> {
+        
         return this.memberService.getMembersPage(dbName, current, limit);
     }
 
     @Query(() => Member)
-    async getMember(@Args('MS_NO') msNo: string, @Args('CHAIN_NO') chainNo: string): Promise<Member> {
+    async getMember(@Args('msNo') msNo: string, @Args('chainNo') chainNo: string): Promise<Member> {
         return this.memberService.getMember(msNo, chainNo)
     }
 

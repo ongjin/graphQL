@@ -52,10 +52,10 @@ type Member {
   msId: String
   passwd: String
   msType: String
-  MS_NO: String
+  msNo: String
   msNm: String
   msEngNm: String
-  CHAIN_NO: String
+  chainNo: String
   chainHqYn: String
   chainArea: String
   bizNo: String
@@ -77,7 +77,7 @@ type Query {
   getMembers(dbName: String): [Member]
   getMembersPage(dbName: String, limit: Int, current: Int): [Member]
   # getMembers: [Member]
-  getMember(MS_NO: String, CHAIN_NO: String): Member
+  getMember(msNo: String, chainNo: String): Member
 }
 
 

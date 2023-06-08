@@ -21,7 +21,7 @@ export class Users_Temp {
     // userName: string;
 
     @PrimaryGeneratedColumn()
-    USER_NO!: number;
+    USER_NO: number;
 
 
     @Column()

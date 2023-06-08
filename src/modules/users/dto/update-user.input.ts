@@ -10,20 +10,20 @@ export class UpdateUserInput {
     USER_NO: number;
 
     @Field({ nullable: true })
-    USER_ID?: string;
+    USER_ID: string;
 
     @Field({ nullable: true })
-    USER_PW?: string;
+    USER_PW: string;
 
     @Field({ nullable: true })
-    USER_EMAIL?: string;
+    USER_EMAIL: string;
 
     @Field({ nullable: true })
-    USER_PHONE?: string;
+    USER_PHONE: string;
 
     @Field({ nullable: true })
-    USER_JADATE?: string;
+    USER_JADATE: string;
 
     @Field({ nullable: true })
-    USER_NAME?: string;
+    USER_NAME: string;
 }

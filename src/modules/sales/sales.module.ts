@@ -6,7 +6,7 @@ import { SalesResolver } from './sales.resolver';
 import { SalesService } from './sales.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([SalesHD, SalesDT], 'webkiosk')],
+    imports: [TypeOrmModule.forFeature([SalesHD, SalesDT])],
     providers: [SalesResolver, SalesService],
 })
 export class SalesModule { }

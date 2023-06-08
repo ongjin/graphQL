@@ -6,9 +6,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class SalesService {
     constructor(
-        @InjectRepository(SalesHD, 'webkiosk')
+        @InjectRepository(SalesHD)
         private readonly salesHDRepository: Repository<SalesHD>,
-        @InjectRepository(SalesDT, 'webkiosk')
+        @InjectRepository(SalesDT)
         private readonly salesDTRepository: Repository<SalesDT>,
     ) { }
 

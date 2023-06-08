@@ -9,7 +9,7 @@ import database2Config from 'config/database2Config';
  */
 @Module({
     imports: [
-        TypeOrmModule.forRoot(database1Config),
+        // TypeOrmModule.forRoot(database1Config),
         TypeOrmModule.forRoot(database2Config),
         // TypeOrmModule.forFeature([])
         // TypeOrmModule.forRoot({

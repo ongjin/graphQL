@@ -1,7 +1,6 @@
 // database1Config.ts
 
 import { TypeOrmModuleAsyncOptions } from "@nestjs/typeorm";
-import { ConfigService } from '@nestjs/config';
 
 import {
     DB_TYPE,
