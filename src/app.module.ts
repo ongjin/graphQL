@@ -3,12 +3,9 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
 import {
-    GraphQL_Module,
-    JWT_Module,
     MemberModule,
     SalesModule,
     Users_TempsModule,
-    Users_Temps_Copy_Module
 } from './modules';
 
 import {
@@ -23,7 +20,8 @@ import {
     HttpExceptionFilter,
     JWT_SECRET_KEY,
 } from './shared';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 
 @Module({
@@ -32,21 +30,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             secret: JWT_SECRET_KEY,
             signOptions: { expiresIn: '1h' }
         }),
-        // JWT_Module,
-        GraphQL_Module,
-        // GraphQLModule.forRoot<ApolloDriverConfig>({
-        //     driver: ApolloDriver,
-        //     // gql ui 배포환경에서는 false
-        //     playground: true,
-        //     typePaths: ['./**/*.graphql'],
-        //     formatError,
-        //     context: ({ req }) => ({ headers: req.headers }),
-        // }),
+        GraphQLModule.forRoot<ApolloDriverConfig>({
+            driver: ApolloDriver,
+            playground: true,
+            typePaths: ['./**/*.graphql'],
+            formatError,
+            context: ({ req }) => ({ headers: req.headers }),
+        }),
         DatabaseModule,
         Users_TempsModule,
         MemberModule,
         SalesModule,
-        Users_Temps_Copy_Module,
     ],
     providers: [
         {

@@ -3,7 +3,7 @@ import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 
 /**
- * @description ValidationPipe 타입 확인
+ * @description ValidationPipe 타입 체크
  */
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {

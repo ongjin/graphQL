@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, Unique, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 
 
-@Entity({ name: 'STRNHDTB' })
+@Entity({ name: 'STRNHDTB', orderBy: { SALE_DATE: 'DESC' } })
 @Unique(['SALE_DATE', 'MS_NO', 'POS_NO', 'BILL_NO'])
 export class SalesHD {
     @PrimaryColumn()
@@ -36,6 +36,7 @@ export class SalesHD {
 
     @OneToMany(() => SalesDT, salesDT => salesDT.salesHD)
     salesDTs?: SalesDT[]
+
 }
 
 @Entity({ name: 'STRNDTTB' })

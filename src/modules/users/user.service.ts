@@ -44,6 +44,7 @@ export class UserService {
         return test.find()
         // return this.commonService.getRepository<Users_Temp>(Users_Temp, dbName);
     }
+    
     async getU(dbName: string, current: number = 1, limit: number = 100): Promise<Users_Temp[]> {
         // 페이지네이션 로직 구현
         const offset = (current - 1) * limit;

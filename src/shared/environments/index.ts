@@ -1,4 +1,7 @@
-// const dotenv = require('dotenv');
+/**
+ * @description environments
+ * @description 환경변수 설정
+ */
 import * as dotenv from 'dotenv';
 
 const NODE_ENV: string = process.env.NODE_ENV
@@ -60,7 +63,7 @@ export {
     WEBKIOSK_DB_SID,
     WEBKIOSK_DB_USERNAME,
     WEBKIOSK_DB_PASSWORD,
-    
+
     SHINSUN_DB_PORT,
     SHINSUN_DB_NAME,
     SHINSUN_DB_HOST,

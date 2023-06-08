@@ -1,6 +1,6 @@
 /**
- * @description: decorators
- * @description: @Roles('admin')
+ * @description decorators
+ * @description 커스텀 데코레이터 ex) @Roles('admin')
  */
 export * from './auth.decorator'
 export * from './cacheResult.decorator'

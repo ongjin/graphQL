@@ -16,4 +16,9 @@ export class SalesResolver {
     async getSales(): Promise<SalesHD[]> {
         return this.salesService.getSales();
     }
+
+    @Query(() => [SalesHD])
+    async getSalesPage(@Args('current') current: number, @Args('limit') limit: number): Promise<SalesHD[]> {
+        return this.salesService.getSalesPage(current, limit);
+    }
 }
