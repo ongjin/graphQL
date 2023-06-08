@@ -2,7 +2,6 @@ import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/co
 import { GqlArgumentsHost, GqlContextType } from '@nestjs/graphql';
 
 /**
- * @author 조용진
  * @description GQL Error Filter
  */
 @Catch(HttpException)

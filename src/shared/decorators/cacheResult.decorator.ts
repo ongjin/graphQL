@@ -1,6 +1,5 @@
 
 /**
- * @author 조용진
  * @description 동일한 인수로 호출되면 이전 결과를 반환하여 실행 시간을 단축
  * @returns descriptor
  */

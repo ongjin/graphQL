@@ -1,7 +1,6 @@
 import { Logger } from '@nestjs/common';
 
 /**
- * @author 조용진
  * @description Logging
  * @returns 
  */

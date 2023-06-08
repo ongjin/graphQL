@@ -5,13 +5,13 @@ import database1Config from 'config/database1Config';
 import database2Config from 'config/database2Config';
 
 /**
- * @author 조용진
  * @description DB연동 모듈
  */
 @Module({
     imports: [
         TypeOrmModule.forRoot(database1Config),
         TypeOrmModule.forRoot(database2Config),
+        // TypeOrmModule.forFeature([])
         // TypeOrmModule.forRoot({
         //     type: 'oracle',
         //     host: '140.238.21.87',

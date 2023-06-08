@@ -1,7 +1,6 @@
 {
     "name": "astemsapi",
     "version": "1.0.0",
-    "description": "CYJ",
     "private": true,
     "scripts": {
         "build": "nest build",

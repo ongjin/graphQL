@@ -5,7 +5,6 @@ import { getEntityManagerToken } from '@nestjs/typeorm';
 
 /**
  * @description 매 요청마다 EntityManager와 Repository인스턴스를 새로 생성
- * @author 조용진
  */
 @Injectable({ scope: Scope.REQUEST })
 export class CommonService {

@@ -1,9 +1,8 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
 
 /**
- * @author 조용진
  * @description 인가
  */
 @Injectable()
@@ -16,6 +15,7 @@ export class AuthGuard implements CanActivate {
 
         const token = req.headers.authorization?.split(' ')[1];
         if (!token) {
+            throw new UnauthorizedException('Invalid token');
             return false; // 토큰이 없으면 인증 실패
         }
 
@@ -26,6 +26,7 @@ export class AuthGuard implements CanActivate {
 
             return true; // 인증 성공
         } catch (error) {
+            throw new UnauthorizedException('Expired token or Sign');
             return false; // 토큰 검증 실패로 인증 실패
         }
     }

@@ -8,7 +8,7 @@ import { Users_Temp } from './user.entity';
 import { UserService } from './user.service';
 import { CreateUserInput, UpdateUserInput } from './dto';
 
-import { Header, CommonService, Auth, Log, CacheResult, MeasureTime, Pagination } from 'src/shared';
+import { Header, CommonService, Auth, Log, CacheResult, MeasureTime, Pagination, Role } from 'src/shared';
 
 
 
@@ -40,7 +40,7 @@ export class Users_TempResolver {
     }
 
     @Query(() => Users_Temp)
-    @Auth('admin')
+    @Auth(Role.Admin)
     // @CacheResult()
     // @Log()
     async getUser(@Args('userNo') userNo: number, @Header('authorization') authorization: string): Promise<Users_Temp> {
@@ -52,7 +52,7 @@ export class Users_TempResolver {
 
 
     @Mutation(() => Users_Temp)
-    @Auth('user')
+    @Auth(Role.User)
     async createUser(@Args('input') input: CreateUserInput): Promise<Users_Temp> {
         return this.userService.createUser(input)
     }

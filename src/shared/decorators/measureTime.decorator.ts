@@ -1,5 +1,4 @@
 /**
- * @author 조용진
  * @description 로직 실행 시간 측정
  * @returns 
  */

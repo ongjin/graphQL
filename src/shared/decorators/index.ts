@@ -1,5 +1,4 @@
 /**
- * @author: 조용진
  * @description: decorators
  * @description: @Roles('admin')
  */

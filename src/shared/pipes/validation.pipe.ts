@@ -3,7 +3,6 @@ import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 
 /**
- * @author 조용진
  * @description ValidationPipe 타입 확인
  */
 @Injectable()

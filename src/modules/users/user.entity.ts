@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from 'typeorm';
 
 
-@Entity({ name: 'USERS_TEMP' })
+@Entity({ name: 'USERS_TEMP', orderBy: {USER_NO: 'ASC'} })
 export class Users_Temp {
     // @PrimaryGeneratedColumn({name: 'USER_NO'})
     // // @PrimaryColumn({name: "USER_NO"})

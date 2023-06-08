@@ -2,7 +2,6 @@ import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 
 /**
- * @author 조용진
  * @description Header정보를 가져옴
  */
 export const Header = createParamDecorator((data: string, context: ExecutionContext) => {

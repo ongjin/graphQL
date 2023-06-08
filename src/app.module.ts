@@ -2,7 +2,7 @@ import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
-import { 
+import {
     GraphQL_Module,
     JWT_Module,
     MemberModule,
@@ -12,7 +12,7 @@ import {
 } from './modules';
 
 import {
-    GraphQlExceptionFilter, 
+    GraphQlExceptionFilter,
     RolesGuard,
     AuthGuard,
     formatError,
@@ -21,13 +21,15 @@ import {
     LoggingInterceptor,
     ValidationPipe,
     HttpExceptionFilter,
+    JWT_SECRET_KEY,
 } from './shared';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 
 @Module({
     imports: [
         JwtModule.register({
-            secret: 'SECRET_KEY',
+            secret: JWT_SECRET_KEY,
             signOptions: { expiresIn: '1h' }
         }),
         // JWT_Module,
@@ -52,12 +54,12 @@ import {
             useClass: GraphQlExceptionFilter
         },
         {
-            provide: APP_GUARD,
-            useClass: AuthGuard,
-        },
-        {
             provide: APP_FILTER,
             useClass: HttpExceptionFilter
+        },
+        {
+            provide: APP_GUARD,
+            useClass: AuthGuard,
         },
         // {
         //     provide: APP_GUARD,
@@ -74,7 +76,7 @@ import {
         // {
         //     provide: APP_PIPE,
         //     useClass: ValidationPipe
-        // }
+        // },
     ]
 })
 export class AppModule { }

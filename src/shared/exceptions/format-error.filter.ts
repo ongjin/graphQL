@@ -2,7 +2,6 @@ import { ValidationError } from "apollo-server-express";
 
 // custom formatError callback
 /**
- * @author 조용진
  * @description playground custom Error Filter
  * @param err 
  * @returns 
@@ -21,12 +20,14 @@ export const formatError = (err: any) => {
     if (extensions && extensions.exception && extensions.exception.response) {
         return {
             message: extensions?.code || "SERVER_ERROR",
-            status: extensions?.originalError || (extensions.exception.getStatus() || 500),
+            content: message || '',
+            status: extensions?.originalError?.statusCode || extensions?.originalError || (extensions && extensions.status ? extensions.status : 500),
         };
     }
 
     return {
         message: extensions?.code || "SERVER_ERROR",
-        status: extensions?.originalError || (extensions && extensions.status ? extensions.status : 500),
+        content: message || '',
+        status: extensions?.originalError?.statusCode || extensions?.originalError || (extensions && extensions.status ? extensions.status : 500),
     };
 };

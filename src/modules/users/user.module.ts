@@ -10,8 +10,8 @@ import { UserService } from './user.service';
 
 @Module({
     imports: [
+        TypeOrmModule.forFeature([Users_Temp], 'default'),
         TypeOrmModule.forFeature([Users_Temp], 'webkiosk'), 
-        TypeOrmModule.forFeature([Users_Temp], 'default')
     ],
     providers: [Users_TempResolver, UserService, CommonService],
 })
