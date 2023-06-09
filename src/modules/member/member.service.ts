@@ -9,7 +9,6 @@ export class MemberService {
     constructor(
         @InjectRepository(Member) private readonly memberRepository: Repository<Member>,
         @InjectRepository(Member, 'shinsun') private readonly memberRepository2: Repository<Member>,
-
     ) { }
 
     private repoTest(dbName: string) {

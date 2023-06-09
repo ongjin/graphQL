@@ -7,7 +7,8 @@
         "start": "cross-env NODE_ENV=development nest start",
         "start:dev": "nest start --watch",
         "start:debug": "cross-env NODE_ENV=development nest start --debug --watch",
-        "start:prod": "npm run build && cross-env NODE_ENV=production node dist/src/main"
+        "start:prod": "npm run build && cross-env NODE_ENV=production node dist/src/main",
+        "start:test": "npm run build && cross-env NODE_ENV=production pm2 start ./ecosystem.config.cjs --only GraphQL_API"
     },
     "author": "CYJ",
     "license": "ISC",
@@ -28,7 +29,8 @@
         "class-validator": "^0.14.0",
         "cross-env": "^7.0.3",
         "dotenv": "^16.1.4",
-        "graphql": "^16.6.0"
+        "graphql": "^16.6.0",
+        "pm2": "^5.3.0"
     },
     "devDependencies": {
         "@nestjs/cli": "^9.5.0",

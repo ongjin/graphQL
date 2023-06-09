@@ -14,7 +14,7 @@ import {
 
 // `${DB_TYPE}://${WEBKIOSK_DB_USERNAME}:${WEBKIOSK_DB_PASSWORD}@${WEBKIOSK_DB_HOST}:${WEBKIOSK_DB_PORT}/${WEBKIOSK_DB_SID}`
 
-console.log('WEBKIOSK_DB_HOST', WEBKIOSK_DB_HOST);
+// console.log('WEBKIOSK_DB_HOST', WEBKIOSK_DB_HOST);
 
 export default {
     type: DB_TYPE,

@@ -6,7 +6,7 @@ import { MemberResolver } from './member.resolver';
 import { MemberService } from './member.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Member]), TypeOrmModule.forFeature([Member], 'shinsun')],
+    imports: [TypeOrmModule.forFeature([Member], 'shinsun'), TypeOrmModule.forFeature([Member])],
     providers: [MemberResolver, MemberService],
 })
 export class MemberModule { }
