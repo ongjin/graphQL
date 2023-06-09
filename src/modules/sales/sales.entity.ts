@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, Unique, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, Unique, ManyToOne, OneToMany, JoinColumn, OneToOne } from 'typeorm';
 
 
 @Entity({ name: 'STRNHDTB', orderBy: { SALE_DATE: 'DESC' } })
@@ -35,7 +35,8 @@ export class SalesHD {
     DC_AMT: number;
 
     @OneToMany(() => SalesDT, salesDT => salesDT.salesHD)
-    salesDTs?: SalesDT[]
+    salesDTs: SalesDT[]
+
 
 }
 
@@ -77,6 +78,7 @@ export class SalesDT {
     @Column()
     DC_AMT: number;
 
+
     @ManyToOne(() => SalesHD, salesHD => salesHD.salesDTs)
     @JoinColumn([
         { name: 'SALE_DATE', referencedColumnName: 'SALE_DATE' },
@@ -86,5 +88,31 @@ export class SalesDT {
     ])
     salesHD: SalesHD
 
+    // @OneToOne(() => Mgoodstb, mgoodstb => mgoodstb.salesDT, { eager: true })
+    // @JoinColumn([
+    //     { name: 'GOODS_CD', referencedColumnName: 'GOODS_CD' },
+    //     { name: 'MS_NO', referencedColumnName: 'MS_NO' },
+    // ])
+    // mgoodstb: Mgoodstb;
 }
 
+
+@Entity({ name: 'MGOODSTB' })
+@Unique(['GOODS_CD', 'MS_NO'])
+export class Mgoodstb {
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    MS_NO: string;
+
+    @Column()
+    GOODS_CD: string;
+
+    @Column()
+    GOODS_NM: string;
+
+
+    // @OneToOne(() => SalesDT, salesDT => salesDT.mgoodstb)
+    // salesDT: SalesDT;
+}

@@ -51,11 +51,11 @@ export class Users_TempResolver {
     }
 
 
-    @Mutation(() => Users_Temp)
-    @Auth(Role.User)
-    async createUser(@Args('input') input: CreateUserInput): Promise<Users_Temp> {
-        return this.userService.createUser(input)
-    }
+    // @Mutation(() => Users_Temp)
+    // @Auth(Role.User)
+    // async createUser(@Args('input') input: CreateUserInput): Promise<Users_Temp> {
+    //     return this.userService.createUser(input)
+    // }
 
     @Mutation(() => Users_Temp)
     async updateUser(@Args('input') input: UpdateUserInput): Promise<Users_Temp> {

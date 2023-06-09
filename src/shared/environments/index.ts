@@ -17,7 +17,7 @@ const DB_TYPE: string = process.env.DB_TYPE || 'oracle'
 
 const WEBKIOSK_DB_PORT: number = Number(process.env.WEBKIOSK_DB_PORT) || 9070;
 const WEBKIOSK_DB_NAME: string = process.env.WEBKIOSK_DB_NAME || "default"
-const WEBKIOSK_DB_HOST: string = process.env.WEBKIOSK_DB_HOST || '140.238.21.87'
+const WEBKIOSK_DB_HOST: string = process.env.WEBKIOSK_DB_HOST || `140.238.21.87:${WEBKIOSK_DB_PORT}`
 const WEBKIOSK_DB_SID: string = process.env.WEBKIOSK_DB_SID || 'xe'
 const WEBKIOSK_DB_USERNAME: string = process.env.WEBKIOSK_DB_USERNAME || 'neoib'
 const WEBKIOSK_DB_PASSWORD: string = process.env.WEBKIOSK_DB_PASSWORD || 'neoib0'

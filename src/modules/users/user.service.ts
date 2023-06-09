@@ -27,7 +27,10 @@ export class UserService {
         // return (await this.commonService.getRepository('default', Users_Temp)).find()
 
         const test = this.repoTest(dbName)
-        return test.find()
+
+        return test.find({
+            relations: ['token']
+        })
         // return this.commonService.getRepository<Users_Temp>(Users_Temp, dbName);
     }
     
@@ -66,35 +69,35 @@ export class UserService {
         // return this.usersTempRepository.findOneBy({ USER_NO })
     }
 
-    async createUser(input: CreateUserInput): Promise<Users_Temp> {
-        const newUser: Users_Temp = {
-            ...input
-            // USER_NO: input.USER_NO,
-            // USER_EMAIL: input.USER_EMAIL,
-            // USER_ID: input.USER_ID,
-            // USER_JADATE: input.USER_JADATE,
-            // USER_NAME: input.USER_NAME,
-            // USER_PHONE: input.USER_PHONE,
-            // USER_PW: input.USER_PW
-        };
+    // async createUser(input: CreateUserInput): Promise<Users_Temp> {
+    //     const newUser: Users_Temp = {
+    //         // ...input
+    //         USER_NO: input.USER_NO,
+    //         USER_EMAIL: input.USER_EMAIL,
+    //         USER_ID: input.USER_ID,
+    //         USER_JADATE: input.USER_JADATE,
+    //         USER_NAME: input.USER_NAME,
+    //         USER_PHONE: input.USER_PHONE,
+    //         USER_PW: input.USER_PW
+    //     };
 
-        return this.usersTempRepository.save(newUser)
-    }
+    //     return this.usersTempRepository.save(newUser)
+    // }
 
-    async createU(input: CreateUserInput): Promise<Users_Temp> {
-        const newUser: Users_Temp = {
-            ...input
-            // USER_NO: input.USER_NO,
-            // USER_EMAIL: input.USER_EMAIL,
-            // USER_ID: input.USER_ID,
-            // USER_JADATE: input.USER_JADATE,
-            // USER_NAME: input.USER_NAME,
-            // USER_PHONE: input.USER_PHONE,
-            // USER_PW: input.USER_PW
-        };
+    // async createU(input: CreateUserInput): Promise<Users_Temp> {
+    //     const newUser: Users_Temp = {
+    //         ...input
+    //         // USER_NO: input.USER_NO,
+    //         // USER_EMAIL: input.USER_EMAIL,
+    //         // USER_ID: input.USER_ID,
+    //         // USER_JADATE: input.USER_JADATE,
+    //         // USER_NAME: input.USER_NAME,
+    //         // USER_PHONE: input.USER_PHONE,
+    //         // USER_PW: input.USER_PW
+    //     };
 
-        return this.usersTempRepository.save(newUser)
-    }
+    //     return this.usersTempRepository.save(newUser)
+    // }
 
     async updateUser(input: UpdateUserInput): Promise<Users_Temp> {
         const user = await this.usersTempRepository.findOneBy({ USER_NO: input.USER_NO });

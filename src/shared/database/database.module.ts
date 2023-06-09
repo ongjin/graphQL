@@ -11,6 +11,9 @@ import database2Config from 'config/database2Config';
     imports: [
         // TypeOrmModule.forRoot(database1Config),
         TypeOrmModule.forRoot(database2Config),
+        // TypeOrmModule.forRoot({
+        //     conn
+        // })
         // TypeOrmModule.forFeature([])
         // TypeOrmModule.forRoot({
         //     type: 'oracle',

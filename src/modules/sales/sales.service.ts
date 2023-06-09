@@ -12,11 +12,13 @@ export class SalesService {
         private readonly salesDTRepository: Repository<SalesDT>,
     ) { }
 
+
+
     /** 두가지 방법 있음 */
     async getSales(): Promise<SalesHD[]> {
         // const sales = this.salesHDRepository.createQueryBuilder('salesHD')
         //     .leftJoinAndSelect('salesHD.salesDTs', 'salesDTs')
-        //     .where('salesHD.SALE_DATE = :saleDate', { saleDate: '20230531' })
+        //     .leftJoinAndSelect('salesHD.mgoodstbs', 'mgoodstbs')
         //     .getMany()
 
         const sales = await this.salesHDRepository.find({

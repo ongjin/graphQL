@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CommonService } from 'src/shared';
 import { Users_TempResolver } from './user.resolver';
 
-import { Users_Temp } from './user.entity';
+import { TokenTb, Users_Temp } from './user.entity';
 import { UserService } from './user.service';
 
 
@@ -12,7 +12,7 @@ import { UserService } from './user.service';
     imports: [
         // TypeOrmModule.forFeature([Users_Temp], 'default'),
         // TypeOrmModule.forFeature([Users_Temp], 'webkiosk'), 
-        TypeOrmModule.forFeature([Users_Temp]), 
+        TypeOrmModule.forFeature([Users_Temp, TokenTb]), 
     ],
     providers: [Users_TempResolver, UserService],
 })
