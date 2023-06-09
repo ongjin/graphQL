@@ -36,6 +36,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
             typePaths: ['./**/*.graphql'],
             formatError,
             context: ({ req }) => ({ headers: req.headers }),
+            introspection: true,
         }),
         DatabaseModule,
         Users_TempsModule,
