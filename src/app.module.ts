@@ -43,10 +43,10 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
         SalesModule,
     ],
     providers: [
-        {
-            provide: APP_FILTER,
-            useClass: GraphQlExceptionFilter
-        },
+        // {
+        //     provide: APP_FILTER,
+        //     useClass: GraphQlExceptionFilter
+        // },
         {
             provide: APP_FILTER,
             useClass: HttpExceptionFilter
