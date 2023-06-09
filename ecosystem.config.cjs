@@ -1,7 +1,7 @@
 module.exports = {
     apps: [{
         name: 'GraphQL_API', // pm2 name
-        script: 'dist/src/main', // 앱 실행 스크립트
+        script: 'dist/src/main.js', // 앱 실행 스크립트
         // script: 'env-cmd -e common,prod node ./build/index.js', // 앱 실행 스크립트
         // script: './build/index.js', // 앱 실행 스크립트
         instances: 2, // 클러스터 모드 사용 시 생성할 인스턴스 수
