@@ -77,7 +77,7 @@ type Query {
   getMembers(dbName: String): [Member]
   getMembersPage(dbName: String, limit: Int, current: Int): [Member]
   # getMembers: [Member]
-  getMember(msNo: String, chainNo: String): Member
+  getMember(dbName: String, msNo: String, chainNo: String): Member
 }
 
 

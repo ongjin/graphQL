@@ -19,13 +19,13 @@ export class MemberResolver {
 
     @Query(() => [Member])
     async getMembersPage(@Args('dbName') dbName: string, @Args('current') current: number, @Args('limit') limit: number): Promise<Member[]> {
-        
+
         return this.memberService.getMembersPage(dbName, current, limit);
     }
 
     @Query(() => Member)
-    async getMember(@Args('msNo') msNo: string, @Args('chainNo') chainNo: string): Promise<Member> {
-        return this.memberService.getMember(msNo, chainNo)
+    async getMember(@Args('dbName') dbName: string, @Args('msNo') msNo: string, @Args('chainNo') chainNo: string): Promise<Member> {
+        return this.memberService.getMember(dbName, msNo, chainNo)
     }
 
 }

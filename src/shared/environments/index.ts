@@ -23,8 +23,8 @@ const WEBKIOSK_DB_USERNAME: string = process.env.WEBKIOSK_DB_USERNAME || 'neoib'
 const WEBKIOSK_DB_PASSWORD: string = process.env.WEBKIOSK_DB_PASSWORD || 'neoib0'
 
 const SHINSUN_DB_PORT: number = Number(process.env.SHINSUN_DB_PORT) || 9090;
-const SHINSUN_DB_NAME: string = process.env.SHINSUN_DB_NAME || "default"
-const SHINSUN_DB_HOST: string = process.env.SHINSUN_DB_HOST || '140.238.21.87'
+const SHINSUN_DB_NAME: string = process.env.SHINSUN_DB_NAME || "shinsun"
+const SHINSUN_DB_HOST: string = process.env.SHINSUN_DB_HOST || `140.238.21.87:${SHINSUN_DB_PORT}`
 const SHINSUN_DB_SID: string = process.env.SHINSUN_DB_SID || 'xe'
 const SHINSUN_DB_USERNAME: string = process.env.SHINSUN_DB_USERNAME || 'neoib'
 const SHINSUN_DB_PASSWORD: string = process.env.SHINSUN_DB_PASSWORD || 'neoib0'

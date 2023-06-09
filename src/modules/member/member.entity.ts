@@ -7,7 +7,7 @@ import { Column, Entity, Index, PrimaryColumn } from "typeorm";
 @Index("MMEMBSX4", ["chainNo", "chainHqYn", "msNo"], {})
 @Index("MMEMBSX5", ["zipNo"], {})
 @Index("MMEMBSX6", ["chainHqYn", "openDate"], {})
-@Entity({ name: 'MMEMBSTB' })
+@Entity({ name: 'MMEMBSTB', orderBy: { MS_NO: "ASC" } })
 export class Member {
     @Column("varchar2", { name: "ADDRESS", length: 60 })
     address: string;
