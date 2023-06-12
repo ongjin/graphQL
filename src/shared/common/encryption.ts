@@ -1,7 +1,7 @@
 import * as crypto from 'crypto';
 import * as bcrypt from 'bcrypt';
 import {
-    ALGORITHM,
+    ENCRYPT_ALGORITHM,
     BCRYPT_SALT,
     ENCRYPT_IV,
     ENCRYPT_KEY
@@ -14,7 +14,7 @@ export class EncryptionLibrary {
     private readonly saltRounds: number;
 
     constructor() {
-        this.algorithm = ALGORITHM; // 암호화 알고리즘 설정
+        this.algorithm = ENCRYPT_ALGORITHM; // 암호화 알고리즘 설정
         this.key = ENCRYPT_KEY; // 키
         this.iv = ENCRYPT_IV; // 초기화 벡터 값
         this.saltRounds = BCRYPT_SALT; // bcrypt salt rounds 설정

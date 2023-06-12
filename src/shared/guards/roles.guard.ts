@@ -3,16 +3,21 @@ import { GqlExecutionContext } from '@nestjs/graphql';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { ROLES_KEY } from '../environments';
+import { EncryptionLibrary } from '../common/encryption';
 
 /**
  * @description roles 인가
  */
 @Injectable()
 export class RolesGuard implements CanActivate {
+    private readonly encryptionLibrary: EncryptionLibrary
+
     constructor(
         private reflector: Reflector,
-        private jwtService: JwtService
-    ) { }
+        private jwtService: JwtService,
+    ) {
+        this.encryptionLibrary = new EncryptionLibrary();
+    }
 
     canActivate(context: ExecutionContext): boolean {
         const ctx = GqlExecutionContext.create(context);
@@ -32,8 +37,20 @@ export class RolesGuard implements CanActivate {
         }
 
         try {
+            // {
+            //     msNo: '1lx6XWm0',
+            //     chainNo: '2yx8UA==',
+            //     roles: ['user', 'admin'],
+            //     uuid: '4c7f3690-73a3-4a4a-89d3-20e39a511aa1',
+            //     junction: 'shinsun',
+            //     iat: 1686553212,
+            //     exp: 1686556812
+            // }
+            const decoded = this.jwtService.verify(token)
+            decoded.msNo = this.encryptionLibrary.decrypt(decoded.msNo)
+            decoded.chainNo = this.encryptionLibrary.decrypt(decoded.chainNo)
+
             // 토큰을 검증하여 사용자 정보를 추출하는 로직
-            const decoded = this.jwtService.verify(token);
             req.user = decoded; // 요청 객체에 사용자 정보 추가
 
             // 사용자의 역할과 요청에 필요한 역할 비교

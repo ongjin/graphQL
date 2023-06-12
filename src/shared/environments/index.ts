@@ -42,7 +42,7 @@ const JWT_SECRET_KEY: string = process.env.JWT_SECRET_KEY || 'SECRET_KEY'
 const BCRYPT_SALT: number = Number(process.env.BCRYPT_SALT) || 10
 const ENCRYPT_KEY: string = process.env.ENCRYPT_KEY || 'e989f80ea242b24bb7f4aa279c474ad19313373e14c1101f4aae76ead13df459'
 const ENCRYPT_IV: string = process.env.ENCRYPT_IV || 'cc8147785624522ec87e1e34ab7a7be1'
-const ALGORITHM: string = process.env.ALGORITHM || 'aes-256-ctr'
+const ENCRYPT_ALGORITHM: string = process.env.ENCRYPT_ALGORITHM || 'aes-256-ctr'
 
 // application
 const PRIMARY_COLOR: string = process.env.PRIMARY_COLOR || '#87e8de'
@@ -87,7 +87,7 @@ export {
     BCRYPT_SALT,
     ENCRYPT_KEY,
     ENCRYPT_IV,
-    ALGORITHM,
+    ENCRYPT_ALGORITHM,
 
 
 

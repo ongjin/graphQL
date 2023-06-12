@@ -1,23 +1,16 @@
 import { Resolver, Query, Mutation, Args, Context, GqlExecutionContext } from '@nestjs/graphql';
 import { Member } from './member.entity';
-import { InjectRepository, InjectDataSource } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Injectable, Inject, ExecutionContext, Req } from '@nestjs/common';
 
 import { MemberService } from './member.service';
-import { Auth, CustomRequest, Header, Role } from 'src/shared';
-import { Request } from 'express';
-import { EncryptionLibrary } from 'src/shared/common/encryption';
+import { Auth, CustomRequest, Header, Pagination, Role } from 'src/shared';
 
 @Resolver()
 export class MemberResolver {
-    private readonly encryptionLibrary: EncryptionLibrary
 
     constructor(
         private readonly memberService: MemberService
-    ) {
-        this.encryptionLibrary = new EncryptionLibrary();
-    }
+    ) { }
 
     yourMethod(context: ExecutionContext) {
         const ctx = GqlExecutionContext.create(context);
@@ -48,7 +41,7 @@ export class MemberResolver {
     @Auth(...[Role.User, Role.Admin])
     async getMembersPage(@Args('current') current: number, @Args('limit') limit: number, @CustomRequest('user') user: object): Promise<Member[]> {
         const dbName = user['junction']
-        
+
         return this.memberService.getMembersPage(dbName, current, limit);
     }
 
@@ -56,9 +49,9 @@ export class MemberResolver {
     @Auth(...[Role.User, Role.Admin])
     async getMember(@CustomRequest('user') user: object): Promise<Member> {
         const dbName = user['junction']
-        const msNo = this.encryptionLibrary.decrypt(user['msNo'])
-        const chainNo = this.encryptionLibrary.decrypt(user['chainNo'])
-        
+        const msNo = user['msNo']
+        const chainNo = user['chainNo']
+
         return this.memberService.getMember(dbName, msNo, chainNo)
     }
 
