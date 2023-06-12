@@ -15,8 +15,6 @@ type SalesHD {
   DC_AMT: Int
   salesDTs: [SalesDT]
 
-  mgoodstbs:Mgoodstb
-
 }
 type SalesDT {
   SALE_DATE: String

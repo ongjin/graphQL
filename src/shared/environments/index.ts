@@ -38,8 +38,11 @@ const ROLES_KEY = process.env.ROLES_KEY || 'roles';
 // jsonwebtoken
 const JWT_SECRET_KEY: string = process.env.JWT_SECRET_KEY || 'SECRET_KEY'
 
-// bcrypt
+// crypt
 const BCRYPT_SALT: number = Number(process.env.BCRYPT_SALT) || 10
+const ENCRYPT_KEY: string = process.env.ENCRYPT_KEY || 'e989f80ea242b24bb7f4aa279c474ad19313373e14c1101f4aae76ead13df459'
+const ENCRYPT_IV: string = process.env.ENCRYPT_IV || 'cc8147785624522ec87e1e34ab7a7be1'
+const ALGORITHM: string = process.env.ALGORITHM || 'aes-256-ctr'
 
 // application
 const PRIMARY_COLOR: string = process.env.PRIMARY_COLOR || '#87e8de'
@@ -82,6 +85,11 @@ export {
 
     // bcrypt
     BCRYPT_SALT,
+    ENCRYPT_KEY,
+    ENCRYPT_IV,
+    ALGORITHM,
+
+
 
     PRIMARY_COLOR,
     DOMAIN,

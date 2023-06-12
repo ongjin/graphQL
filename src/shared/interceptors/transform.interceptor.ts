@@ -5,6 +5,9 @@ import { isArray } from 'class-validator';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { EncryptionLibrary } from '../common/encryption';
+
+
 /**
  * @description 
  *  - 데이터 변환 로직을 수행하고 수정된 데이터를 반환합니다.
@@ -12,11 +15,16 @@ import { map } from 'rxjs/operators';
  */
 @Injectable()
 export class TransformInterceptor implements NestInterceptor {
+    private readonly encryptionLibrary: EncryptionLibrary;
+    constructor() {
+        this.encryptionLibrary = new EncryptionLibrary();
+    }
+
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         return next.handle().pipe(
-            map((data: any) => {
+            map(async (data: any) => {
                 // console.log('data', data);
-                
+
                 // if(isArray(data)){
                 //     data.map(val => delete val.MS_NO)
                 //     data.map(val => delete val.USER_NO)
@@ -24,7 +32,9 @@ export class TransformInterceptor implements NestInterceptor {
                 //     delete data.USER_NO
                 //     delete data.MS_NO
                 // }
-                
+
+                const encrypt1 = this.encryptionLibrary.encrypt('admin')
+                console.log('encryptResult', this.encryptionLibrary.encrypt('admin'), this.encryptionLibrary.encrypt('user'));
                 
                 return data;
             }),

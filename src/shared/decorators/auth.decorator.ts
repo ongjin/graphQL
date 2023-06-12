@@ -8,3 +8,4 @@ import { ROLES_KEY } from '../environments';
  * @returns 
  */
 export const Auth = (...roles: string[]) => SetMetadata(ROLES_KEY, roles);
+export const bypassAuth = (bypass: boolean) => SetMetadata('bypassAuth', bypass);

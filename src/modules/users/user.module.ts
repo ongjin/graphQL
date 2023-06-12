@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CommonService } from 'src/shared';
 import { Users_TempResolver } from './user.resolver';
 
 import { TokenTb, Users_Temp } from './user.entity';

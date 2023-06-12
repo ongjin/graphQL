@@ -36,8 +36,6 @@ export class SalesHD {
 
     @OneToMany(() => SalesDT, salesDT => salesDT.salesHD)
     salesDTs: SalesDT[]
-
-
 }
 
 @Entity({ name: 'STRNDTTB' })
@@ -88,22 +86,20 @@ export class SalesDT {
     ])
     salesHD: SalesHD
 
-    // @OneToOne(() => Mgoodstb, mgoodstb => mgoodstb.salesDT, { eager: true })
-    // @JoinColumn([
-    //     { name: 'GOODS_CD', referencedColumnName: 'GOODS_CD' },
-    //     { name: 'MS_NO', referencedColumnName: 'MS_NO' },
-    // ])
-    // mgoodstb: Mgoodstb;
+    @OneToOne(() => Mgoodstb, { eager: true })
+    @JoinColumn([
+        { name: 'GOODS_CD', referencedColumnName: 'GOODS_CD' },
+        { name: 'MS_NO', referencedColumnName: 'MS_NO' },
+    ])
+    mgoodstb: Promise<Mgoodstb>;
 }
+
 
 
 @Entity({ name: 'MGOODSTB' })
 @Unique(['GOODS_CD', 'MS_NO'])
 export class Mgoodstb {
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    @Column()
+    @PrimaryColumn()
     MS_NO: string;
 
     @Column()
@@ -112,7 +108,6 @@ export class Mgoodstb {
     @Column()
     GOODS_NM: string;
 
-
-    // @OneToOne(() => SalesDT, salesDT => salesDT.mgoodstb)
-    // salesDT: SalesDT;
+    @OneToOne(() => SalesDT, salesDT => salesDT.mgoodstb)
+    salesDT: SalesDT;
 }

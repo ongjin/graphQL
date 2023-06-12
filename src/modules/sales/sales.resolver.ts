@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { Injectable, Inject } from '@nestjs/common';
 
 import { SalesService } from './sales.service';
+import { Auth, Role } from 'src/shared';
 
 @Resolver()
 export class SalesResolver {
@@ -13,11 +14,13 @@ export class SalesResolver {
     ) { }
 
     @Query(() => [SalesHD])
+    @Auth(...[Role.User, Role.Admin])
     async getSales(): Promise<SalesHD[]> {
         return this.salesService.getSales();
     }
 
     @Query(() => [SalesHD])
+    @Auth(...[Role.User, Role.Admin])
     async getSalesPage(@Args('current') current: number, @Args('limit') limit: number): Promise<SalesHD[]> {
         return this.salesService.getSalesPage(current, limit);
     }

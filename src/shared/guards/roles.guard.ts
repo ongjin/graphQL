@@ -10,7 +10,7 @@ import { ROLES_KEY } from '../environments';
 @Injectable()
 export class RolesGuard implements CanActivate {
     constructor(
-        private reflector: Reflector, 
+        private reflector: Reflector,
         private jwtService: JwtService
     ) { }
 
@@ -20,8 +20,12 @@ export class RolesGuard implements CanActivate {
         const roles = this.reflector.get<string[]>(ROLES_KEY, context.getHandler());
         // const roles = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [context.getHandler(), context.getClass()]);
 
-        const token = req.headers.authorization?.split(' ')[1];
+        const bypassAuth = this.reflector.get<string>('bypassAuth', context.getHandler());
+        if (bypassAuth) {
+            return true; // 인증 절차를 생략
+        }
 
+        const token = req.headers.authorization?.split(' ')[1];
         if (!token) {
             throw new UnauthorizedException('Invalid token');
             return false; // 토큰이 없으면 인증 실패

@@ -22,7 +22,7 @@ export class Users_TempResolver {
 
 
     @Query(() => [Users_Temp])
-    @Auth("user")
+    @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
     async getUsers(@Args('dbName') dbName: string, @Header('authorization') authorization: string): Promise<Users_Temp[]> {
         console.log('authorization', authorization);
@@ -32,6 +32,7 @@ export class Users_TempResolver {
 
 
     @Query(() => [Users_Temp])
+    @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
     // async getU(@Args('dbName') dbName: string, @Pagination() pagination: { current: number, limit: number }): Promise<Users_Temp[]> {
     // const { current, limit } = pagination;
@@ -40,7 +41,7 @@ export class Users_TempResolver {
     }
 
     @Query(() => Users_Temp)
-    @Auth(Role.Admin)
+    @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
     // @Log()
     async getUser(@Args('userNo') userNo: number, @Header('authorization') authorization: string): Promise<Users_Temp> {
@@ -58,11 +59,13 @@ export class Users_TempResolver {
     // }
 
     @Mutation(() => Users_Temp)
+    @Auth(...[Role.User, Role.Admin])
     async updateUser(@Args('input') input: UpdateUserInput): Promise<Users_Temp> {
         return this.userService.updateUser(input);
     }
 
     @Mutation(() => Boolean)
+    @Auth(...[Role.User, Role.Admin])
     async deleteUser(@Args('USER_NO') USER_NO: number): Promise<boolean> {
         return this.userService.deleteUser(USER_NO);
     }

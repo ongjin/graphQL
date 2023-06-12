@@ -8,8 +8,6 @@ export class SalesService {
     constructor(
         @InjectRepository(SalesHD)
         private readonly salesHDRepository: Repository<SalesHD>,
-        @InjectRepository(SalesDT)
-        private readonly salesDTRepository: Repository<SalesDT>,
     ) { }
 
 
@@ -31,6 +29,7 @@ export class SalesService {
         // console.log('길이', sales.length);
         return sales
     }
+    
 
     async getSalesPage(current: number = 1, limit: number = 100): Promise<SalesHD[]> {
         const offset = (current - 1) * limit;

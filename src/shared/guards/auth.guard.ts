@@ -1,4 +1,5 @@
 import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
 
@@ -7,11 +8,19 @@ import { JwtService } from '@nestjs/jwt';
  */
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private jwtService: JwtService) { }
+    constructor(
+        private jwtService: JwtService,
+        private reflector: Reflector,
+    ) { }
 
     canActivate(context: ExecutionContext): boolean {
         const ctx = GqlExecutionContext.create(context);
         const { req } = ctx.getContext();
+
+        const bypassAuth = this.reflector.get<string>('bypassAuth', context.getHandler());
+        if (bypassAuth) {
+            return true; // 특정 메서드에 대해 인증 절차를 생략
+        }
 
         const token = req.headers.authorization?.split(' ')[1];
         if (!token) {

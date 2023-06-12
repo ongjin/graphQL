@@ -22,6 +22,8 @@ import {
 } from './shared';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 
 @Module({
@@ -43,7 +45,9 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
         MemberModule,
         SalesModule,
     ],
+    controllers: [AppController],
     providers: [
+        AppService,
         {
             provide: APP_FILTER,
             useClass: GraphQlExceptionFilter
@@ -52,14 +56,14 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
             provide: APP_FILTER,
             useClass: HttpExceptionFilter
         },
-        {
-            provide: APP_GUARD,
-            useClass: AuthGuard,
-        },
         // {
         //     provide: APP_GUARD,
-        //     useClass: RolesGuard,
+        //     useClass: AuthGuard,
         // },
+        {
+            provide: APP_GUARD,
+            useClass: RolesGuard,
+        },
         {
             provide: APP_INTERCEPTOR,
             useClass: LoggingInterceptor,
