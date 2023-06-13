@@ -36,6 +36,7 @@ export class MemberResolver {
         // }
         return this.memberService.getMembers(dbName);
     }
+    
 
     @Query(() => [Member])
     @Auth(...[Role.User, Role.Admin])

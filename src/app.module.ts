@@ -26,6 +26,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { JwtokenController } from './modules/jwt/jwtoken.controller';
 import { JwtokenService } from './modules/jwt/jwtoken.service';
+import { AccountModule } from './modules/account';
 
 
 @Module({
@@ -40,13 +41,14 @@ import { JwtokenService } from './modules/jwt/jwtoken.service';
             playground: true,
             typePaths: ['./**/*.graphql'],
             formatError,
-            context: ({ req }) => ({ headers: req.headers }),
+            // context: ({ req }) => ({ headers: req.headers }),
             introspection: true,
         }),
         DatabaseModule,
         Users_TempsModule,
         MemberModule,
         SalesModule,
+        AccountModule,
     ],
     controllers: [
         JwtokenController

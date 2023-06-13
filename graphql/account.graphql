@@ -1,0 +1,31 @@
+type Account {
+    id: Int
+
+    message_main_attachment_id: Int
+    currency_id: Int
+    company_id: Int
+    group_id: Int
+    root_id: Int
+    create_uid: Int
+    write_uid: Int
+
+    name: String
+    code: String
+    account_type: String
+    internal_group: String
+    note: String
+
+    deprecated: Boolean
+    include_initial_balance: Boolean
+    reconcile: Boolean
+    is_off_balance: Boolean
+    non_trade: Boolean
+
+    create_date: String
+
+    write_date: String
+}
+
+type Query{
+    getAccounts: [Account]
+}

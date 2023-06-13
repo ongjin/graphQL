@@ -29,6 +29,16 @@ const SHINSUN_DB_SID: string = process.env.SHINSUN_DB_SID || 'xe'
 const SHINSUN_DB_USERNAME: string = process.env.SHINSUN_DB_USERNAME || 'neoib'
 const SHINSUN_DB_PASSWORD: string = process.env.SHINSUN_DB_PASSWORD || 'neoib0'
 
+
+const POSTGRES_DB_TYPE: string = process.env.POSTGRES_DB_TYPE || 'postgres'
+const POSTGRES_DB_PORT: number = Number(process.env.POSTGRES_DB_PORT) || 9069
+const POSTGRES_DB_NAME: string = process.env.POSTGRES_DB_NAME || 'postgre'
+const POSTGRES_DB_HOST: string = process.env.POSTGRES_DB_HOST || '140.238.21.87'
+const POSTGRES_DB_USERNAME: string = process.env.POSTGRES_DB_USERNAME || 'odoo'
+const POSTGRES_DB_PASSWORD: string = process.env.POSTGRES_DB_PASSWORD || 'odoo'
+const POSTGRES_DB_DATABASE: string = process.env.POSTGRES_DB_DATABASE || 'astems'
+
+
 // author
 const AUTHOR: string = process.env.AUTHOR || 'CJY'
 
@@ -78,6 +88,14 @@ export {
     SHINSUN_DB_SID,
     SHINSUN_DB_USERNAME,
     SHINSUN_DB_PASSWORD,
+
+    POSTGRES_DB_TYPE,
+    POSTGRES_DB_PORT,
+    POSTGRES_DB_NAME,
+    POSTGRES_DB_HOST,
+    POSTGRES_DB_USERNAME,
+    POSTGRES_DB_PASSWORD,
+    POSTGRES_DB_DATABASE,
 
     // author
     AUTHOR,
