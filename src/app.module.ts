@@ -1,6 +1,7 @@
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { HttpModule } from '@nestjs/axios';
 
 import {
     MemberModule,
@@ -19,19 +20,20 @@ import {
     ValidationPipe,
     HttpExceptionFilter,
     JWT_SECRET_KEY,
-    EncryptionLibrary
+    EncryptionLibrary,
 } from './shared';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { JwtokenController } from './modules/jwt/jwtoken.controller';
+import { JwtokenService } from './modules/jwt/jwtoken.service';
 
 
 @Module({
     imports: [
+        HttpModule,
         JwtModule.register({
             secret: JWT_SECRET_KEY,
-            signOptions: { expiresIn: '1h' }
+            signOptions: { expiresIn: '30d' },
         }),
         GraphQLModule.forRoot<ApolloDriverConfig>({
             driver: ApolloDriver,
@@ -46,10 +48,12 @@ import { AppService } from './app.service';
         MemberModule,
         SalesModule,
     ],
-    controllers: [AppController],
+    controllers: [
+        JwtokenController
+    ],
     providers: [
+        JwtokenService,
         EncryptionLibrary,
-        AppService,
         { provide: APP_FILTER, useClass: GraphQlExceptionFilter },
         { provide: APP_FILTER, useClass: HttpExceptionFilter },
         // { provide: APP_GUARD, useClass: AuthGuard },

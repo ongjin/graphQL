@@ -31,9 +31,6 @@ export class TransformInterceptor implements NestInterceptor {
                 //     delete data.MS_NO
                 // }
 
-                const encrypt1 = this.encryptionLibrary.encrypt('admin')
-                console.log('encryptResult', this.encryptionLibrary.encrypt('admin'), this.encryptionLibrary.encrypt('user'));
-
                 return data;
             }),
         );

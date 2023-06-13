@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JWT Generate</h1>
+    <form action="/jwt" method="post">
+        <table>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td><label for="msNo">매장코드</label></td>
+                    <td>
+                        <input type="text" name="msNo" id="msNo" maxlength=6 value="C00077" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="chainNo">체인코드</label></td>
+                    <td>
+                        <input type="text" name="chainNo" id="chainNo" maxlength=4 value="C023" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="junction">db</label></td>
+                    <td>
+                        <input type="text" name="junction" id="junction" maxlength=10 value="shinsun" required>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">생성</button>
+    </form>
+
+</body>
+
+</html>

@@ -20,7 +20,7 @@ export class Users_Temp {
     @Column()
     USER_NAME: string;
 
-    @OneToOne(() => TokenTb, token => token.usersTemp)
+    @OneToOne(() => TokenTb)
     @JoinColumn([
         { name: 'USER_NO', referencedColumnName: 'USER_NO' }
     ])
@@ -36,8 +36,8 @@ export class TokenTb {
     @Column()
     USER_TOKEN: string;
 
-    @OneToOne(() => Users_Temp, usersTemp => usersTemp.token)
-    usersTemp: Users_Temp;
+    // @OneToOne(() => Users_Temp, usersTemp => usersTemp.token)
+    // usersTemp: Users_Temp;
 }
 
 
