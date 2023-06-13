@@ -4,8 +4,7 @@ import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nes
 import { isArray } from 'class-validator';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { EncryptionLibrary } from '../common/encryption';
+import { EncryptionLibrary } from '../common';
 
 
 /**
@@ -15,10 +14,9 @@ import { EncryptionLibrary } from '../common/encryption';
  */
 @Injectable()
 export class TransformInterceptor implements NestInterceptor {
-    private readonly encryptionLibrary: EncryptionLibrary;
-    constructor() {
-        this.encryptionLibrary = new EncryptionLibrary();
-    }
+    constructor(
+        private readonly encryptionLibrary: EncryptionLibrary
+    ) { }
 
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         return next.handle().pipe(
@@ -35,7 +33,7 @@ export class TransformInterceptor implements NestInterceptor {
 
                 const encrypt1 = this.encryptionLibrary.encrypt('admin')
                 console.log('encryptResult', this.encryptionLibrary.encrypt('admin'), this.encryptionLibrary.encrypt('user'));
-                
+
                 return data;
             }),
         );

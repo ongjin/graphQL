@@ -3,21 +3,21 @@ import { GqlExecutionContext } from '@nestjs/graphql';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { ROLES_KEY } from '../environments';
-import { EncryptionLibrary } from '../common/encryption';
+import { EncryptionLibrary } from '../common';
+
+
 
 /**
  * @description roles 인가
  */
 @Injectable()
 export class RolesGuard implements CanActivate {
-    private readonly encryptionLibrary: EncryptionLibrary
-
+    
     constructor(
+        private readonly encryptionLibrary: EncryptionLibrary,
         private reflector: Reflector,
         private jwtService: JwtService,
-    ) {
-        this.encryptionLibrary = new EncryptionLibrary();
-    }
+    ) { }
 
     canActivate(context: ExecutionContext): boolean {
         const ctx = GqlExecutionContext.create(context);

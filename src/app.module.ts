@@ -19,6 +19,7 @@ import {
     ValidationPipe,
     HttpExceptionFilter,
     JWT_SECRET_KEY,
+    EncryptionLibrary
 } from './shared';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
@@ -47,35 +48,15 @@ import { AppService } from './app.service';
     ],
     controllers: [AppController],
     providers: [
+        EncryptionLibrary,
         AppService,
-        {
-            provide: APP_FILTER,
-            useClass: GraphQlExceptionFilter
-        },
-        {
-            provide: APP_FILTER,
-            useClass: HttpExceptionFilter
-        },
-        // {
-        //     provide: APP_GUARD,
-        //     useClass: AuthGuard,
-        // },
-        {
-            provide: APP_GUARD,
-            useClass: RolesGuard,
-        },
-        {
-            provide: APP_INTERCEPTOR,
-            useClass: LoggingInterceptor,
-        },
-        {
-            provide: APP_INTERCEPTOR,
-            useClass: TransformInterceptor
-        },
-        // {
-        //     provide: APP_PIPE,
-        //     useClass: ValidationPipe
-        // },
+        { provide: APP_FILTER, useClass: GraphQlExceptionFilter },
+        { provide: APP_FILTER, useClass: HttpExceptionFilter },
+        // { provide: APP_GUARD, useClass: AuthGuard },
+        { provide: APP_GUARD, useClass: RolesGuard, },
+        { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
+        { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
+        // { provide: APP_PIPE, useClass: ValidationPipe },
     ]
 })
 export class AppModule { }

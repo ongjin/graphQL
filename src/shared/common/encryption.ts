@@ -6,18 +6,20 @@ import {
     ENCRYPT_IV,
     ENCRYPT_KEY
 } from '../environments';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class EncryptionLibrary {
-    private readonly algorithm: string;
-    private readonly key: string;
-    private readonly iv: string;
-    private readonly saltRounds: number;
+    private readonly algorithm: string = ENCRYPT_ALGORITHM;
+    private readonly key: string = ENCRYPT_KEY;
+    private readonly iv: string = ENCRYPT_IV;
+    private readonly saltRounds: number = BCRYPT_SALT;
 
     constructor() {
-        this.algorithm = ENCRYPT_ALGORITHM; // 암호화 알고리즘 설정
-        this.key = ENCRYPT_KEY; // 키
-        this.iv = ENCRYPT_IV; // 초기화 벡터 값
-        this.saltRounds = BCRYPT_SALT; // bcrypt salt rounds 설정
+        // this.algorithm = ENCRYPT_ALGORITHM; // 암호화 알고리즘 설정
+        // this.key = ENCRYPT_KEY; // 키
+        // this.iv = ENCRYPT_IV; // 초기화 벡터 값
+        // this.saltRounds = BCRYPT_SALT; // bcrypt salt rounds 설정
     }
 
     encrypt(data: string): string {
