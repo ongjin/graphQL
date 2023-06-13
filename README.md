@@ -1,14 +1,11 @@
 # Nestjs GraphQL API
 
-## [Version 7.5.0](https://github.com/chnirt/nestjsv7.5.0.git)
-
 ## 목차
 
 - [Structure](#structure)
 - [Function](#function)
 - [Usage](#usage)
 - [Starting the Server](#starting-the-server)
-- [Node.js Best Practices](#nodejs-best-practices)
 
 ## Structure
 
