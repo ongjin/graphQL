@@ -46,7 +46,7 @@ const ENCRYPT_ALGORITHM: string = process.env.ENCRYPT_ALGORITHM || 'aes-256-ctr'
 
 // application
 const END_POINT: string = process.env.END_POINT || 'graphql'
-const END_POINT_HOST: string = process.env.END_POINT_HOST || '127.0.0.1'
+const END_POINT_URL: string = process.env.END_POINT_URL || '127.0.0.1:3030'
 
 
 
@@ -96,7 +96,7 @@ export {
 
     // application
     END_POINT,
-    END_POINT_HOST,
+    END_POINT_URL,
 
 
 
