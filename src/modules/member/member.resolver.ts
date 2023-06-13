@@ -23,7 +23,7 @@ export class MemberResolver {
     @Query(() => [Member])
     @Auth(...[Role.User, Role.Admin])
     async getMembers(@Header('authorization') authorization: string, @CustomRequest('user') user: object): Promise<Member[]> {
-        console.log('authorization', authorization, user);
+        // console.log('authorization', authorization, user);
         const dbName = user['junction']
         // {
         //     msNo: '1lx6XWm0',

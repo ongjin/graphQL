@@ -45,9 +45,14 @@ const ENCRYPT_IV: string = process.env.ENCRYPT_IV || 'cc8147785624522ec87e1e34ab
 const ENCRYPT_ALGORITHM: string = process.env.ENCRYPT_ALGORITHM || 'aes-256-ctr'
 
 // application
+const END_POINT: string = process.env.END_POINT || 'graphql'
+const END_POINT_HOST: string = process.env.END_POINT_HOST || '127.0.0.1'
+
+
+
+// application
 const PRIMARY_COLOR: string = process.env.PRIMARY_COLOR || '#87e8de'
 const DOMAIN: string = process.env.DOMAIN || 'localhost'
-const END_POINT: string = process.env.END_POINT || 'graphql'
 const VOYAGER: string = process.env.VOYAGER || 'voyager'
 const FE_URL: string = process.env.FE_URL || 'xxx'
 
@@ -89,11 +94,14 @@ export {
     ENCRYPT_IV,
     ENCRYPT_ALGORITHM,
 
+    // application
+    END_POINT,
+    END_POINT_HOST,
+
 
 
     PRIMARY_COLOR,
     DOMAIN,
-    END_POINT,
     VOYAGER,
     FE_URL,
 }

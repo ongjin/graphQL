@@ -2,7 +2,7 @@ import { Injectable, Res } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
 import * as fs from 'fs';
-import { EncryptionLibrary } from 'src/shared';
+import { EncryptionLibrary, END_POINT, END_POINT_HOST, NODE_PORT } from 'src/shared';
 import * as crypto from 'crypto'
 import { HttpService } from '@nestjs/axios';
 
@@ -54,7 +54,9 @@ export class JwtokenService {
         const data = {
             query: "{\n  getUser(userNo:1) {\n    USER_NO\n    USER_PW\n    USER_NAME\n    USER_ID\n    USER_EMAIL\n    token{\n      USER_TOKEN\n      USER_NO\n    }\n  }\n}\n",
         };
-        const resp$ = this.httpService.post('http://localhost:3030/graphql', data, { headers })
+        
+        const resp$ = this.httpService.post(`http://${END_POINT_HOST}:${NODE_PORT}/${END_POINT}`, data, { headers })
+        // const resp$ = this.httpService.post('http://localhost:3030/graphql', data, { headers })
         const resp = await resp$.toPromise()
         console.log('resp', resp.data);
 
