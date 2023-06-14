@@ -5,8 +5,9 @@
 - [Structure](#structure)
 - [Function](#function)
 - [Usage](#usage)
-      - [Common](#Common)
 - [Starting the Server](#starting-the-server)
+- [Node.js Best Practices](#nodejs-best-practices)
+   - [1. 프로젝트 구조 관행](#1-프로젝트-구조-관행)
 
 ## Structure
 
