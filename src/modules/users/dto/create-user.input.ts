@@ -4,7 +4,7 @@ import { IsNotEmpty, IsEmail } from 'class-validator';
 @InputType()
 export class CreateUserInput {
     @Field()
-    @IsNotEmpty()
+    // @IsNotEmpty()
     USER_NO: number;
 
     @Field()
@@ -30,6 +30,6 @@ export class CreateUserInput {
 
     @Field()
     @IsNotEmpty()
-    USER_JADATE: string;
+    USER_JADATE: Date;
 
 }

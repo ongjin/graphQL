@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, OneToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 
 @Entity({ name: 'USERS_TEMP', orderBy: { USER_NO: 'ASC' } })
 export class Users_Temp {
-    @PrimaryGeneratedColumn()
+    // @PrimaryGeneratedColumn('increment')
+    @PrimaryGeneratedColumn({ name: 'USER_NO', type: 'number' })
     USER_NO: number;
-
 
     @Column()
     USER_ID: string;
@@ -15,8 +15,9 @@ export class Users_Temp {
     USER_EMAIL: string;
     @Column()
     USER_PHONE: string;
-    @Column({ type: 'date' })
-    USER_JADATE: string;
+    // @Column({ type: 'date' })
+    @CreateDateColumn()
+    USER_JADATE: Date;
     @Column()
     USER_NAME: string;
 
@@ -26,7 +27,6 @@ export class Users_Temp {
     ])
     token: Promise<TokenTb>;
 }
-
 
 @Entity({ name: 'TOKEN_TEMP', orderBy: { USER_NO: 'ASC' } })
 export class TokenTb {

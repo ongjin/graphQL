@@ -52,11 +52,11 @@ export class Users_TempResolver {
     }
 
 
-    // @Mutation(() => Users_Temp)
-    // @Auth(Role.User)
-    // async createUser(@Args('input') input: CreateUserInput): Promise<Users_Temp> {
-    //     return this.userService.createUser(input)
-    // }
+    @Mutation(() => Users_Temp)
+    @Auth(Role.User)
+    async createUser(@Args('input') input: CreateUserInput): Promise<Users_Temp> {
+        return this.userService.createUser(input)
+    }
 
     @Mutation(() => Users_Temp)
     @Auth(...[Role.User, Role.Admin])
@@ -69,5 +69,12 @@ export class Users_TempResolver {
     async deleteUser(@Args('USER_NO') USER_NO: number): Promise<boolean> {
         return this.userService.deleteUser(USER_NO);
     }
+    
+    @Mutation(() => Users_Temp)
+    @Auth(...[Role.User, Role.Admin])
+    async multiPleDBInsert(@Args('accountId') accountId: number): Promise<Users_Temp> {
+        return this.userService.multiPleDBInsert(accountId)
+    }
+
 
 }

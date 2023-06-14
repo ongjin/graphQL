@@ -22,7 +22,7 @@ export class UpdateUserInput {
     USER_PHONE: string;
 
     @Field({ nullable: true })
-    USER_JADATE: string;
+    USER_JADATE: Date;
 
     @Field({ nullable: true })
     USER_NAME: string;

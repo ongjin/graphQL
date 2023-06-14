@@ -49,9 +49,11 @@ type Query {
 }
 
 type Mutation {
-  createUser(input: CreateUserInput!): Users_Temp!
+  createUser(input: CreateUserInput!): Users_Temp
   deleteUser(USER_NO: Int!): Boolean!
-  updateUser(input: UpdateUserInput!): Users_Temp!
+  updateUser(input: UpdateUserInput!): Users_Temp
+
+  multiPleDBInsert(accountId: Int!): Users_Temp
 }
 
 input CreateUserInput {
