@@ -145,9 +145,11 @@ export class UserService {
 
     async multiPleDBInsert(accountId: number): Promise<Users_Temp> {
         const account = await this.accountRepository.findOneBy({ id: accountId })
+        if(!account){
+            throw new Error(`조회 대상 테이블에 accountId: "${accountId}"가 존재하지 않습니다.`);
+        }
 
         const user = await this.usersTempRepository.findOneBy({ USER_NO: accountId })
-        console.log('user', user);
 
         if (user) {
             throw new Error('이미 존재하는 아이디입니다.');
@@ -162,7 +164,7 @@ export class UserService {
             USER_PHONE: account.code,
             USER_PW: account.account_type
         })
-        
+
         return result
     }
 
