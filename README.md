@@ -4,40 +4,53 @@
 
 - [Structure](#structure)
 - [Function](#function)
+   - [1. Common](#1-common)
+   - [2. Constants](#2-constants)
+   - [3. Database](#3-database)
+   - [4. Decorators](#4-decorators)
+   - [5. Environments](#5-environments)
+   - [6. Exceptions](#6-exceptions)
+   - [7. Guards](#7-guards)
+   - [8. Interceptors](#8-interceptors)
+   - [9. Pipes](#9-pipes)
 - [Usage](#usage)
 - [Starting the Server](#starting-the-server)
 - [Node.js Best Practices](#nodejs-best-practices)
    - [1. 프로젝트 구조 관행](#1-프로젝트-구조-관행)
+   - [2. 오류 처리 관행](#2-오류-처리-관행)
+   - [3. 코드 스타일 관행](#3-코드-스타일-관행)
+   - [4. 테스트 및 전반적인 품질 관행](#4-테스트-및-전반적인-품질-관행)
+   - [5. 운영 관행](#5-운영-관행)
+   - [6. 보안 모범 사례](#6-보안-모범-사례)
 
 ## Structure
 
 <img src="static/images/Structure.jpg" alt="Node.js" width="250"/>
 
 ## Function
-
-1. ##Common
+## 1. Common
    - 레파지토리 동적 생성 모듈
    - 암호화 모듈
-2. Constants
+## 2. Constants
    - enums Roles
-3. Database
+## 3. Database
    - DB multiple connection
-4. Decorators
+## 4. Decorators
    - 커스텀 데코레이터
-5. Environments
+## 5. Environments
    - 환경변수
-6. Exceptions
+## 6. Exceptions
    - 요청 에러 필터
    - GQL 에러 커스텀 포맷
    - GQL 에러 필터
-7. Guards
+## 7. Guards
    - 요청의 인증 및 권한 부여
    - 요청을 처리하기 전에 인증 또는 권한 검사를 수행
-8. Interceptors
+## 8. Interceptors
    - 로깅
    - 데이터 변환
    - 오류 처리
-9. Pipes
+## 9. Pipes
     - 입력값 검증
     - 형식 변환
 
