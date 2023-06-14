@@ -5,6 +5,7 @@
 - [Structure](#structure)
 - [Function](#function)
 - [Usage](#usage)
+      - [Common](#Common)
 - [Starting the Server](#starting-the-server)
 
 ## Structure
@@ -13,7 +14,7 @@
 
 ## Function
 
-1. Common
+1. ##Common
    - 레파지토리 동적 생성 모듈
    - 암호화 모듈
 2. Constants
@@ -127,19 +128,15 @@
 
 [✔️] 4.1 최소한 API(구성요소) 테스트를 작성합니다
 
-[✔️] 4.6 취약의존성 지속점검
+[✔️] 4.2 취약의존성 지속점검
 
-![❔] 4.7 Tag your tests
+![❔] 4.3 Tag your tests
 
-[✔️] 4.8 Check your test coverage, it helps to identify wrong test patterns
+[✔️] 4.4 오래된 패키지가 없는지 점검
 
-[✔️] 4.9 오래된 패키지가 없는지 점검
+[✔️] 4.5 e2e 테스트에 프로덕션 환경 사용
 
-[✔️] 4.10 e2e 테스트에 프로덕션 환경 사용
-
-[✔️] 4.11 정적 분석 도구를 사용하여 정기적으로 리팩터링 실시
-
-[✔️] 4.12 Carefully choose your CI platform (Jenkins vs CircleCI vs Travis vs Rest of the world)
+[✔️] 4.6 정적 분석 도구를 사용하여 정기적으로 리팩터링 실시
 
 ### 5. 운영 관행
 
