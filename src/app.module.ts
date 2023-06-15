@@ -27,8 +27,7 @@ import {
 } from './shared';
 
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-
+import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
 
 @Module({
     imports: [
@@ -36,13 +35,15 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
             secret: JWT_SECRET_KEY,
             signOptions: { expiresIn: '30d' },
         }),
-        GraphQLModule.forRoot<ApolloDriverConfig>({
-            driver: ApolloDriver,
+        GraphQLModule.forRoot<ApolloFederationDriverConfig>({
+            driver: ApolloFederationDriver,
             playground: true,
-            typePaths: ['./**/*.graphql'],
             formatError,
-            // context: ({ req }) => ({ headers: req.headers }),
+            context: ({ req }) => ({ headers: req.headers }),
             introspection: true,
+            typePaths: ['./**/*.graphql'],
+            // autoSchemaFile: true,
+            csrfPrevention: false
         }),
         DatabaseModule,
         Users_TempsModule,
