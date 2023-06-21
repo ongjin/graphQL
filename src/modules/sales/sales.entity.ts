@@ -95,7 +95,6 @@ export class SalesDT {
 }
 
 
-
 @Entity({ name: 'MGOODSTB' })
 @Unique(['GOODS_CD', 'MS_NO'])
 export class Mgoodstb {

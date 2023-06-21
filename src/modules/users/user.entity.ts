@@ -1,3 +1,4 @@
+import { ObjectType } from '@nestjs/graphql';
 import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, OneToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 
@@ -20,6 +21,7 @@ export class Users_Temp {
     USER_JADATE: Date;
     @Column()
     USER_NAME: string;
+
 
     @OneToOne(() => TokenTb)
     @JoinColumn([

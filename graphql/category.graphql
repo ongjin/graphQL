@@ -1,0 +1,17 @@
+type Category {
+  msNo: String
+  chainNo: String
+  gpluCd: String
+  gpluNm: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+}
+
+
+type Query {
+  category: [Category]
+  category(msNo: [String]): [Category]
+}
+

@@ -78,6 +78,5 @@ type Query {
   getMembersPage(limit: Int, current: Int): [Member]
   # getMembers: [Member]
   getMember: Member
+
 }
-
-

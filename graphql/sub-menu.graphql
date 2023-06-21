@@ -1,0 +1,79 @@
+type SubMenu {
+  msNo: String
+  chainNo: String
+  gpluCd: String
+  pluCd: String
+  goodsCd: String
+  seq: String
+  subGroupCd: String
+  subGroupNm: String
+  subFg: String
+  subGroupQty: Int
+  subGroupGuide: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+
+  mmbumstbs: [Mmbumstb]
+  msubmntbs: [Msubmntb]
+}
+
+type Mmbumstb {
+  msNo: String
+  subGroupCd: String
+  subGroupNm: String
+  createFg: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+
+  subMenu: SubMenu
+}
+
+type Msubmntb {
+  msNo: String
+  subGroupCd: String
+  subMenuCd: String
+  subMenuNm: String
+  displayOrder: String
+  stockFg: String
+  goodsCd: String
+  upchargeUprice: Int
+  createFg: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+
+  subMenu: SubMenu
+}
+
+
+type Query {
+  subMenu1: [SubMenu]
+  subMenu1(msNo: String): [SubMenu]
+
+  subMenu(msNo: String): [SubMenuCreate]
+  subMenu2(msNo: String): [SubMenu]
+}
+
+
+type SubMenuCreate {
+  MS_NO: String
+  CHAIN_NO: String
+  GPLU_CD: String
+  PLU_CD: String
+  GOODS_CD: String
+  SEQ: String
+  SUB_GROUP_CD: String
+  SUB_GROUP_NM: String
+  SUB_FG: String
+  SUB_GROUP_QTY: Int
+  SUB_GROUP_GUIDE: String
+  CREATE_DTIME: String
+  CREATE_ID: String
+  LAST_DTIME: String
+  LAST_ID: String
+}

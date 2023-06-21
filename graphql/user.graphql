@@ -23,6 +23,9 @@
 #   # findOneBy({USER_NO: userNo}): [Users_Temp!]!
 # }
 
+# type Users_Temp @key(fields: "USER_NO"){
+scalar Date
+
 type Users_Temp {
   USER_NO: Int
   USER_ID: String
@@ -41,12 +44,17 @@ type TokenTb{
 }
 
 type Query {
-  getUsers(dbName: String!): [Users_Temp!]
+  getUsers(dbName: String = webkiosk): [Users_Temp!]
   getU(dbName: String, limit: Int, current: Int): [Users_Temp]
   # getUsers: [Users_Temp!]
   getUser(userNo: Int!): Users_Temp!
   # findOneBy({USER_NO: userNo}): [Users_Temp!]!
+
+  # _service: _Service
 }
+# type _Service {
+#   sdl: String!
+# }
 
 type Mutation {
   createUser(input: CreateUserInput!): Users_Temp

@@ -20,14 +20,18 @@ export const formatError = (err: any) => {
     if (extensions && extensions.exception && extensions.exception.response) {
         return {
             message: extensions?.code || "SERVER_ERROR",
-            content: message || '',
-            status: extensions?.originalError?.statusCode || extensions?.originalError || (extensions && extensions.status ? extensions.status : 500),
+            extensions: {
+                content: message || '',
+                status: extensions?.originalError?.statusCode || extensions?.originalError || (extensions && extensions.status ? extensions.status : 500),
+            }
         };
     }
 
     return {
         message: extensions?.code || "SERVER_ERROR",
-        content: message || '',
-        status: extensions?.originalError?.statusCode || extensions?.originalError || (extensions && extensions.status ? extensions.status : 500),
+        extensions: {
+            content: message || '',
+            status: extensions?.originalError?.statusCode || extensions?.originalError || (extensions && extensions.status ? extensions.status : 500),
+        }
     };
 };

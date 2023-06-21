@@ -31,15 +31,14 @@ export class SalesService {
     }
     
 
-    async getSalesPage(current: number = 1, limit: number = 100): Promise<SalesHD[]> {
+    getSalesPage(current: number = 1, limit: number = 100) {
         const offset = (current - 1) * limit;
 
-        const sales = await this.salesHDRepository.find({
+        const sales = this.salesHDRepository.find({
             skip: offset,
             take: limit,
             relations: ['salesDTs'],
         });
-        console.log('길이', sales.length);
         return sales
     }
 

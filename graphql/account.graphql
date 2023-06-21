@@ -28,4 +28,5 @@ type Account {
 
 type Query{
     getAccounts: [Account]
+
 }

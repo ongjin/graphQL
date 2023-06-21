@@ -12,7 +12,6 @@ import { Header, Auth, Log, CacheResult, MeasureTime, Pagination, Role } from 's
 
 
 
-
 @Resolver()
 // @UseFilters(CatchException)
 export class Users_TempResolver {
@@ -20,16 +19,14 @@ export class Users_TempResolver {
         private readonly userService: UserService,
     ) { }
 
-
     @Query(() => [Users_Temp])
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
     async getUsers(@Args('dbName') dbName: string, @Header('authorization') authorization: string): Promise<Users_Temp[]> {
-        console.log('authorization', authorization);
+        console.log('authorization', authorization, dbName);
 
         return this.userService.getUsers(dbName);
     }
-
 
     @Query(() => [Users_Temp])
     @Auth(...[Role.User, Role.Admin])

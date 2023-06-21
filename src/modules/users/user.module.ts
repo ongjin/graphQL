@@ -7,13 +7,12 @@ import { UserService } from './user.service';
 import { Account } from '../account';
 
 
-
 @Module({
     imports: [
         // TypeOrmModule.forFeature([Users_Temp], 'default'),
         // TypeOrmModule.forFeature([Users_Temp], 'webkiosk'), 
         TypeOrmModule.forFeature([Users_Temp, TokenTb]), 
-        TypeOrmModule.forFeature([Account], 'postgre')
+        TypeOrmModule.forFeature([Account], 'postgre'),
     ],
     providers: [Users_TempResolver, UserService],
 })

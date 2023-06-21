@@ -19,9 +19,9 @@ export class SalesResolver {
         return this.salesService.getSales();
     }
 
-    @Query(() => [SalesHD])
+    @Query()
     @Auth(...[Role.User, Role.Admin])
-    async getSalesPage(@Args('current') current: number, @Args('limit') limit: number): Promise<SalesHD[]> {
+    getSalesPage(@Args('current') current: number, @Args('limit') limit: number) {
         return this.salesService.getSalesPage(current, limit);
     }
 }

@@ -10,6 +10,9 @@ import {
     AccountModule,
     JwtokenModule,
 
+    CategoryModule,
+    SubMenuModule,
+
 } from './modules';
 
 import {
@@ -29,6 +32,7 @@ import {
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
 
+
 @Module({
     imports: [
         JwtModule.register({
@@ -36,6 +40,7 @@ import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederat
             signOptions: { expiresIn: '30d' },
         }),
         GraphQLModule.forRoot<ApolloFederationDriverConfig>({
+            // path: '/tete',
             driver: ApolloFederationDriver,
             playground: true,
             formatError,
@@ -43,8 +48,9 @@ import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederat
             introspection: true,
             typePaths: ['./**/*.graphql'],
             // autoSchemaFile: true,
-            csrfPrevention: false
+            csrfPrevention: false,
         }),
+
         DatabaseModule,
         Users_TempsModule,
         MemberModule,
@@ -52,6 +58,9 @@ import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederat
         AccountModule,
 
         JwtokenModule,
+
+        CategoryModule,
+        SubMenuModule,
     ],
     providers: [
         EncryptionLibrary,
