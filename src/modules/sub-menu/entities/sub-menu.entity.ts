@@ -62,6 +62,7 @@ export class SubMenu {
 }
 
 
+
 @Index("MMBUMSX0", ["msNo", "subGroupCd"], { unique: true })
 @Entity("MMBUMSTB")
 export class Mmbumstb {

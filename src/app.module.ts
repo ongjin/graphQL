@@ -12,6 +12,8 @@ import {
 
     CategoryModule,
     SubMenuModule,
+    PromotionModule,
+    GoodsModule,
 
 } from './modules';
 
@@ -34,14 +36,13 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
 import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
 
-
 @Module({
     imports: [
-        CacheModule.register({
-            max: 100,
-            isGlobal: true,
-            ttl: 1000 * 60,
-        }),
+        // CacheModule.register({
+        //     max: 100,
+        //     isGlobal: true,
+        //     ttl: 1000 * 60,
+        // }),
         JwtModule.register({
             secret: JWT_SECRET_KEY,
             signOptions: { expiresIn: '365d' },
@@ -68,6 +69,8 @@ import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
 
         CategoryModule,
         SubMenuModule,
+        PromotionModule,
+        GoodsModule,
     ],
     providers: [
         EncryptionLibrary,
@@ -79,7 +82,7 @@ import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
 
         { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
         { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
-        { provide: APP_INTERCEPTOR, useClass: GraphqlCacheInterceptor },
+        // { provide: APP_INTERCEPTOR, useClass: GraphqlCacheInterceptor },
 
         // { provide: APP_PIPE, useClass: ValidationPipe },
     ]

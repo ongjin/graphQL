@@ -7,3 +7,6 @@ export * from './jwt'
 
 export * from './category'
 export * from './sub-menu'
+
+export * from './promotion'
+export * from './goods'

@@ -1,0 +1,90 @@
+type GoodsHeader {
+  goodsDetail: String
+  soldOutYn: String
+  msNo: String
+  chainNo: String
+  gpluCd: String
+  pluCd: String
+  goodsCd: String
+  imgPath: String
+  imgFileNm: String
+  newYn: String
+  hitYn: String
+  packYn: String
+  shopYn: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+
+  goodsDt: GoodsDetail
+}
+
+type GoodsDetail {
+    msNo: String
+    goodsCd: String
+    goodsNm: String
+    goodsSubNm: String
+    goodsSpec: String
+    lclassCd: String
+    mclassCd: String
+    sclassCd: String
+    goodsStyleCd: String
+    goodsColorCd: String
+    goodsSizCd: String
+    uprice: Int
+    usuprice: Int
+    ucost: Int
+    vatRate: Int
+    taxFg: String
+    goodsPriceFg: String
+    goodsControlFg: String
+    useFg: String
+    setFg: String
+    serviceFg: String
+    ordUnit: String
+    inQty: Int
+    invUnit: String
+    invInQty: Int
+    goodsUnit: Int
+    minOrdQty: Int
+    goodsPoint: Int
+    safetyQty: Int
+    goodsUseFg: String
+    tipFg: String
+    taxControlFg: String
+    sourceFg: String
+    goodsProf: String
+    calory: String
+    defcustCnt: String
+    originNo: String
+    productNo: String
+    gradeNo: String
+    incomeNo: String
+    multiBizCd: String
+    createFg: String
+    createDtime: String
+    createId: String
+    lastDtime: String
+    lastId: String
+    scaleGoodscd: String
+    scaleYn: String
+    sisulFg: String
+    designerPartFg: String
+    promoAppFg: String
+    subGroupCd: String
+    erpGoodsCd: String
+    goodsBrandCd: String
+    fileImgname: String
+    beefUseFg: String
+    snYn: String
+    dummyYn: String
+    sku: String
+    anabRemark: String
+}
+
+type Query {
+  goods: [GoodsHeader]
+  good(msNo: String): [GoodsHeader]
+}
+

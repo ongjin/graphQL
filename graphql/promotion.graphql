@@ -1,0 +1,95 @@
+type PromotionHeader {
+  webKioskUseYn: String
+  promotionScheme: String
+  promotionResult: String
+  promotionEtc: String
+  promotionFg: String
+  validFromDate: String
+  validToDate: String
+  goodProcFg: String
+  grade0Fg: String
+  grade0Dc: Int
+  grade0Rate: Int
+  grade1Fg: String
+  grade1Dc: Int
+  grade1Rate: Int
+  grade2Fg: String
+  grade2Dc: Int
+  grade2Rate: Int
+  grade3Fg: String
+  grade3Dc: Int
+  grade3Rate: Int
+  grade4Fg: String
+  grade4Dc: Int
+  grade4Rate: Int
+  grade5Fg: String
+  grade5Dc: Int
+  grade5Rate: Int
+  grade6Fg: String
+  grade6Dc: Int
+  grade6Rate: Int
+  grade7Fg: String
+  grade7Dc: Int
+  grade7Rate: Int
+  grade8Fg: String
+  grade8Dc: Int
+  grade8Rate: Int
+  grade9Fg: String
+  grade9Dc: Int
+  grade9Rate: Int
+  genFg: String
+  genDc: Int
+  genRate: Int
+  createFg: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+  genDcFg: String
+  genAmt: Int
+  validFromTime: String
+  validToTime: String
+  validDay: String
+  promotionKind: String
+  limitAmt: Int
+  cardPromFg: String
+  cardCo: String
+  cradeCardRate: Int
+  pointCardRate: Int
+  refRatFg: String
+  maxDcAmt: Int
+  chainNo: String
+  msNo: String
+  promotionYear: String
+  promotionCd: String
+  promotionNm: String
+
+  promotionDetails: [PromotionDetail]
+}
+
+
+type PromotionDetail{
+  chainNo: String
+  msNo: String
+  promotionYear: String
+  promotionCd: String
+  goodsCd: String
+  createFg: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+  genDcFg: String
+  genAmt: Int
+  genDc: Int
+  goodsAddFg: String
+
+  # promotionHeader: PromotionHeader
+}
+
+
+type Query {
+  promotion: [PromotionHeader]
+  promotion(msNo: String): [PromotionHeader]
+}
+
