@@ -55,7 +55,8 @@ type Query {
   subMenu1: [SubMenu]
   subMenu1(msNo: String): [SubMenu]
 
-  subMenu(msNo: String): [SubMenuCreate]
+  # subMenu(msNo: String): [SubMenuCreate]
+  subMenu(msNo: String): [SubMenu]
   subMenu2(msNo: String): [SubMenu]
 }
 

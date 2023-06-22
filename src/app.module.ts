@@ -27,17 +27,24 @@ import {
     HttpExceptionFilter,
     JWT_SECRET_KEY,
     EncryptionLibrary,
+    GraphqlCacheInterceptor,
 } from './shared';
 
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
+import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
 
 
 @Module({
     imports: [
+        CacheModule.register({
+            max: 100,
+            isGlobal: true,
+            ttl: 1000 * 60,
+        }),
         JwtModule.register({
             secret: JWT_SECRET_KEY,
-            signOptions: { expiresIn: '30d' },
+            signOptions: { expiresIn: '365d' },
         }),
         GraphQLModule.forRoot<ApolloFederationDriverConfig>({
             // path: '/tete',
@@ -66,10 +73,14 @@ import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederat
         EncryptionLibrary,
         { provide: APP_FILTER, useClass: GraphQlExceptionFilter },
         { provide: APP_FILTER, useClass: HttpExceptionFilter },
+
         // { provide: APP_GUARD, useClass: AuthGuard },
         { provide: APP_GUARD, useClass: RolesGuard, },
+
         { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
         { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
+        { provide: APP_INTERCEPTOR, useClass: GraphqlCacheInterceptor },
+
         // { provide: APP_PIPE, useClass: ValidationPipe },
     ]
 })
