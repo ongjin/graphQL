@@ -14,6 +14,7 @@ import {
     SubMenuModule,
     PromotionModule,
     GoodsModule,
+    StoreModule,
 
 } from './modules';
 
@@ -71,6 +72,7 @@ import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
         SubMenuModule,
         PromotionModule,
         GoodsModule,
+        StoreModule,
     ],
     providers: [
         EncryptionLibrary,

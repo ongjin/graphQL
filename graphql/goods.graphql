@@ -17,6 +17,11 @@ type GoodsHeader {
   lastDtime: String
   lastId: String
 
+  PROMOTION_YEAR: String
+  PROMOTION_CD: String
+  PROMOTION_NM: String
+  GRADE_FG_NAME: String
+  
   goodsDt: GoodsDetail
 }
 
