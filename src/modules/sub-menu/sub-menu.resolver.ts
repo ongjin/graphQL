@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Auth, bypassAuth, Role } from 'src/shared';
-import { SubMenu } from './entities/sub-menu.entity';
+import { Mmbumstb, SubMenu } from './entities/sub-menu.entity';
 import { SubMenuService } from './sub-menu.service';
 
 @Resolver('SubMenu')
@@ -31,5 +31,16 @@ export class SubMenuResolver {
         return this.subMenuService.findOn(msNo);
     }
 
+    @Query('subMenuDetail')
+    @Auth(...[Role.User, Role.Admin])
+    subMenuDetailFind(@Args('msNo') msNo: string) {
+        return this.subMenuService.subMenuDetailFind(msNo);
+    }
+
+    @Query('subMenuHeader')
+    @Auth(...[Role.User, Role.Admin])
+    subMenuHeaderFind(@Args('msNo') msNo: string) {
+        return this.subMenuService.subMenuHeaderFind(msNo);
+    }
 
 }

@@ -55,11 +55,26 @@ export class SubMenu {
     @Column("varchar2", { name: "LAST_ID", length: 20 })
     lastId: string;
 
-    @OneToMany(() => Mmbumstb, res => res.subMenu)
-    mmbumstbs: Promise<Mmbumstb>[]
-    @OneToMany(() => Msubmntb, res => res.subMenu)
-    msubmntbs: Promise<Msubmntb>[]
+    @OneToOne(() => Mmbumstb)
+    @JoinColumn([
+        { name: 'MS_NO', referencedColumnName: 'msNo' },
+        { name: 'SUB_GROUP_CD', referencedColumnName: 'subGroupCd' }
+    ])
+    mmbumstbs: Promise<Mmbumstb>
+
+    @OneToOne(() => Msubmntb)
+    @JoinColumn([
+        { name: 'MS_NO', referencedColumnName: 'msNo' },
+        { name: 'SUB_GROUP_CD', referencedColumnName: 'subGroupCd' }
+    ])
+    msubmntbs: Promise<Msubmntb>
+
+    // @OneToMany(() => Mmbumstb, res => res.subMenu)
+    // mmbumstbs: Promise<Mmbumstb>[]
+    // @OneToMany(() => Msubmntb, res => res.subMenu)
+    // msubmntbs: Promise<Msubmntb>[]
 }
+
 
 
 
@@ -69,7 +84,7 @@ export class Mmbumstb {
     @PrimaryColumn("varchar2", { name: "MS_NO", length: 6 })
     msNo: string;
 
-    @Column("varchar2", { name: "SUB_GROUP_CD", length: 2 })
+    @PrimaryColumn("varchar2", { name: "SUB_GROUP_CD", length: 2 })
     subGroupCd: string;
 
     @Column("varchar2", { name: "SUB_GROUP_NM", length: 20 })
@@ -90,13 +105,12 @@ export class Mmbumstb {
     @Column("varchar2", { name: "LAST_ID", length: 20 })
     lastId: string;
 
-    @ManyToOne(() => SubMenu, res => res.mmbumstbs)
-    @JoinColumn([
-        { name: 'MS_NO', referencedColumnName: 'msNo' },
-        { name: 'SUB_GROUP_CD', referencedColumnName: 'subGroupCd' }
-    ])
-    subMenu: Promise<SubMenu>
-
+    // @ManyToOne(() => SubMenu, res => res.mmbumstbs)
+    // @JoinColumn([
+    //     { name: 'MS_NO', referencedColumnName: 'msNo' },
+    //     { name: 'SUB_GROUP_CD', referencedColumnName: 'subGroupCd' }
+    // ])
+    // subMenu: Promise<SubMenu>
 
 }
 
@@ -106,10 +120,10 @@ export class Msubmntb {
     @PrimaryColumn("varchar2", { name: "MS_NO", length: 6 })
     msNo: string;
 
-    @Column("varchar2", { name: "SUB_GROUP_CD", length: 2 })
+    @PrimaryColumn("varchar2", { name: "SUB_GROUP_CD", length: 2 })
     subGroupCd: string;
 
-    @Column("varchar2", { name: "SUB_MENU_CD", length: 2 })
+    @PrimaryColumn("varchar2", { name: "SUB_MENU_CD", length: 2 })
     subMenuCd: string;
 
     @Column("varchar2", { name: "SUB_MENU_NM", length: 20 })
@@ -147,11 +161,19 @@ export class Msubmntb {
     @Column("varchar2", { name: "LAST_ID", length: 20 })
     lastId: string;
 
-    @ManyToOne(() => SubMenu, res => res.msubmntbs)
-    @JoinColumn([
-        { name: 'MS_NO', referencedColumnName: 'msNo' },
-        { name: 'SUB_GROUP_CD', referencedColumnName: 'subGroupCd' }
-    ])
-    subMenu: Promise<SubMenu>
+    // @OneToOne(() => SubMenu, res => res.msubmntbs)
+    // @JoinColumn([
+    //     { name: 'MS_NO', referencedColumnName: 'msNo' },
+    //     { name: 'SUB_GROUP_CD', referencedColumnName: 'subGroupCd' }
+    // ])
+    // subMenu: Promise<SubMenu>
+
+    // @ManyToOne(() => SubMenu, res => res.msubmntbs)
+    // @JoinColumn([
+    //     { name: 'MS_NO', referencedColumnName: 'msNo' },
+    //     { name: 'SUB_GROUP_CD', referencedColumnName: 'subGroupCd' }
+    // ])
+    // subMenu: Promise<SubMenu>
 
 }
+

@@ -83,7 +83,6 @@ export class GoodsHeader {
 }
 
 
-
 @Index("MGOODSX0", ["msNo", "goodsCd"], { unique: true })
 @Index("MGOODSX1", ["msNo", "lclassCd", "mclassCd", "sclassCd", "goodsCd"], {})
 @Index("MGOODSX2", ["msNo", "goodsNm"], {})

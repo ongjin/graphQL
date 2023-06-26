@@ -18,3 +18,4 @@ export class PromotionResolver {
     return this.promotionService.findOne(msNo);
   }
 }
+

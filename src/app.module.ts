@@ -15,6 +15,7 @@ import {
     PromotionModule,
     GoodsModule,
     StoreModule,
+    LanguageModule,
 
 } from './modules';
 
@@ -73,6 +74,7 @@ import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
         PromotionModule,
         GoodsModule,
         StoreModule,
+        LanguageModule,
     ],
     providers: [
         EncryptionLibrary,

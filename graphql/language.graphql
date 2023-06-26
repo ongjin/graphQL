@@ -1,0 +1,63 @@
+type Langmstb {
+  langFg: String
+  langNm: String
+  nfImgPath: String
+  nfImgFileNm: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+  imgPath: String
+}
+
+type Mlanustb{
+  msNo: String
+  chainNo: String
+  langFg: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+  useYn: String
+
+  nfImgPath: String
+  nfImgFileNm: String
+
+  langmstb: Langmstb
+}
+
+type Colangtb{
+  langFg: String
+  langCcd: String
+  langCd: String
+  langNm: String
+  remark: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+}
+
+type Mmlangtb{
+  msNo: String
+  chainNo: String
+  langFg: String
+  langCcd: String
+  langCd: String
+  langNm: String
+  remark: String
+  createDtime: String
+  createId: String
+  lastDtime: String
+  lastId: String
+}
+
+
+
+type Query {
+  # language: [Langmstb]
+  languageMaster(msNo: String): [Mlanustb]
+  languagePublicMessage: [Colangtb]
+  languageCCD(msNo: String!, langCcd: String!): [Mmlangtb]
+}
+

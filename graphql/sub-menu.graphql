@@ -15,8 +15,11 @@ type SubMenu {
   lastDtime: String
   lastId: String
 
-  mmbumstbs: [Mmbumstb]
-  msubmntbs: [Msubmntb]
+  mmbumstbs: Mmbumstb
+  msubmntbs: Msubmntb
+  
+  # mmbumstbs: [Mmbumstb]
+  # msubmntbs: [Msubmntb]
 }
 
 type Mmbumstb {
@@ -29,7 +32,7 @@ type Mmbumstb {
   lastDtime: String
   lastId: String
 
-  subMenu: SubMenu
+  # subMenu: SubMenu
 }
 
 type Msubmntb {
@@ -47,7 +50,15 @@ type Msubmntb {
   lastDtime: String
   lastId: String
 
-  subMenu: SubMenu
+  DC_UPRICE: String
+  DC_DETAIL: String
+  DC_FLAG: String
+  PROMOTION_YEAR: String
+  PROMOTION_CD: String
+  GRADE_FG_NAME: String
+  PROMOTION_NM: String
+
+  # subMenu: SubMenu
 }
 
 
@@ -58,6 +69,9 @@ type Query {
   # subMenu(msNo: String): [SubMenuCreate]
   subMenu(msNo: String): [SubMenu]
   subMenu2(msNo: String): [SubMenu]
+
+  subMenuDetail(msNo: String): [Msubmntb]
+  subMenuHeader(msNo: String): [Mmbumstb]
 }
 
 
