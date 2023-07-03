@@ -1,5 +1,5 @@
 import { Resolver, Query, Mutation, Args, Context, GqlExecutionContext } from '@nestjs/graphql';
-import { Account } from './account.entity';
+import { Account } from './entities/account.entity';
 
 import { AccountService } from './account.service';
 import { Auth, CustomRequest, Header, Pagination, Role } from 'src/shared';

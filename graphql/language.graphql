@@ -8,7 +8,7 @@ type Langmstb {
   lastDtime: String
   lastId: String
   imgPath: String
-}
+}  
 
 type Mlanustb{
   msNo: String

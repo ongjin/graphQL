@@ -1,5 +1,5 @@
 import { Injectable, UseFilters, UseGuards } from '@nestjs/common';
-import { Users_Temp } from './user.entity';
+import { Users_Temp } from './entities/user.entity';
 import { Repository, Between, DataSource, EntityManager, Connection } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateUserInput } from './dto/update-user.input';

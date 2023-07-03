@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Injectable, Inject, Catch, UseFilters, HttpException, HttpStatus, Headers, Body } from '@nestjs/common';
 
 // import { Users_Temp, UserService } from 'src/modules/users';
-import { Users_Temp } from './user.entity';
+import { Users_Temp } from './entities/user.entity';
 import { UserService } from './user.service';
 import { CreateUserInput, UpdateUserInput } from './dto';
 

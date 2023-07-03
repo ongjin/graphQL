@@ -1,5 +1,5 @@
 import { Resolver, Query, Mutation, Args, Context, GqlExecutionContext } from '@nestjs/graphql';
-import { Member } from './member.entity';
+import { Member } from './entities/member.entity';
 import { Injectable, Inject, ExecutionContext, Req } from '@nestjs/common';
 
 import { MemberService } from './member.service';

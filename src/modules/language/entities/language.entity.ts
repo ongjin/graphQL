@@ -74,6 +74,7 @@ export class Mlanustb {
         { name: 'LANG_FG', referencedColumnName: 'langFg' },
     ])
     langmstb: Promise<Langmstb>
+
 }
 
 

@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { SalesHD, SalesDT } from './sales.entity';
+import { SalesHD, SalesDT } from './entities/sales.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class SalesService {
     constructor(
-        @InjectRepository(SalesHD)
-        private readonly salesHDRepository: Repository<SalesHD>,
+        @InjectRepository(SalesHD) private readonly salesHDRepository: Repository<SalesHD>,
     ) { }
+
 
 
 

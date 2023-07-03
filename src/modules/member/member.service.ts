@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Member } from './member.entity';
+import { Member } from './entities/member.entity';
 import { Repository, createConnection, Connection } from 'typeorm';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 

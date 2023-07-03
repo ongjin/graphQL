@@ -1,5 +1,4 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { SalesHD, SalesDT } from './sales.entity';
 import { InjectRepository, InjectDataSource } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Injectable, Inject } from '@nestjs/common';
@@ -13,9 +12,9 @@ export class SalesResolver {
         private readonly salesService: SalesService
     ) { }
 
-    @Query(() => [SalesHD])
+    @Query()
     @Auth(...[Role.User, Role.Admin])
-    async getSales(): Promise<SalesHD[]> {
+    async getSales() {
         return this.salesService.getSales();
     }
 
