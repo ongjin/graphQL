@@ -3,7 +3,7 @@ import { Member } from './entities/member.entity';
 import { Injectable, Inject, ExecutionContext, Req } from '@nestjs/common';
 
 import { MemberService } from './member.service';
-import { Auth, CustomRequest, Header, Pagination, Role } from 'src/shared';
+import { Auth, CustomRequest, Header, Role } from 'src/shared';
 
 @Resolver()
 export class MemberResolver {
@@ -41,6 +41,8 @@ export class MemberResolver {
     @Query(() => [Member])
     @Auth(...[Role.User, Role.Admin])
     async getMembersPage(@Args('current') current: number, @Args('limit') limit: number, @CustomRequest('user') user: object): Promise<Member[]> {
+        console.log(user);
+        
         const dbName = user['junction']
 
         return this.memberService.getMembersPage(dbName, current, limit);

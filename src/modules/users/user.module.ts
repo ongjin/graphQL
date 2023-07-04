@@ -1,19 +1,20 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Users_TempResolver } from './user.resolver';
+import { UsersTempResolver } from './user.resolver';
 
-import { TokenTb, Users_Temp } from './entities/user.entity';
+import { UsersTemp } from './entities/user.entity';
 import { UserService } from './user.service';
 import { Account } from '../account';
+import { TokenTemp } from './entities/token.entity';
 
 
 @Module({
     imports: [
-        // TypeOrmModule.forFeature([Users_Temp], 'default'),
-        // TypeOrmModule.forFeature([Users_Temp], 'webkiosk'), 
-        TypeOrmModule.forFeature([Users_Temp, TokenTb]), 
+        // TypeOrmModule.forFeature([UsersTemp], 'default'),
+        // TypeOrmModule.forFeature([UsersTemp], 'webkiosk'), 
+        TypeOrmModule.forFeature([UsersTemp, TokenTemp]), 
         TypeOrmModule.forFeature([Account], 'postgre'),
     ],
-    providers: [Users_TempResolver, UserService],
+    providers: [UsersTempResolver, UserService],
 })
-export class Users_TempsModule { }
+export class UsersTempsModule { }

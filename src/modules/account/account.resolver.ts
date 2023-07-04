@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Args, Context, GqlExecutionContext } from '@
 import { Account } from './entities/account.entity';
 
 import { AccountService } from './account.service';
-import { Auth, CustomRequest, Header, Pagination, Role } from 'src/shared';
+import { Auth, CustomRequest, Header, Role } from 'src/shared';
 
 @Resolver()
 export class AccountResolver {

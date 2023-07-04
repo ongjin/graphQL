@@ -3,75 +3,64 @@ import { InjectRepository, InjectDataSource } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Injectable, Inject, Catch, UseFilters, HttpException, HttpStatus, Headers, Body } from '@nestjs/common';
 
-// import { Users_Temp, UserService } from 'src/modules/users';
-import { Users_Temp } from './entities/user.entity';
+// import { UsersTemp, UserService } from 'src/modules/users';
+import { UsersTemp } from './entities/user.entity';
 import { UserService } from './user.service';
 import { CreateUserInput, UpdateUserInput } from './dto';
-
-import { Header, Auth, Log, CacheResult, MeasureTime, Pagination, Role } from 'src/shared';
-
+import { Header, Auth, Log, CacheResult, MeasureTime, Role, Result } from 'src/shared';
 
 
 @Resolver()
 // @UseFilters(CatchException)
-export class Users_TempResolver {
+export class UsersTempResolver {
     constructor(
         private readonly userService: UserService,
     ) { }
 
-    @Query(() => [Users_Temp])
+    @Query('getUsers')
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
-    async getUsers(@Args('dbName') dbName: string, @Header('authorization') authorization: string): Promise<Users_Temp[]> {
-        console.log('authorization', authorization, dbName);
-
+    getUsers(@Args('dbName') dbName: string, @Header('authorization') authorization: string): Promise<UsersTemp[]> {
         return this.userService.getUsers(dbName);
     }
 
-    @Query(() => [Users_Temp])
+    @Query(() => [UsersTemp])
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
-    // async getU(@Args('dbName') dbName: string, @Pagination() pagination: { current: number, limit: number }): Promise<Users_Temp[]> {
-    // const { current, limit } = pagination;
-    async getU(@Args('dbName') dbName: string, @Header('authorization') authorization: string, @Args('current') current: number, @Args('limit') limit: number): Promise<Users_Temp[]> {
+    getU(@Args('dbName') dbName: string, @Args('current') current: number, @Args('limit') limit: number): Promise<UsersTemp[]> {
         return this.userService.getU(dbName, current, limit);
     }
 
-    @Query(() => Users_Temp)
+    @Query('getUser')
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
     // @Log()
-    async getUser(@Args('userNo') userNo: number, @Header('authorization') authorization: string): Promise<Users_Temp> {
-        console.log('authorization', authorization);
-
-        const result = this.userService.getUser(userNo)
-        return result
+    getUser(@Args('userNo') userNo: number): Promise<UsersTemp> {
+        return this.userService.getUser(userNo)
     }
 
-
-    @Mutation(() => Users_Temp)
+    @Mutation('createUser')
     @Auth(Role.User)
-    async createUser(@Args('input') input: CreateUserInput): Promise<Users_Temp> {
+    createUser(@Args('input') input: CreateUserInput): Promise<Result> {
         return this.userService.createUser(input)
     }
 
-    @Mutation(() => Users_Temp)
+    @Mutation('updateUser')
     @Auth(...[Role.User, Role.Admin])
-    async updateUser(@Args('input') input: UpdateUserInput): Promise<Users_Temp> {
+    updateUser(@Args('input') input: UpdateUserInput): Promise<Result> {
         return this.userService.updateUser(input);
     }
 
-    @Mutation(() => Boolean)
+    @Mutation('deleteUser')
     @Auth(...[Role.User, Role.Admin])
-    async deleteUser(@Args('USER_NO') USER_NO: number): Promise<boolean> {
-        return this.userService.deleteUser(USER_NO);
-    }
-    
-    @Mutation(() => Users_Temp)
-    @Auth(...[Role.User, Role.Admin])
-    async multiPleDBInsert(@Args('accountId') accountId: number): Promise<Users_Temp> {
-        return this.userService.multiPleDBInsert(accountId)
+    deleteUser(@Args('userNo') userNo: number): Promise<boolean> {
+        return this.userService.deleteUser(userNo);
     }
 
+    @Mutation('multiPleDBInsert')
+    @Auth(...[Role.User, Role.Admin])
+    multiPleDBInsert(@Args('accountId') accountId: number): Promise<UsersTemp> {
+        return this.userService.multiPleDBInsert(accountId)
+    }
 
 }

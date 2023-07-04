@@ -15,12 +15,12 @@ export class JwtokenService {
         private readonly httpService: HttpService,
     ) { }
 
-    getHtml(path: string, res: Response): void {
+    getHtml(path: string, res: Response): Response {
         const html = fs.readFileSync(path, 'utf-8')
-        res.send(html)
+        return res.send(html)
     }
 
-    jwtGenerate(formData: object, res: Response): void {
+    jwtGenerate(formData: object, res: Response): Response {
         const roles = ['user', 'admin']
         const msNo = this.encryptionLibrary.encrypt(formData['msNo'])
         const chainNo = this.encryptionLibrary.encrypt(formData['chainNo'])
@@ -43,7 +43,7 @@ export class JwtokenService {
             Authorization: `Bearer ${jwt}`
         }
 
-        res.send(result)
+        return res.send(result)
     }
 
     async postTest(res: Response): Promise<void> {
@@ -54,7 +54,7 @@ export class JwtokenService {
         const data = {
             query: "{\n  getUser(userNo:1) {\n    USER_NO\n    USER_PW\n    USER_NAME\n    USER_ID\n    USER_EMAIL\n    token{\n      USER_TOKEN\n      USER_NO\n    }\n  }\n}\n",
         };
-        
+
         const resp$ = this.httpService.post(`http://${END_POINT_URL}/${END_POINT}`, data, { headers })
         // const resp$ = this.httpService.post('http://localhost:3030/graphql', data, { headers })
         const resp = await resp$.toPromise()

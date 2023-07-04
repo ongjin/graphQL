@@ -11,13 +11,13 @@ export class JwtokenController {
 
     @Get('/jwt')
     @bypassAuth(true)
-    getHtml(@Res() res: Response, @Req() req: Request): void {
+    getHtml(@Res() res: Response, @Req() req: Request): Response {
         return this.jwtokenService.getHtml('src/views/1.html', res)
     }
 
     @Post('/jwt')
     @bypassAuth(true)
-    jwtGenerate(@Body() formData: object, @Res() res: Response): void {
+    jwtGenerate(@Body() formData: object, @Res() res: Response): Response {
         return this.jwtokenService.jwtGenerate(formData, res)
     }
 

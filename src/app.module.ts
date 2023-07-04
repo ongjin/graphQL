@@ -5,7 +5,7 @@ import { JwtModule } from '@nestjs/jwt';
 import {
     MemberModule,
     SalesModule,
-    Users_TempsModule,
+    UsersTempsModule,
 
     AccountModule,
     JwtokenModule,
@@ -31,7 +31,6 @@ import {
     HttpExceptionFilter,
     JWT_SECRET_KEY,
     EncryptionLibrary,
-    GraphqlCacheInterceptor,
 } from './shared';
 
 import { GraphQLModule } from '@nestjs/graphql';
@@ -62,7 +61,7 @@ import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
         }),
 
         DatabaseModule,
-        Users_TempsModule,
+        UsersTempsModule,
         MemberModule,
         SalesModule,
         AccountModule,
@@ -86,7 +85,6 @@ import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
 
         { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
         { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
-        // { provide: APP_INTERCEPTOR, useClass: GraphqlCacheInterceptor },
 
         // { provide: APP_PIPE, useClass: ValidationPipe },
     ]

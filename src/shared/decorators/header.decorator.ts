@@ -4,7 +4,7 @@ import { GqlExecutionContext } from '@nestjs/graphql';
 /**
  * @description Header정보를 가져옴
  */
-export const Header = createParamDecorator((data: string, context: ExecutionContext) => {
+const Header = createParamDecorator((data: string, context: ExecutionContext) => {
     const gqlContext = GqlExecutionContext.create(context);
     const request = gqlContext.getContext().req;
 
@@ -22,9 +22,14 @@ export const Header = createParamDecorator((data: string, context: ExecutionCont
 /**
  * @description customRequest 정보를 가져옴
  */
-export const CustomRequest = createParamDecorator((data: string, context: ExecutionContext) => {
+const CustomRequest = createParamDecorator((data: string, context: ExecutionContext) => {
     const gqlContext = GqlExecutionContext.create(context);
     const request = gqlContext.getContext().req;
 
     return request[data];
 });
+
+export {
+    Header,
+    CustomRequest,
+}

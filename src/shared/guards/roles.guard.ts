@@ -12,7 +12,7 @@ import { EncryptionLibrary } from '../common';
  */
 @Injectable()
 export class RolesGuard implements CanActivate {
-    
+
     constructor(
         private readonly encryptionLibrary: EncryptionLibrary,
         private reflector: Reflector,
@@ -47,8 +47,8 @@ export class RolesGuard implements CanActivate {
             //     exp: 1686556812
             // }
             const decoded = this.jwtService.verify(token)
-            decoded.msNo = this.encryptionLibrary.decrypt(decoded.msNo)
-            decoded.chainNo = this.encryptionLibrary.decrypt(decoded.chainNo)
+            decoded.msNo = this.encryptionLibrary.decrypt(decoded.msNo || '')
+            decoded.chainNo = this.encryptionLibrary.decrypt(decoded.chainNo || '')
 
             // 토큰을 검증하여 사용자 정보를 추출하는 로직
             req.user = decoded; // 요청 객체에 사용자 정보 추가

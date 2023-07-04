@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 
 /**
- * @description Logging
+ * @description Logging 인자 X
  * @returns 
  */
 export function Log() {

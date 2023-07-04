@@ -1,44 +1,12 @@
-// // logging.interceptor.ts
-
-// import { Injectable, NestInterceptor, ExecutionContext, CallHandler, Logger } from '@nestjs/common';
-// import { Observable } from 'rxjs';
-// import { tap } from 'rxjs/operators';
-
-// /**
-//  * @description 모든 요청에 대한 로깅
-//  */
-// @Injectable()
-// export class LoggingInterceptor implements NestInterceptor {
-//     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-//         const httpContext = context.switchToHttp();
-//         const request = httpContext.getRequest();
-//         const response = httpContext.getResponse();
-//         const method = request?.method;
-//         const url = request?.url;
-//         const now = Date.now();
-
-//         const target = context.getClass();
-//         const propertyKey = context.getHandler().name;
-//         const logger = new Logger(target.name);
-
-//         return next.handle().pipe(
-//             tap(() => {
-//                 console.log(`${method} ${url} ${Date.now() - now}ms`);
-//                 Logger.log(`${method} ${url} ${Date.now() - now}ms`)
-//                 logger.log(`Calling ${propertyKey} with arguments ${JSON.stringify(context.getArgs())}`);
-//             }),
-//         );
-//     }
-// }
-
-
-
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler, Logger } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+/**
+ * @description 모든 요청에 대한 로깅
+ */
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
     constructor(

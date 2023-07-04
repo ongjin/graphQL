@@ -1,10 +1,11 @@
 import { Injectable, UseFilters, UseGuards } from '@nestjs/common';
-import { Users_Temp } from './entities/user.entity';
+import { UsersTemp } from './entities/user.entity';
 import { Repository, Between, DataSource, EntityManager, Connection } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateUserInput } from './dto/update-user.input';
 import { CreateUserInput } from './dto/create-user.input';
 import { Account } from '../account';
+import { Result } from 'src/shared';
 
 
 @Injectable()
@@ -12,26 +13,26 @@ import { Account } from '../account';
 export class UserService {
     constructor(
         // private readonly commonService: CommonService,
-        // @InjectRepository(Users_Temp, 'webkiosk') private readonly usersTempRepository: Repository<Users_Temp>,
-        @InjectRepository(Users_Temp) private readonly usersTempRepository: Repository<Users_Temp>,
+        // @InjectRepository(UsersTemp, 'webkiosk') private readonly usersTempRepository: Repository<UsersTemp>,
+        @InjectRepository(UsersTemp) private readonly usersTempRepository: Repository<UsersTemp>,
         @InjectRepository(Account, 'postgre') private readonly accountRepository: Repository<Account>,
     ) { }
 
-    async getUsers(dbName: string): Promise<Users_Temp[]> {
+    async getUsers(dbName: string): Promise<UsersTemp[]> {
         // this.usersTempRepository.find({where : {USER_NO: Between(1, 22)}, order: {USER_NO: 'desc'}})
         // return this.usersTempRepository.find()
 
-        // return (await this.commonService.getRepository('default', Users_Temp)).find()
+        // return (await this.commonService.getRepository('default', UsersTemp)).find()
 
         const test = this.repoTest(dbName)
 
         return test.find({
-            relations: ['token']
+            relations: ['tokenTemp']
         })
-        // return this.commonService.getRepository<Users_Temp>(Users_Temp, dbName);
+        // return this.commonService.getRepository<UsersTemp>(UsersTemp, dbName);
     }
 
-    async getU(dbName: string, current: number = 1, limit: number = 100): Promise<Users_Temp[]> {
+    async getU(dbName: string, current: number = 1, limit: number = 100): Promise<UsersTemp[]> {
         // 페이지네이션 로직 구현
         const offset = (current - 1) * limit;
         // 데이터베이스 쿼리 실행
@@ -59,81 +60,81 @@ export class UserService {
         }
     }
 
-    async getUser(USER_NO: number): Promise<Users_Temp> {
-        const result = this.usersTempRepository.findOne({ where: { USER_NO } })
+    getUser(userNo: number): Promise<UsersTemp> {
+        const result = this.usersTempRepository.findOne({ where: { userNo } })
         return result
 
         // return this.usersTempRepository.findOneBy({ USER_NO })
     }
 
 
-    async createUser(input: CreateUserInput): Promise<Users_Temp> {
+    async createUser(input: CreateUserInput): Promise<Result> {
         const userNo = await this.usersTempRepository.createQueryBuilder()
             .select("SEQ_USER_NO.NEXTVAL")
             .from('DUAL', 'DUAL')
-            .where('USER_NO = (select MAX(USER_NO) FROM USERS_TEMP)')
+            // .where('USER_NO = (select MAX(USER_NO) FROM USERS_TEMP)')
             .getRawOne();
+        // const userNo = await this.usersTempRepository.query('SELECT SEQ_USER_NO.NEXTVAL FROM DUAL')
 
         const newUser: CreateUserInput = {
             // ...input
-            USER_NO: userNo.NEXTVAL,
-            USER_EMAIL: input.USER_EMAIL,
-            USER_ID: input.USER_ID,
-            USER_JADATE: input.USER_JADATE,
-            USER_NAME: input.USER_NAME,
-            USER_PHONE: input.USER_PHONE,
-            USER_PW: input.USER_PW
+            userNo: userNo.NEXTVAL,
+            userEmail: input.userEmail,
+            userId: input.userId,
+            // userJadate: input.userJadate,
+            userName: input.userName,
+            userPhone: input.userPhone,
+            userPw: input.userPw
         };
-
-
-        return this.usersTempRepository.save(newUser)
+        
+        try {
+            await this.usersTempRepository.save(newUser)
+            return { success: true, message: '성공' }
+        } catch (error) {
+            console.log(error);
+            
+            return { success: false, message: '실패' }
+        }
     }
 
-    // async createU(input: CreateUserInput): Promise<Users_Temp> {
-    //     const newUser: Users_Temp = {
-    //         ...input
-    //         // USER_NO: input.USER_NO,
-    //         // USER_EMAIL: input.USER_EMAIL,
-    //         // USER_ID: input.USER_ID,
-    //         // USER_JADATE: input.USER_JADATE,
-    //         // USER_NAME: input.USER_NAME,
-    //         // USER_PHONE: input.USER_PHONE,
-    //         // USER_PW: input.USER_PW
-    //     };
-
-    //     return this.usersTempRepository.save(newUser)
-    // }
-
-    async updateUser(input: UpdateUserInput): Promise<Users_Temp> {
-        const user = await this.usersTempRepository.findOneBy({ USER_NO: input.USER_NO });
+    async updateUser(input: UpdateUserInput): Promise<Result> {
+        const userNo = input.userNo
+        const user = await this.usersTempRepository.findOneBy({ userNo });
         if (!user) {
             throw new Error('User not found');
         }
 
-        if (input.USER_ID) {
-            user.USER_ID = input.USER_ID;
+        if (input.userId) {
+            user.userId = input.userId;
         }
-        if (input.USER_PW) {
-            user.USER_PW = input.USER_PW;
+        if (input.userPw) {
+            user.userPw = input.userPw;
         }
-        if (input.USER_EMAIL) {
-            user.USER_EMAIL = input.USER_EMAIL;
+        if (input.userEmail) {
+            user.userEmail = input.userEmail;
         }
-        if (input.USER_PHONE) {
-            user.USER_PHONE = input.USER_PHONE;
+        if (input.userPhone) {
+            user.userPhone = input.userPhone;
         }
-        if (input.USER_JADATE) {
-            user.USER_JADATE = input.USER_JADATE;
-        }
-        if (input.USER_NAME) {
-            user.USER_NAME = input.USER_NAME;
+        // if (input.userJadate) {
+        //     user.userJadate = input.userJadate;
+        // }
+        if (input.userName) {
+            user.userName = input.userName;
         }
 
-        return this.usersTempRepository.save(user);
+        try {
+            // await this.usersTempRepository.update(userNo, user);
+            await this.usersTempRepository.save(user);
+
+            return { success: true, message: '업데이트 성공' }
+        } catch (error) {
+            return { success: false, message: '업데이트 실패' }
+        }
     }
 
-    async deleteUser(USER_NO: number): Promise<boolean> {
-        const user = await this.usersTempRepository.findOneBy({ USER_NO });
+    async deleteUser(userNo: number): Promise<boolean> {
+        const user = await this.usersTempRepository.findOneBy({ userNo });
         if (!user) {
             throw new Error('User not found');
         }
@@ -143,26 +144,26 @@ export class UserService {
     }
 
 
-    async multiPleDBInsert(accountId: number): Promise<Users_Temp> {
+    async multiPleDBInsert(accountId: number): Promise<UsersTemp> {
         const account = await this.accountRepository.findOneBy({ id: accountId })
-        if(!account){
+        if (!account) {
             throw new Error(`조회 대상 테이블에 accountId: "${accountId}"가 존재하지 않습니다.`);
         }
 
-        const user = await this.usersTempRepository.findOneBy({ USER_NO: accountId })
+        const user = await this.usersTempRepository.findOneBy({ userNo: accountId })
 
         if (user) {
             throw new Error('이미 존재하는 아이디입니다.');
         }
 
         const result = this.usersTempRepository.save({
-            USER_EMAIL: account.internal_group,
-            USER_ID: account.code,
-            USER_JADATE: account.create_date,
-            USER_NAME: account.name,
-            USER_NO: account.id,
-            USER_PHONE: account.code,
-            USER_PW: account.account_type
+            userEmail: account.internal_group,
+            userId: account.code,
+            userJadate: account.create_date,
+            userName: account.name,
+            userNo: account.id,
+            userPhone: account.code,
+            userPw: account.account_type
         })
 
         return result

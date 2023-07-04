@@ -10,11 +10,11 @@ export class CategoryService {
         @InjectRepository(Category) private readonly categoryRepository: Repository<Category>,
     ) { }
 
-    findAll() {
+    findAll(): Promise<Category[]> {
         return this.categoryRepository.find()
     }
 
-    findWhereAll(msNo: Array<String>) {
+    findWhereAll(msNo: Array<String>): Promise<Category[]> {
         return this.categoryRepository.find({
             where: {
                 msNo: In(msNo)

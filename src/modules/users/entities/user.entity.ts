@@ -1,46 +1,49 @@
-import { ObjectType } from '@nestjs/graphql';
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, OneToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Index, Entity, Column, PrimaryColumn, OneToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { TokenTemp } from './token.entity';
+
+@Index("SYS_C0080355", ["userNo"], { unique: true })
+@Entity("USERS_TEMP", { orderBy: { userNo: "ASC" } })
+export class UsersTemp {
+    @PrimaryColumn("number", { primary: true, name: "USER_NO" })
+    userNo: number;
+
+    @Column("varchar2", { name: "USER_ID", length: 100 })
+    userId: string;
+
+    @Column("varchar2", { name: "USER_PW", length: 256 })
+    userPw: string;
+
+    @Column("varchar2", { name: "USER_EMAIL", length: 100 })
+    userEmail: string;
+
+    @Column("varchar2", { name: "USER_PHONE", length: 11 })
+    userPhone: string;
+
+    // @Column("date", {
+    //     name: "USER_JADATE",
+    //     nullable: true,
+    //     default: () => "CURRENT_TIMESTAMP(6)",
+    // })
+    @CreateDateColumn({ name: 'USER_JADATE' })
+    userJadate: Date | null;
+    
+    // @Column("date", {
+    //     name: "UPDATE_AT",
+    //     nullable: true,
+    //     default: () => "CURRENT_TIMESTAMP(6)",
+    //     onUpdate: "CURRENT_TIMESTAMP(6)",
+    // })
+    @UpdateDateColumn({ name: 'UPDATE_AT'})
+    updateAt: Date | null;
 
 
-@Entity({ name: 'USERS_TEMP', orderBy: { USER_NO: 'ASC' } })
-export class Users_Temp {
-    // @PrimaryGeneratedColumn('increment')
-    @PrimaryGeneratedColumn({ name: 'USER_NO', type: 'number' })
-    USER_NO: number;
+    @Column("varchar2", { name: "USER_NAME", length: 30 })
+    userName: string;
 
-    @Column()
-    USER_ID: string;
-    @Column()
-    USER_PW: string;
-    @Column()
-    USER_EMAIL: string;
-    @Column()
-    USER_PHONE: string;
-    // @Column({ type: 'date' })
-    @CreateDateColumn()
-    USER_JADATE: Date;
-    @Column()
-    USER_NAME: string;
-
-
-    @OneToOne(() => TokenTb)
+    @OneToOne(() => TokenTemp)
     @JoinColumn([
-        { name: 'USER_NO', referencedColumnName: 'USER_NO' }
+        { name: 'USER_NO', referencedColumnName: 'userNo' }
     ])
-    token: Promise<TokenTb>;
+    tokenTemp: Promise<TokenTemp>;
 }
-
-@Entity({ name: 'TOKEN_TEMP', orderBy: { USER_NO: 'ASC' } })
-export class TokenTb {
-    @PrimaryColumn()
-    USER_NO: number;
-
-    @Column()
-    USER_TOKEN: string;
-
-    // @OneToOne(() => Users_Temp, usersTemp => usersTemp.token)
-    // usersTemp: Users_Temp;
-}
-
-
 

@@ -5,23 +5,23 @@ import { IsNotEmpty } from 'class-validator';
 export class UpdateUserInput {
     @Field(() => Int)
     @IsNotEmpty()
-    USER_NO: number;
+    userNo: number;
 
     @Field({ nullable: true })
-    USER_ID: string;
+    userId: string;
 
     @Field({ nullable: true })
-    USER_PW: string;
+    userPw: string;
 
     @Field({ nullable: true })
-    USER_EMAIL: string;
+    userEmail: string;
 
     @Field({ nullable: true })
-    USER_PHONE: string;
+    userPhone: string;
+
+    // @Field({ nullable: true })
+    // userJadate: Date;
 
     @Field({ nullable: true })
-    USER_JADATE: Date;
-
-    @Field({ nullable: true })
-    USER_NAME: string;
+    userName: string;
 }

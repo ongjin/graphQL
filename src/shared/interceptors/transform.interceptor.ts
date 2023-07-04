@@ -21,7 +21,7 @@ export class TransformInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         return next.handle().pipe(
             map(async (data: any) => {
-                console.log('data', data.length);
+                // console.log('data', data.length);
 
                 // if(isArray(data)){
                 //     data.map(val => delete val.MS_NO)

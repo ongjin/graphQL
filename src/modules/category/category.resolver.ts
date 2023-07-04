@@ -10,14 +10,14 @@ export class CategoryResolver {
 
     @Query('category')
     @Auth(...[Role.User, Role.Admin])
-    findAll() {
+    findAll(): Promise<Category[]> {
         return this.categoryService.findAll();
     }
 
     @Query('category')
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
-    findWhereAll(@Args('msNo') msNo: Array<String>) {
+    findWhereAll(@Args('msNo') msNo: Array<String>): Promise<Category[]> {
         return this.categoryService.findWhereAll(msNo);
     }
 
