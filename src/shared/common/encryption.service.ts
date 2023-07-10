@@ -45,13 +45,12 @@ export class EncryptionLibrary {
         return decryptedData;
     }
 
-    async hashPassword(password: string): Promise<string> {
+    async hash(data: string | Buffer): Promise<string> {
         const salt = await bcrypt.genSalt(this.saltRounds);
-        const hashedPassword = await bcrypt.hash(password, salt);
-        return hashedPassword;
+        return bcrypt.hash(data, salt);
     }
 
-    async comparePasswords(password: string, hashedPassword: string): Promise<boolean> {
-        return await bcrypt.compare(password, hashedPassword);
+    compare(data: string | Buffer, encrypted: string): Promise<boolean> {
+        return bcrypt.compare(data, encrypted);
     }
 }

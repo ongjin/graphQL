@@ -1,4 +1,4 @@
-import { Index, Entity, Column, PrimaryColumn, OneToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { Index, Entity, Column, PrimaryColumn, OneToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
 import { TokenTemp } from './token.entity';
 
 @Index("SYS_C0080355", ["userNo"], { unique: true })
@@ -26,14 +26,14 @@ export class UsersTemp {
     // })
     @CreateDateColumn({ name: 'USER_JADATE' })
     userJadate: Date | null;
-    
+
     // @Column("date", {
     //     name: "UPDATE_AT",
     //     nullable: true,
     //     default: () => "CURRENT_TIMESTAMP(6)",
     //     onUpdate: "CURRENT_TIMESTAMP(6)",
     // })
-    @UpdateDateColumn({ name: 'UPDATE_AT'})
+    @UpdateDateColumn({ name: 'UPDATE_AT' })
     updateAt: Date | null;
 
 

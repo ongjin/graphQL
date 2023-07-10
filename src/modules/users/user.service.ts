@@ -78,7 +78,7 @@ export class UserService {
 
         const newUser: CreateUserInput = {
             // ...input
-            userNo: userNo.NEXTVAL,
+            // userNo: userNo.NEXTVAL,
             userEmail: input.userEmail,
             userId: input.userId,
             // userJadate: input.userJadate,
@@ -86,13 +86,13 @@ export class UserService {
             userPhone: input.userPhone,
             userPw: input.userPw
         };
-        
+
         try {
-            await this.usersTempRepository.save(newUser)
+            await this.usersTempRepository.save({ userNo: userNo.NEXTVAL, ...newUser })
             return { success: true, message: '성공' }
         } catch (error) {
             console.log(error);
-            
+
             return { success: false, message: '실패' }
         }
     }
@@ -125,9 +125,9 @@ export class UserService {
 
         try {
             // await this.usersTempRepository.update(userNo, user);
-            await this.usersTempRepository.save(user);
+            const result = await this.usersTempRepository.save(user);
 
-            return { success: true, message: '업데이트 성공' }
+            return { success: true, message: '업데이트 성공', data: result }
         } catch (error) {
             return { success: false, message: '업데이트 실패' }
         }

@@ -6,7 +6,6 @@ import { ROLES_KEY } from '../environments';
 import { EncryptionLibrary } from '../common';
 
 
-
 /**
  * @description roles 인가
  */
@@ -55,7 +54,7 @@ export class RolesGuard implements CanActivate {
 
             // 사용자의 역할과 요청에 필요한 역할 비교
             const userRoles = decoded.roles;
-            const hasRequiredRoles = userRoles.some((role) => roles.includes(role));
+            const hasRequiredRoles = userRoles.some((role: string) => roles.includes(role));
 
 
             return hasRequiredRoles; // 권한 검사 결과 반환

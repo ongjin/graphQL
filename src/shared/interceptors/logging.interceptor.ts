@@ -21,11 +21,12 @@ export class LoggingInterceptor implements NestInterceptor {
 
         const ctx = GqlExecutionContext.create(context);
         const { req } = ctx.getContext();
+        
 
-        const bypassAuth = this.reflector.get<string>('bypassAuth', context.getHandler());
-        if (bypassAuth) {
-            return next.handle(); // 인증 절차를 생략
-        }
+        // const bypassAuth = this.reflector.get<string>('bypassAuth', context.getHandler());
+        // if (bypassAuth) {
+        //     return next.handle(); // 인증 절차를 생략
+        // }
         
 
         // logger.log(`Calling ${propertyKey} with arguments ${JSON.stringify(context.getArgs(), this.getCircularReplacer())}`);

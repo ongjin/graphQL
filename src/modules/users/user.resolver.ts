@@ -1,14 +1,13 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { InjectRepository, InjectDataSource } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Injectable, Inject, Catch, UseFilters, HttpException, HttpStatus, Headers, Body } from '@nestjs/common';
+import { Injectable, Inject, Catch, UseFilters, HttpException, HttpStatus, Headers, Body, UseInterceptors } from '@nestjs/common';
 
 // import { UsersTemp, UserService } from 'src/modules/users';
 import { UsersTemp } from './entities/user.entity';
 import { UserService } from './user.service';
 import { CreateUserInput, UpdateUserInput } from './dto';
 import { Header, Auth, Log, CacheResult, MeasureTime, Role, Result } from 'src/shared';
-
 
 @Resolver()
 // @UseFilters(CatchException)
@@ -32,7 +31,7 @@ export class UsersTempResolver {
     }
 
     @Query('getUser')
-    @Auth(...[Role.User, Role.Admin])
+    @Auth(Role.User)
     // @CacheResult()
     // @Log()
     getUser(@Args('userNo') userNo: number): Promise<UsersTemp> {

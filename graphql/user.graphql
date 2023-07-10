@@ -21,7 +21,7 @@ type Query {
   getUsers(dbName: String = webkiosk): [Users_Temp]
   getU(dbName: String, limit: Int, current: Int): [Users_Temp]
   # getUsers: [Users_Temp!]
-  getUser(userNo: Int!): Users_Temp!
+  getUser(userNo: Int!): Users_Temp
   # findOneBy({USER_NO: userNo}): [Users_Temp!]!
 }
 
@@ -37,6 +37,7 @@ type Mutation {
 type ResultInterface {
   success: Boolean
   message: String
+  data: Users_Temp
 }
 
 input CreateUserInput {

@@ -23,6 +23,7 @@ export class CommonService {
         return entityManager;
     }
 
+    
     async getRepository(systemId: string, entity: any): Promise<Repository<any>> {
         const manager = await this.getEntityManager(systemId)
         return manager.getRepository(entity)

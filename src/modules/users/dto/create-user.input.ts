@@ -3,9 +3,9 @@ import { IsNotEmpty, IsEmail, IsEmpty, IsString } from 'class-validator';
 
 @InputType()
 export class CreateUserInput {
-    @Field({ nullable: true })
-    @IsNotEmpty()
-    userNo: number;
+    // @Field({ nullable: true })
+    // @IsNotEmpty()
+    // userNo: number;
 
     @Field({ nullable: true })
     @IsNotEmpty()
