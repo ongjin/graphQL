@@ -11,16 +11,15 @@ export class GoodsService {
     @InjectRepository(GoodsDetail) private readonly goodsDTRepository: Repository<GoodsDetail>,
   ) { }
 
-  findAll() {
-    return `This action returns all goods`;
+  findAll(): Promise<GoodsHeader[]> {
+    return this.goodsHDRepository.find()
   }
 
-  async findOne(msNo: string) {
-    const result = await this.goodsHDRepository.find({
+  findOne(msNo: string): Promise<GoodsHeader[]> {
+    const result = this.goodsHDRepository.find({
       where: { msNo }
     })
-    console.log('result', result.length);
-    
+
     return result
   }
 

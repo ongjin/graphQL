@@ -19,7 +19,7 @@ export class SubMenuService {
         return this.subMenuRepository.find({ where: { msNo } })
     }
 
-    async findAl(msNo: string) {
+    findAl(msNo: string) {
         const queryBuilder = this.subMenuRepository
             .createQueryBuilder()
             // .select('D.GPLU_CD, D.PLU_CD, D.GOODS_CD, D.SEQ, D.SUB_GROUP_CD, D.SUB_GROUP_NM, D.SUB_FG, D.SUB_GROUP_QTY, D.SUB_GROUP_GUIDE')
@@ -35,7 +35,7 @@ export class SubMenuService {
         // .getRawMany()
         // .execute()
 
-        return await queryBuilder.getRawMany()
+        return queryBuilder.getRawMany()
         // return this.mmbumstbRepository.find({
         //   relations: ['msubmntbs'],
 

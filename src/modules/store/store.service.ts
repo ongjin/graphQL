@@ -9,11 +9,7 @@ export class StoreService {
     @InjectRepository(StoreSystem) private readonly storeSystemRepository: Repository<StoreSystem>,
   ) { }
 
-  findAll() {
-    return `This action returns all store`;
-  }
-
-  findOne(msNo: string) {
+  findOne(msNo: string): Promise<StoreSystem> {
     return this.storeSystemRepository.findOne({
       where: { msNo }
     })

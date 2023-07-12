@@ -14,8 +14,8 @@ export class RolesGuard implements CanActivate {
 
     constructor(
         private readonly encryptionLibrary: EncryptionLibrary,
-        private reflector: Reflector,
-        private jwtService: JwtService,
+        private readonly reflector: Reflector,
+        private readonly jwtService: JwtService,
     ) { }
 
     canActivate(context: ExecutionContext): boolean {

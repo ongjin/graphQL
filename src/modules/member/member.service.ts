@@ -36,7 +36,7 @@ export class MemberService {
         // return members || [] // 빈 배열 반환
     }
 
-    async getMembersPage(dbName: string, current: number = 1, limit: number = 100): Promise<Member[]> {
+    getMembersPage(dbName: string, current: number = 1, limit: number = 100): Promise<Member[]> {
         const offset = (current - 1) * limit;
 
         const repo = this.repoTest(dbName)
@@ -46,7 +46,7 @@ export class MemberService {
         })
 
         // 데이터베이스 쿼리 실행
-        const users = await this.memberRepository.find({
+        const users = this.memberRepository.find({
             skip: offset,
             take: limit,
         });

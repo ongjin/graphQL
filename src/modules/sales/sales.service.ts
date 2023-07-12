@@ -13,13 +13,13 @@ export class SalesService {
 
 
     /** 두가지 방법 있음 */
-    async getSales(): Promise<SalesHD[]> {
+    getSales(): Promise<SalesHD[]> {
         // const sales = this.salesHDRepository.createQueryBuilder('salesHD')
         //     .leftJoinAndSelect('salesHD.salesDTs', 'salesDTs')
         //     .leftJoinAndSelect('salesHD.mgoodstbs', 'mgoodstbs')
         //     .getMany()
 
-        const sales = await this.salesHDRepository.find({
+        const sales = this.salesHDRepository.find({
             // where: {
             //     SALE_DATE: '20230531'
             // }
@@ -31,7 +31,7 @@ export class SalesService {
     }
     
 
-    getSalesPage(current: number = 1, limit: number = 100) {
+    getSalesPage(current: number = 1, limit: number = 100): Promise<SalesHD[]> {
         const offset = (current - 1) * limit;
 
         const sales = this.salesHDRepository.find({

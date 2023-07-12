@@ -7,7 +7,8 @@ import { Injectable, Inject, Catch, UseFilters, HttpException, HttpStatus, Heade
 import { UsersTemp } from './entities/user.entity';
 import { UserService } from './user.service';
 import { CreateUserInput, UpdateUserInput } from './dto';
-import { Header, Auth, Log, CacheResult, MeasureTime, Role, Result } from 'src/shared';
+import { Header, Auth, Log, CacheResult, MeasureTime, Role, Result, bypassAuth } from 'src/shared';
+import { Observable, of } from 'rxjs';
 
 @Resolver()
 // @UseFilters(CatchException)
@@ -16,12 +17,19 @@ export class UsersTempResolver {
         private readonly userService: UserService,
     ) { }
 
-    @Query('getUsers')
+
+    @Query(() => [UsersTemp], { name: 'getUsers' })
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
-    getUsers(@Args('dbName') dbName: string, @Header('authorization') authorization: string): Promise<UsersTemp[]> {
-        return this.userService.getUsers(dbName);
+    getUsers(@Args('dbName') dbName: string, @Header('authorization') authorization: string): Observable<Promise<UsersTemp[]>> {
+        return of(this.userService.getUsers(dbName))
     }
+    // @Query(() => [UsersTemp], { name: 'getUsers' })
+    // @Auth(...[Role.User, Role.Admin])
+    // // @CacheResult()
+    // getUsers(@Args('dbName') dbName: string, @Header('authorization') authorization: string): Promise<UsersTemp[]> {
+    //     return this.userService.getUsers(dbName);
+    // }
 
     @Query(() => [UsersTemp])
     @Auth(...[Role.User, Role.Admin])

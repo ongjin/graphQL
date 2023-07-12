@@ -18,7 +18,7 @@ export class UserService {
         @InjectRepository(Account, 'postgre') private readonly accountRepository: Repository<Account>,
     ) { }
 
-    async getUsers(dbName: string): Promise<UsersTemp[]> {
+    getUsers(dbName: string): Promise<UsersTemp[]> {
         // this.usersTempRepository.find({where : {USER_NO: Between(1, 22)}, order: {USER_NO: 'desc'}})
         // return this.usersTempRepository.find()
 
@@ -32,11 +32,11 @@ export class UserService {
         // return this.commonService.getRepository<UsersTemp>(UsersTemp, dbName);
     }
 
-    async getU(dbName: string, current: number = 1, limit: number = 100): Promise<UsersTemp[]> {
+    getU(dbName: string, current: number = 1, limit: number = 100): Promise<UsersTemp[]> {
         // 페이지네이션 로직 구현
         const offset = (current - 1) * limit;
         // 데이터베이스 쿼리 실행
-        const users = await this.usersTempRepository.find({
+        const users = this.usersTempRepository.find({
             skip: offset,
             take: limit,
             // order: {USER_NO: 'ASC'}

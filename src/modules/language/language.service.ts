@@ -12,23 +12,19 @@ export class LanguageService {
         @InjectRepository(Mmlangtb) private readonly mmlangtbRepository: Repository<Mmlangtb>,
     ) { }
 
-    findAll() {
-        return `This action returns all language`;
-    }
-
-    async findOne(msNo: string) {
-        const result = await this.mlanustbRepository.find({
+    findOne(msNo: string): Promise<Mlanustb[]> {
+        const result = this.mlanustbRepository.find({
             where: { msNo, useYn: 'Y' },
         })
 
         return result
     }
 
-    languagePublicMessage() {
+    languagePublicMessage(): Promise<Colangtb[]> {
         return this.colangtbRepository.find()
     }
 
-    languageCCD(msNo: string, langCcd: string) {
+    languageCCD(msNo: string, langCcd: string): Promise<Mmlangtb[]> {
         return this.mmlangtbRepository.find({
             where: { msNo, langCcd }
         })

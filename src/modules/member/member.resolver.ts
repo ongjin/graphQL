@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, Context, GqlExecutionContext } from '@nestjs/graphql';
 import { Member } from './entities/member.entity';
-import { Injectable, Inject, ExecutionContext, Req } from '@nestjs/common';
+import { ExecutionContext } from '@nestjs/common';
 
 import { MemberService } from './member.service';
 import { Auth, CustomRequest, Header, Role } from 'src/shared';
@@ -20,9 +20,10 @@ export class MemberResolver {
         // request.user를 사용하여 사용자 정보에 접근
     }
 
+
     @Query(() => [Member])
     @Auth(...[Role.User, Role.Admin])
-    async getMembers(@Header('authorization') authorization: string, @CustomRequest('user') user: object): Promise<Member[]> {
+    getMembers(@Header('authorization') authorization: string, @CustomRequest('user') user: object): Promise<Member[]> {
         // console.log('authorization', authorization, user);
         const dbName = user['junction']
         // {
@@ -34,15 +35,15 @@ export class MemberResolver {
         //     iat: 1686553212,
         //     exp: 1686556812
         // }
-        return this.memberService.getMembers(dbName);
+        return this.memberService.getMembers(dbName)
     }
-    
+
 
     @Query(() => [Member])
     @Auth(...[Role.User, Role.Admin])
-    async getMembersPage(@Args('current') current: number, @Args('limit') limit: number, @CustomRequest('user') user: object): Promise<Member[]> {
+    getMembersPage(@Args('current') current: number, @Args('limit') limit: number, @CustomRequest('user') user: object): Promise<Member[]> {
         console.log(user);
-        
+
         const dbName = user['junction']
 
         return this.memberService.getMembersPage(dbName, current, limit);
@@ -50,7 +51,7 @@ export class MemberResolver {
 
     @Query(() => Member)
     @Auth(...[Role.User, Role.Admin])
-    async getMember(@CustomRequest('user') user: object): Promise<Member> {
+    getMember(@CustomRequest('user') user: object): Promise<Member> {
         const dbName = user['junction']
         const msNo = user['msNo']
         const chainNo = user['chainNo']

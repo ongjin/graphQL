@@ -6,22 +6,24 @@ import { EncryptionLibrary, END_POINT, END_POINT_URL } from 'src/shared';
 import * as crypto from 'crypto'
 import { HttpService } from '@nestjs/axios';
 
-
 @Injectable()
 export class JwtokenService {
     constructor(
         private readonly encryptionLibrary: EncryptionLibrary,
-        private jwtService: JwtService,
+        private readonly jwtService: JwtService,
         private readonly httpService: HttpService,
     ) { }
+    
 
     getHtml(path: string, res: Response): Response {
         const html = fs.readFileSync(path, 'utf-8')
         return res.send(html)
     }
 
-    jwtGenerate(formData: object, res: Response): Response {
+    jwtGenerate(formData: Object, res: Response): Response {
         const roles = ['user', 'admin']
+        console.log('formData', formData);
+
         const msNo = this.encryptionLibrary.encrypt(formData['msNo'])
         const chainNo = this.encryptionLibrary.encrypt(formData['chainNo'])
         const junction = formData['junction']
@@ -49,10 +51,10 @@ export class JwtokenService {
     async postTest(res: Response): Promise<void> {
         const headers = {
             'Content-Type': 'application/json',
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtc05vIjoiMnk5N1ZHMnciLCJjaGFpbk5vIjoiMnk5NVZ3PT0iLCJyb2xlcyI6WyJ1c2VyIiwiYWRtaW4iXSwidXVpZCI6IjQ4ZmMxYmMzLWM3MDAtNGFkMi05NjYwLWFhMmQ4MmE1YThjZSIsImp1bmN0aW9uIjoic2hpbnN1biIsImlhdCI6MTY4NjYyOTk0NCwiZXhwIjoxNjg5MjIxOTQ0fQ.U_mM9Bh_wXpg6MXZVo5KNIgjq9bdRKLHJRBQuEA7CnU`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtc05vIjoiMnk5N1ZHMnciLCJjaGFpbk5vIjoiMnk5NVZ3PT0iLCJyb2xlcyI6WyJ1c2VyIiwiYWRtaW4iXSwidXVpZCI6IjZmNzM1MmY0LTgyNGQtNGYzNC04YTRhLTEwMGNkOWIyMDU0ZCIsImp1bmN0aW9uIjoic2hpbnN1biIsImlhdCI6MTY4OTAzMzg3OCwiZXhwIjoxNjkwMzI5ODc4fQ.xsGnrbl9DSy_b4MxJUUWm2V_mxQNo--LjtHzJ7Uea0c`,
         };
         const data = {
-            query: "{\n  getUser(userNo:1) {\n    USER_NO\n    USER_PW\n    USER_NAME\n    USER_ID\n    USER_EMAIL\n    token{\n      USER_TOKEN\n      USER_NO\n    }\n  }\n}\n",
+            query: "{\n  getUser(userNo:1) {\n    userNo\n    userId\n    userPw\n    userEmail\n    userPhone\n   userName\n userJadate\n  tokenTemp{\n      userNo\n      userToken\n    }\n  }\n}\n",
         };
 
         const resp$ = this.httpService.post(`http://${END_POINT_URL}/${END_POINT}`, data, { headers })

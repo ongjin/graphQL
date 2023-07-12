@@ -10,8 +10,8 @@ export class AccountService {
         @InjectRepository(Account, 'postgre') private readonly accountRepository: Repository<Account>,
     ) { }
 
-    async getAccounts(): Promise<Account[]> {
-        return await this.accountRepository.find()
+    getAccounts(): Promise<Account[]> {
+        return this.accountRepository.find()
     }
     
 

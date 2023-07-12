@@ -31,5 +31,5 @@ export default {
     dropSchema: false,
     synchronize: false,
     keepConnectionAlive: true,
-    logging: true,
+    // logging: true,
 } as TypeOrmModuleAsyncOptions;

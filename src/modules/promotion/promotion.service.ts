@@ -10,11 +10,7 @@ export class PromotionService {
     @InjectRepository(PromotionDetail) private readonly promotionDTRepository: Repository<PromotionDetail>,
   ) { }
 
-  findAll() {
-    return `This action returns all promotion`;
-  }
-
-  findOne(msNo: string) {
+  findOne(msNo: string): Promise<PromotionHeader[]> {
     return this.promotionHDRepository.find({
       where: { msNo, webKioskUseYn: 'Y' },
     })

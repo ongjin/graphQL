@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Auth, bypassAuth, Role } from 'src/shared';
-import { Mmbumstb, SubMenu } from './entities/sub-menu.entity';
+import { Mmbumstb, Msubmntb, SubMenu } from './entities/sub-menu.entity';
 import { SubMenuService } from './sub-menu.service';
 
 @Resolver('SubMenu')
@@ -9,37 +9,37 @@ export class SubMenuResolver {
 
     @Query('subMenu1')
     @bypassAuth(true)
-    findAll() {
+    findAll(): Promise<SubMenu[]> {
         return this.subMenuService.findAll();
     }
 
     @Query('subMenu1')
     @bypassAuth(true)
-    findOne(@Args('msNo') msNo: string) {
+    findOne(@Args('msNo') msNo: string): Promise<SubMenu[]> {
         return this.subMenuService.findOne(msNo);
     }
 
     @Query('subMenu')
     @Auth(...[Role.User, Role.Admin])
-    findAl(@Args('msNo') msNo: string) {
+    findAl(@Args('msNo') msNo: string): Promise<SubMenu[]> {
         return this.subMenuService.findAl(msNo);
     }
 
     @Query('subMenu2')
     @bypassAuth(true)
-    findOn(@Args('msNo') msNo: string) {
+    findOn(@Args('msNo') msNo: string): Promise<Mmbumstb[]> {
         return this.subMenuService.findOn(msNo);
     }
 
     @Query('subMenuDetail')
     @Auth(...[Role.User, Role.Admin])
-    subMenuDetailFind(@Args('msNo') msNo: string) {
+    subMenuDetailFind(@Args('msNo') msNo: string): Promise<Msubmntb[]> {
         return this.subMenuService.subMenuDetailFind(msNo);
     }
 
     @Query('subMenuHeader')
     @Auth(...[Role.User, Role.Admin])
-    subMenuHeaderFind(@Args('msNo') msNo: string) {
+    subMenuHeaderFind(@Args('msNo') msNo: string): Promise<Mmbumstb[]> {
         return this.subMenuService.subMenuHeaderFind(msNo);
     }
 

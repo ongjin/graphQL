@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Context, GqlExecutionContext } from '@nestjs/graphql';
+import { Resolver, Query, Mutation } from '@nestjs/graphql';
 import { Account } from './entities/account.entity';
 
 import { AccountService } from './account.service';
@@ -13,7 +13,7 @@ export class AccountResolver {
 
     @Query(() => [Account])
     @Auth(...[Role.User, Role.Admin])
-    async getAccounts(@Header('authorization') authorization: string, @CustomRequest('user') user: object): Promise<Account[]> {
+    getAccounts(@Header('authorization') authorization: string, @CustomRequest('user') user: object): Promise<Account[]> {
         console.log('authorization', authorization, user);
         // {
         //     msNo: '1lx6XWm0',
@@ -24,7 +24,7 @@ export class AccountResolver {
         //     iat: 1686553212,
         //     exp: 1686556812
         // }
-        return this.accountService.getAccounts();
+        return this.accountService.getAccounts()
     }
 
 

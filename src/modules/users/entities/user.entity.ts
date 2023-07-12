@@ -24,7 +24,7 @@ export class UsersTemp {
     //     nullable: true,
     //     default: () => "CURRENT_TIMESTAMP(6)",
     // })
-    @CreateDateColumn({ name: 'USER_JADATE' })
+    @CreateDateColumn({ name: 'USER_JADATE', type: 'date' })
     userJadate: Date | null;
 
     // @Column("date", {
@@ -34,7 +34,7 @@ export class UsersTemp {
     //     onUpdate: "CURRENT_TIMESTAMP(6)",
     // })
     @UpdateDateColumn({ name: 'UPDATE_AT' })
-    updateAt: Date | null;
+    updateAt: string | null;
 
 
     @Column("varchar2", { name: "USER_NAME", length: 30 })
