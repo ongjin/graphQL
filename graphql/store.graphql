@@ -62,7 +62,7 @@ type StoreSystem {
 }
 
 type Query {
-  store: StoreSystem
+  stores: [StoreSystem]
   store(msNo: String): StoreSystem
 }
 

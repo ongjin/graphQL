@@ -2,9 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Colangtb, Langmstb, Mlanustb, Mmlangtb } from './entities/language.entity';
+import { LanguageService } from './interface/language.service.interface';
 
 @Injectable()
-export class LanguageService {
+export class LanguageServiceImpl implements LanguageService {
     constructor(
         @InjectRepository(Langmstb) private readonly langmstbRepository: Repository<Langmstb>,
         @InjectRepository(Mlanustb) private readonly mlanustbRepository: Repository<Mlanustb>,

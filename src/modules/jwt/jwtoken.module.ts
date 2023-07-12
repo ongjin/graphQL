@@ -4,7 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EncryptionLibrary, JWT_SECRET_KEY } from 'src/shared';
 import { JwtokenController } from './jwtoken.controller';
-import { JwtokenService } from './jwtoken.service';
+import { JwtokenServiceImpl } from './jwtoken.service';
 
 @Module({
     // imports: [TypeOrmModule.forFeature([Member], 'shinsun'), TypeOrmModule.forFeature([Member])],
@@ -17,8 +17,8 @@ import { JwtokenService } from './jwtoken.service';
     ],
     controllers: [JwtokenController],
     providers: [
-        JwtokenService,
-        EncryptionLibrary
+        EncryptionLibrary,
+        { provide: 'JwtokenService', useClass: JwtokenServiceImpl }
     ],
 })
 export class JwtokenModule { }

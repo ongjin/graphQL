@@ -5,37 +5,32 @@ import { Injectable, Inject, Catch, UseFilters, HttpException, HttpStatus, Heade
 
 // import { UsersTemp, UserService } from 'src/modules/users';
 import { UsersTemp } from './entities/user.entity';
-import { UserService } from './user.service';
 import { CreateUserInput, UpdateUserInput } from './dto';
 import { Header, Auth, Log, CacheResult, MeasureTime, Role, Result, bypassAuth } from 'src/shared';
 import { Observable, of } from 'rxjs';
+import { UserService } from './interface/user.serveice.interface'
 
 @Resolver()
 // @UseFilters(CatchException)
-export class UsersTempResolver {
+export class UsersResolver {
     constructor(
-        private readonly userService: UserService,
+        // private readonly userService: UserService,
+        @Inject('UserService') private readonly userService: UserService,
     ) { }
 
 
     @Query(() => [UsersTemp], { name: 'getUsers' })
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
-    getUsers(@Args('dbName') dbName: string, @Header('authorization') authorization: string): Observable<Promise<UsersTemp[]>> {
-        return of(this.userService.getUsers(dbName))
+    getUsers(@Header('authorization') authorization: string): Observable<Promise<UsersTemp[]>> {
+        return of(this.userService.getUsers())
     }
-    // @Query(() => [UsersTemp], { name: 'getUsers' })
-    // @Auth(...[Role.User, Role.Admin])
-    // // @CacheResult()
-    // getUsers(@Args('dbName') dbName: string, @Header('authorization') authorization: string): Promise<UsersTemp[]> {
-    //     return this.userService.getUsers(dbName);
-    // }
 
-    @Query(() => [UsersTemp])
+    @Query(() => [UsersTemp], { name: 'getUsers' })
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
-    getU(@Args('dbName') dbName: string, @Args('current') current: number, @Args('limit') limit: number): Promise<UsersTemp[]> {
-        return this.userService.getU(dbName, current, limit);
+    getUsersPage(@Args('current') current: number, @Args('limit') limit: number): Promise<UsersTemp[]> {
+        return this.userService.getUsersPage(current, limit);
     }
 
     @Query('getUser')

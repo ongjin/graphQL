@@ -5,15 +5,16 @@ import * as fs from 'fs';
 import { EncryptionLibrary, END_POINT, END_POINT_URL } from 'src/shared';
 import * as crypto from 'crypto'
 import { HttpService } from '@nestjs/axios';
+import { JwtokenService } from './interface/jwtoken.service.interface';
 
 @Injectable()
-export class JwtokenService {
+export class JwtokenServiceImpl implements JwtokenService {
     constructor(
         private readonly encryptionLibrary: EncryptionLibrary,
         private readonly jwtService: JwtService,
         private readonly httpService: HttpService,
     ) { }
-    
+
 
     getHtml(path: string, res: Response): Response {
         const html = fs.readFileSync(path, 'utf-8')

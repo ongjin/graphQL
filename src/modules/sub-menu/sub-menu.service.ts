@@ -2,24 +2,25 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Mmbumstb, Msubmntb, SubMenu } from './entities/sub-menu.entity';
 import { Repository } from 'typeorm';
+import { SubMenuService } from './interface/sub-menu.service.interface';
 
 @Injectable()
-export class SubMenuService {
+export class SubMenuServiceImpl implements SubMenuService {
     constructor(
         @InjectRepository(SubMenu) private readonly subMenuRepository: Repository<SubMenu>,
         @InjectRepository(Mmbumstb) private readonly mmbumstbRepository: Repository<Mmbumstb>,
         @InjectRepository(Msubmntb) private readonly msubmntbRepository: Repository<Msubmntb>,
     ) { }
 
-    findAll() {
+    findAll(): Promise<SubMenu[]> {
         return this.subMenuRepository.find()
     }
 
-    findOne(msNo: string) {
+    findOne(msNo: string): Promise<SubMenu[]> {
         return this.subMenuRepository.find({ where: { msNo } })
     }
 
-    findAl(msNo: string) {
+    findAl(msNo: string): Promise<SubMenu[]> {
         const queryBuilder = this.subMenuRepository
             .createQueryBuilder()
             // .select('D.GPLU_CD, D.PLU_CD, D.GOODS_CD, D.SEQ, D.SUB_GROUP_CD, D.SUB_GROUP_NM, D.SUB_FG, D.SUB_GROUP_QTY, D.SUB_GROUP_GUIDE')
@@ -44,11 +45,11 @@ export class SubMenuService {
     }
 
 
-    findOn(msNo: string) {
+    findOn(msNo: string): Promise<Mmbumstb[]> {
         return this.mmbumstbRepository.find({ where: { msNo } })
     }
 
-    async subMenuDetailFind(msNo: string) {
+    async subMenuDetailFind(msNo: string): Promise<Msubmntb[]> {
         const result = await this.msubmntbRepository.find({
             where: { msNo }
         })
@@ -62,7 +63,7 @@ export class SubMenuService {
         return result
     }
 
-    subMenuHeaderFind(msNo: string) {
+    subMenuHeaderFind(msNo: string): Promise<Mmbumstb[]> {
         const result = this.mmbumstbRepository.find({
             where: { msNo }
         })

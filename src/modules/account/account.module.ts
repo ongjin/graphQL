@@ -3,11 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Account } from './entities/account.entity';
 import { AccountResolver } from './account.resolver';
 
-import { AccountService } from './account.service';
+import { AccountServiceImpl } from './account.service';
 
 @Module({
     imports: [TypeOrmModule.forFeature([Account], 'postgre')],
-    providers: [AccountResolver, AccountService],
+    providers: [
+        AccountResolver,
+        { provide: 'AccountService', useClass: AccountServiceImpl }
+    ],
 })
 export class AccountModule { }
 

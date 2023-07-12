@@ -2,15 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { SalesHD, SalesDT } from './entities/sales.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { SalesService } from './interface/sales.service.interface';
 
 @Injectable()
-export class SalesService {
+export class SalesServiceImpl implements SalesService {
     constructor(
         @InjectRepository(SalesHD) private readonly salesHDRepository: Repository<SalesHD>,
     ) { }
-
-
-
 
     /** 두가지 방법 있음 */
     getSales(): Promise<SalesHD[]> {

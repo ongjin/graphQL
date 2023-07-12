@@ -1,4 +1,4 @@
-import { Injectable, UseFilters, UseGuards } from '@nestjs/common';
+import { Inject, Injectable, UseFilters, UseGuards } from '@nestjs/common';
 import { UsersTemp } from './entities/user.entity';
 import { Repository, Between, DataSource, EntityManager, Connection } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -6,65 +6,40 @@ import { UpdateUserInput } from './dto/update-user.input';
 import { CreateUserInput } from './dto/create-user.input';
 import { Account } from '../account';
 import { Result } from 'src/shared';
+import { UserService } from './interface/user.serveice.interface'
 
 
 @Injectable()
 // @UseFilters(CatchException)
-export class UserService {
+export class UserServiceImpl implements UserService {
     constructor(
         // private readonly commonService: CommonService,
-        // @InjectRepository(UsersTemp, 'webkiosk') private readonly usersTempRepository: Repository<UsersTemp>,
         @InjectRepository(UsersTemp) private readonly usersTempRepository: Repository<UsersTemp>,
         @InjectRepository(Account, 'postgre') private readonly accountRepository: Repository<Account>,
     ) { }
 
-    getUsers(dbName: string): Promise<UsersTemp[]> {
-        // this.usersTempRepository.find({where : {USER_NO: Between(1, 22)}, order: {USER_NO: 'desc'}})
-        // return this.usersTempRepository.find()
-
+    getUsers(): Promise<UsersTemp[]> {
         // return (await this.commonService.getRepository('default', UsersTemp)).find()
-
-        const test = this.repoTest(dbName)
-
-        return test.find({
+        return this.usersTempRepository.find({
             relations: ['tokenTemp']
         })
-        // return this.commonService.getRepository<UsersTemp>(UsersTemp, dbName);
     }
 
-    getU(dbName: string, current: number = 1, limit: number = 100): Promise<UsersTemp[]> {
-        // 페이지네이션 로직 구현
+    getUsersPage(current: number = 1, limit: number = 100): Promise<UsersTemp[]> {
+        // 페이지네이션
         const offset = (current - 1) * limit;
-        // 데이터베이스 쿼리 실행
+
+        // 쿼리 실행
         const users = this.usersTempRepository.find({
             skip: offset,
             take: limit,
             // order: {USER_NO: 'ASC'}
         });
         return users;
-        // 페이지네이션1
-        // const offset = (current - 1) * limit;
-        // const query = this.usersTempRepository.createQueryBuilder('user');
-
-        // query.skip(offset).take(limit).orderBy('USER_NO', 'ASC');
-
-        // return query.getMany();
-
-    }
-
-    private repoTest(dbName: string) {
-        if (dbName === 'webkiosk') {
-            return this.usersTempRepository
-        } else {
-            return this.usersTempRepository
-        }
     }
 
     getUser(userNo: number): Promise<UsersTemp> {
-        const result = this.usersTempRepository.findOne({ where: { userNo } })
-        return result
-
-        // return this.usersTempRepository.findOneBy({ USER_NO })
+        return this.usersTempRepository.findOneBy({ userNo })
     }
 
 

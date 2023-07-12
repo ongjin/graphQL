@@ -1,14 +1,15 @@
 import { Resolver, Query, Mutation } from '@nestjs/graphql';
 import { Account } from './entities/account.entity';
 
-import { AccountService } from './account.service';
 import { Auth, CustomRequest, Header, Role } from 'src/shared';
+import { Inject } from '@nestjs/common';
+import { AccountService } from './interface/account.service.interface';
 
 @Resolver()
 export class AccountResolver {
 
     constructor(
-        private readonly accountService: AccountService
+        @Inject('AccountService') private readonly accountService: AccountService
     ) { }
 
     @Query(() => [Account])

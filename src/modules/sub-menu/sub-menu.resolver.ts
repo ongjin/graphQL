@@ -1,11 +1,14 @@
+import { Inject } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Auth, bypassAuth, Role } from 'src/shared';
 import { Mmbumstb, Msubmntb, SubMenu } from './entities/sub-menu.entity';
-import { SubMenuService } from './sub-menu.service';
+import { SubMenuService } from './interface/sub-menu.service.interface';
 
 @Resolver('SubMenu')
 export class SubMenuResolver {
-    constructor(private readonly subMenuService: SubMenuService) { }
+    constructor(
+        @Inject('SubMenuService') private readonly subMenuService: SubMenuService
+    ) { }
 
     @Query('subMenu1')
     @bypassAuth(true)

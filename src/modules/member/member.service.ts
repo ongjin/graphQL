@@ -2,9 +2,10 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Member } from './entities/member.entity';
 import { Repository, createConnection, Connection } from 'typeorm';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
+import { MemberService } from './interface/member.service.interface';
 
 @Injectable()
-export class MemberService {
+export class MemberServiceImpl implements MemberService {
 
     constructor(
         @InjectRepository(Member) private readonly memberRepository: Repository<Member>,

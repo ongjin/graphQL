@@ -24,6 +24,8 @@ export class RolesGuard implements CanActivate {
         const roles = this.reflector.get<string[]>(ROLES_KEY, context.getHandler());
         // const roles = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [context.getHandler(), context.getClass()]);
 
+        console.log('ip block test', req.ip);
+
         const bypassAuth = this.reflector.get<string>('bypassAuth', context.getHandler());
         if (bypassAuth) {
             return true; // 인증 절차를 생략

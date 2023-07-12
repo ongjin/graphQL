@@ -1,18 +1,21 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Auth, Role } from 'src/shared';
-import { LanguageService } from './language.service';
 import { Colangtb, Mlanustb, Mmlangtb } from './entities/language.entity';
+import { Inject } from '@nestjs/common';
+import { LanguageService } from './interface/language.service.interface';
 
 @Resolver('Language')
 export class LanguageResolver {
-    constructor(private readonly languageService: LanguageService) { }
+    constructor(
+        @Inject('LanguageService') private readonly languageService: LanguageService
+    ) { }
 
     @Query('languageMaster')
     @Auth(...[Role.User, Role.Admin])
     findOne(@Args('msNo') msNo: string): Promise<Mlanustb[]> {
         return this.languageService.findOne(msNo);
     }
-    
+
     @Query('languagePublicMessage')
     @Auth(...[Role.User, Role.Admin])
     languagePublicMessage(): Promise<Colangtb[]> {

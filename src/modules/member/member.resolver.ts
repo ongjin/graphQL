@@ -1,25 +1,16 @@
 import { Resolver, Query, Mutation, Args, Context, GqlExecutionContext } from '@nestjs/graphql';
 import { Member } from './entities/member.entity';
-import { ExecutionContext } from '@nestjs/common';
+import { ExecutionContext, Inject } from '@nestjs/common';
 
-import { MemberService } from './member.service';
 import { Auth, CustomRequest, Header, Role } from 'src/shared';
+import { MemberService } from './interface/member.service.interface';
 
 @Resolver()
 export class MemberResolver {
 
     constructor(
-        private readonly memberService: MemberService
+        @Inject('MemberService') private readonly memberService: MemberService
     ) { }
-
-    yourMethod(context: ExecutionContext) {
-        const ctx = GqlExecutionContext.create(context);
-        const request = ctx.getContext().req;
-        const user = request.user;
-        return user
-        // request.user를 사용하여 사용자 정보에 접근
-    }
-
 
     @Query(() => [Member])
     @Auth(...[Role.User, Role.Admin])

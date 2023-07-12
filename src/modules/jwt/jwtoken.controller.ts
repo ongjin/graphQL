@@ -1,12 +1,12 @@
-import { Controller, Get, Res, Param, Req, Body, Post } from '@nestjs/common';
+import { Controller, Get, Res, Param, Req, Body, Post, Inject } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { bypassAuth } from 'src/shared';
-import { JwtokenService } from './jwtoken.service';
+import { JwtokenService } from './interface/jwtoken.service.interface';
 
 @Controller()
 export class JwtokenController {
     constructor(
-        private readonly jwtokenService: JwtokenService,
+        @Inject('JwtokenService') private readonly jwtokenService: JwtokenService
     ) { }
 
     @Get('/jwt')

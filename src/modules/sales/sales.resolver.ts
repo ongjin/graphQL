@@ -1,13 +1,14 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 
-import { SalesService } from './sales.service';
 import { Auth, Role } from 'src/shared';
 import { SalesHD } from './entities/sales.entity';
+import { Inject } from '@nestjs/common';
+import { SalesService } from './interface/sales.service.interface';
 
 @Resolver()
 export class SalesResolver {
     constructor(
-        private readonly salesService: SalesService
+        @Inject('SalesService') private readonly salesService: SalesService
     ) { }
 
     @Query()

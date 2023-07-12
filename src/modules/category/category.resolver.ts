@@ -1,11 +1,14 @@
+import { Inject } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Auth, Role } from 'src/shared';
-import { CategoryService } from './category.service';
 import { Category } from './entities/category.entity';
+import { CategoryService } from './interface/category.service.interface';
 
 @Resolver('Category')
 export class CategoryResolver {
-    constructor(private readonly categoryService: CategoryService) { }
+    constructor(
+        @Inject('CategoryService') private readonly categoryService: CategoryService
+    ) { }
 
 
     @Query('category')
