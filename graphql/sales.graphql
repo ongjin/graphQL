@@ -50,5 +50,5 @@ type Mgoodstb{
 
 type Query {
   getSales: [SalesHD]
-  getSalesPage(current: Int, limit: Int): [SalesHD]
+  getSales(current: Int, limit: Int): [SalesHD]
 }

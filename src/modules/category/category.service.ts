@@ -11,11 +11,7 @@ export class CategoryServiceImpl implements CategoryService {
         @InjectRepository(Category) private readonly categoryRepository: Repository<Category>,
     ) { }
 
-    findAll(): Promise<Category[]> {
-        return this.categoryRepository.find()
-    }
-
-    findWhereAll(msNo: Array<String>): Promise<Category[]> {
+    categorys(msNo: Array<String>): Promise<Category[]> {
         return this.categoryRepository.find({
             where: {
                 msNo: In(msNo)

@@ -10,18 +10,11 @@ export class CategoryResolver {
         @Inject('CategoryService') private readonly categoryService: CategoryService
     ) { }
 
-
-    @Query('category')
-    @Auth(...[Role.User, Role.Admin])
-    findAll(): Promise<Category[]> {
-        return this.categoryService.findAll();
-    }
-
-    @Query('category')
+    @Query(() => [Category], { name: 'categorys' })
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
-    findWhereAll(@Args('msNo') msNo: Array<String>): Promise<Category[]> {
-        return this.categoryService.findWhereAll(msNo);
+    categorys(@Args('msNo') msNo: Array<String>): Promise<Category[]> {
+        return this.categoryService.categorys(msNo);
     }
 
 }

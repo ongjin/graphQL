@@ -12,7 +12,7 @@ export class MemberResolver {
         @Inject('MemberService') private readonly memberService: MemberService
     ) { }
 
-    @Query(() => [Member])
+    @Query(() => [Member], { name: 'getMembers' })
     @Auth(...[Role.User, Role.Admin])
     getMembers(@Header('authorization') authorization: string, @CustomRequest('user') user: object): Promise<Member[]> {
         // console.log('authorization', authorization, user);
@@ -26,28 +26,28 @@ export class MemberResolver {
         //     iat: 1686553212,
         //     exp: 1686556812
         // }
-        return this.memberService.getMembers(dbName)
+        return this.memberService.getMembers()
     }
 
 
-    @Query(() => [Member])
+    @Query(() => [Member], { name: 'getMembers' })
     @Auth(...[Role.User, Role.Admin])
     getMembersPage(@Args('current') current: number, @Args('limit') limit: number, @CustomRequest('user') user: object): Promise<Member[]> {
         console.log(user);
 
-        const dbName = user['junction']
+        // const dbName = user['junction']
 
-        return this.memberService.getMembersPage(dbName, current, limit);
+        return this.memberService.getMembersPage(current, limit);
     }
 
-    @Query(() => Member)
+    @Query(() => Member, { name: 'getMember' })
     @Auth(...[Role.User, Role.Admin])
     getMember(@CustomRequest('user') user: object): Promise<Member> {
-        const dbName = user['junction']
+        // const dbName = user['junction']
         const msNo = user['msNo']
         const chainNo = user['chainNo']
 
-        return this.memberService.getMember(dbName, msNo, chainNo)
+        return this.memberService.getMember(msNo, chainNo)
     }
 
 }

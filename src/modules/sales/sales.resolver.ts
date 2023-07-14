@@ -11,13 +11,13 @@ export class SalesResolver {
         @Inject('SalesService') private readonly salesService: SalesService
     ) { }
 
-    @Query()
+    @Query(() => [SalesHD], { name: 'getSales' })
     @Auth(...[Role.User, Role.Admin])
     getSales(): Promise<SalesHD[]> {
         return this.salesService.getSales();
     }
 
-    @Query()
+    @Query(() => [SalesHD], { name: 'getSales' })
     @Auth(...[Role.User, Role.Admin])
     getSalesPage(@Args('current') current: number, @Args('limit') limit: number): Promise<SalesHD[]> {
         return this.salesService.getSalesPage(current, limit);

@@ -18,7 +18,6 @@ export class UsersResolver {
         @Inject('UserService') private readonly userService: UserService,
     ) { }
 
-
     @Query(() => [UsersTemp], { name: 'getUsers' })
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
@@ -33,7 +32,7 @@ export class UsersResolver {
         return this.userService.getUsersPage(current, limit);
     }
 
-    @Query('getUser')
+    @Query(() => UsersTemp, { name: 'getUser' })
     @Auth(Role.User)
     // @CacheResult()
     // @Log()
@@ -41,25 +40,25 @@ export class UsersResolver {
         return this.userService.getUser(userNo)
     }
 
-    @Mutation('createUser')
+    @Mutation(() => Result, { name: 'createUser' })
     @Auth(Role.User)
     createUser(@Args('input') input: CreateUserInput): Promise<Result> {
         return this.userService.createUser(input)
     }
 
-    @Mutation('updateUser')
+    @Mutation(() => Result, { name: 'updateUser' })
     @Auth(...[Role.User, Role.Admin])
     updateUser(@Args('input') input: UpdateUserInput): Promise<Result> {
         return this.userService.updateUser(input);
     }
 
-    @Mutation('deleteUser')
+    @Mutation(() => Boolean, { name: 'deleteUser' })
     @Auth(...[Role.User, Role.Admin])
     deleteUser(@Args('userNo') userNo: number): Promise<boolean> {
         return this.userService.deleteUser(userNo);
     }
 
-    @Mutation('multiPleDBInsert')
+    @Mutation(() => UsersTemp, { name: 'multiPleDBInsert' })
     @Auth(...[Role.User, Role.Admin])
     multiPleDBInsert(@Args('accountId') accountId: number): Promise<UsersTemp> {
         return this.userService.multiPleDBInsert(accountId)

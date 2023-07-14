@@ -28,5 +28,7 @@ type Account {
 
 type Query{
     getAccounts: [Account]
+    getAccount(id: Int): Account
+    findOneBy(id: Int): Account
 
 }

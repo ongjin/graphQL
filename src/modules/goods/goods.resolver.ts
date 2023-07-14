@@ -11,16 +11,17 @@ export class GoodsResolver {
     ) { }
 
 
-    @Query('goods')
+    @Query(() => [GoodsHeader], { name: 'goods' })
     @Auth(...[Role.User, Role.Admin])
-    findAll(): Promise<GoodsHeader[]> {
-        return this.goodsService.findAll();
+    goods(): Promise<GoodsHeader[]> {
+        return this.goodsService.goods();
     }
 
-    @Query('good')
+    // @Query('goods')
+    @Query(() => [GoodsHeader], { name: 'goods' })
     @Auth(...[Role.User, Role.Admin])
-    findOne(@Args('msNo') msNo: string): Promise<GoodsHeader[]> {
-        return this.goodsService.findOne(msNo);
+    goodsOne(@Args('msNo') msNo: string): Promise<GoodsHeader[]> {
+        return this.goodsService.goodsOne(msNo);
     }
 
 }

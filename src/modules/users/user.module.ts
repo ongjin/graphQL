@@ -4,7 +4,7 @@ import { UsersResolver } from './user.resolver';
 
 import { UsersTemp } from './entities/user.entity';
 import { UserServiceImpl } from './user.service';
-import { Account } from '../account';
+import { Account, AccountModule, AccountServiceImpl } from '../account';
 import { TokenTemp } from './entities/token.entity';
 
 @Module({
@@ -12,11 +12,12 @@ import { TokenTemp } from './entities/token.entity';
         // TypeOrmModule.forFeature([UsersTemp], 'default'),
         // TypeOrmModule.forFeature([UsersTemp], 'webkiosk'), 
         TypeOrmModule.forFeature([UsersTemp, TokenTemp]),
-        TypeOrmModule.forFeature([Account], 'postgre'),
+        // TypeOrmModule.forFeature([Account], 'postgre'),
+        AccountModule
     ],
     providers: [
         { provide: UsersResolver, useClass: UsersResolver },
-        { provide: 'UserService', useClass: UserServiceImpl }
+        { provide: 'UserService', useClass: UserServiceImpl },
     ],
 })
 export class UsersTempsModule { }

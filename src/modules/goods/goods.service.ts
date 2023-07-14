@@ -12,11 +12,11 @@ export class GoodsServiceImpl implements GoodsService {
         @InjectRepository(GoodsDetail) private readonly goodsDTRepository: Repository<GoodsDetail>,
     ) { }
 
-    findAll(): Promise<GoodsHeader[]> {
+    goods(): Promise<GoodsHeader[]> {
         return this.goodsHDRepository.find()
     }
 
-    findOne(msNo: string): Promise<GoodsHeader[]> {
+    goodsOne(msNo: string): Promise<GoodsHeader[]> {
         const result = this.goodsHDRepository.find({
             where: { msNo }
         })

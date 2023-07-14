@@ -11,6 +11,9 @@ import { AccountServiceImpl } from './account.service';
         AccountResolver,
         { provide: 'AccountService', useClass: AccountServiceImpl }
     ],
+    exports: [
+        { provide: 'AccountService', useClass: AccountServiceImpl }
+    ] 
 })
 export class AccountModule { }
 

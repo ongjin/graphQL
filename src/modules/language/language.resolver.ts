@@ -10,20 +10,20 @@ export class LanguageResolver {
         @Inject('LanguageService') private readonly languageService: LanguageService
     ) { }
 
-    @Query('languageMaster')
+    @Query(() => [Mlanustb], { name: 'languageMaster' })
     @Auth(...[Role.User, Role.Admin])
-    findOne(@Args('msNo') msNo: string): Promise<Mlanustb[]> {
-        return this.languageService.findOne(msNo);
+    languageMaster(@Args('msNo') msNo: string): Promise<Mlanustb[]> {
+        return this.languageService.languageMaster(msNo);
     }
 
-    @Query('languagePublicMessage')
+    @Query(() => [Colangtb], { name: 'languagePublicMessage' })
     @Auth(...[Role.User, Role.Admin])
     languagePublicMessage(): Promise<Colangtb[]> {
         return this.languageService.languagePublicMessage();
     }
 
 
-    @Query('languageCCD')
+    @Query(() => [Mmlangtb], { name: 'languageCCD' })
     @Auth(...[Role.User, Role.Admin])
     languageCCD(@Args('msNo') msNo: string, @Args('langCcd') langCcd: string): Promise<Mmlangtb[]> {
         return this.languageService.languageCCD(msNo, langCcd);

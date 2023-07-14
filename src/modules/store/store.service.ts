@@ -10,11 +10,11 @@ export class StoreServiceImpl implements StoreService {
         @InjectRepository(StoreSystem) private readonly storeSystemRepository: Repository<StoreSystem>,
     ) { }
 
-    findAll(): Promise<StoreSystem[]> {
+    stores(): Promise<StoreSystem[]> {
         return this.storeSystemRepository.find()
     }
 
-    findOne(msNo: string): Promise<StoreSystem> {
+    store(msNo: string): Promise<StoreSystem> {
         return this.storeSystemRepository.findOne({
             where: { msNo }
         })

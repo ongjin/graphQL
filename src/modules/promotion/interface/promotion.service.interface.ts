@@ -1,5 +1,6 @@
 import { PromotionHeader } from "../entities/promotion.entity";
 
 export interface PromotionService {
-    findOne(msNo: string): Promise<PromotionHeader[]>
+    promotions(): Promise<PromotionHeader[]>
+    promotionsOne(msNo: string): Promise<PromotionHeader[]>
 }

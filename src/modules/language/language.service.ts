@@ -13,7 +13,7 @@ export class LanguageServiceImpl implements LanguageService {
         @InjectRepository(Mmlangtb) private readonly mmlangtbRepository: Repository<Mmlangtb>,
     ) { }
 
-    findOne(msNo: string): Promise<Mlanustb[]> {
+    languageMaster(msNo: string): Promise<Mlanustb[]> {
         const result = this.mlanustbRepository.find({
             where: { msNo, useYn: 'Y' },
         })

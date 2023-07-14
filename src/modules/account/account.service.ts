@@ -15,5 +15,13 @@ export class AccountServiceImpl implements AccountService {
         return this.accountRepository.find()
     }
 
+    getAccount(id: number): Promise<Account> {
+        return this.accountRepository.findOneBy({ id })
+    }
+
+    findOneBy(id: number): Promise<Account> {
+        return this.accountRepository.findOneBy({ id })
+    }
+
 
 }

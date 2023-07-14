@@ -12,15 +12,7 @@ export class SubMenuServiceImpl implements SubMenuService {
         @InjectRepository(Msubmntb) private readonly msubmntbRepository: Repository<Msubmntb>,
     ) { }
 
-    findAll(): Promise<SubMenu[]> {
-        return this.subMenuRepository.find()
-    }
-
-    findOne(msNo: string): Promise<SubMenu[]> {
-        return this.subMenuRepository.find({ where: { msNo } })
-    }
-
-    findAl(msNo: string): Promise<SubMenu[]> {
+    subMenu(msNo: string): Promise<SubMenu[]> {
         const queryBuilder = this.subMenuRepository
             .createQueryBuilder()
             // .select('D.GPLU_CD, D.PLU_CD, D.GOODS_CD, D.SEQ, D.SUB_GROUP_CD, D.SUB_GROUP_NM, D.SUB_FG, D.SUB_GROUP_QTY, D.SUB_GROUP_GUIDE')
@@ -45,11 +37,11 @@ export class SubMenuServiceImpl implements SubMenuService {
     }
 
 
-    findOn(msNo: string): Promise<Mmbumstb[]> {
+    mmbumstb(msNo: string): Promise<Mmbumstb[]> {
         return this.mmbumstbRepository.find({ where: { msNo } })
     }
 
-    async subMenuDetailFind(msNo: string): Promise<Msubmntb[]> {
+    async subMenuDetail(msNo: string): Promise<Msubmntb[]> {
         const result = await this.msubmntbRepository.find({
             where: { msNo }
         })
@@ -63,7 +55,7 @@ export class SubMenuServiceImpl implements SubMenuService {
         return result
     }
 
-    subMenuHeaderFind(msNo: string): Promise<Mmbumstb[]> {
+    subMenuHeader(msNo: string): Promise<Mmbumstb[]> {
         const result = this.mmbumstbRepository.find({
             where: { msNo }
         })

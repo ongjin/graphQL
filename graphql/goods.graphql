@@ -90,6 +90,6 @@ type GoodsDetail {
 
 type Query {
   goods: [GoodsHeader]
-  good(msNo: String): [GoodsHeader]
+  goods(msNo: String): [GoodsHeader]
 }
 

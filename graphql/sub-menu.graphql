@@ -63,12 +63,8 @@ type Msubmntb {
 
 
 type Query {
-  subMenu1: [SubMenu]
-  subMenu1(msNo: String): [SubMenu]
-
-  # subMenu(msNo: String): [SubMenuCreate]
   subMenu(msNo: String): [SubMenu]
-  subMenu2(msNo: String): [SubMenu]
+  subMenu2(msNo: String): [Mmbumstb]
 
   subMenuDetail(msNo: String): [Msubmntb]
   subMenuHeader(msNo: String): [Mmbumstb]

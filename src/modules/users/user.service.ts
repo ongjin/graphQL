@@ -7,6 +7,7 @@ import { CreateUserInput } from './dto/create-user.input';
 import { Account } from '../account';
 import { Result } from 'src/shared';
 import { UserService } from './interface/user.serveice.interface'
+import { AccountService } from '../account/interface/account.service.interface';
 
 
 @Injectable()
@@ -15,7 +16,9 @@ export class UserServiceImpl implements UserService {
     constructor(
         // private readonly commonService: CommonService,
         @InjectRepository(UsersTemp) private readonly usersTempRepository: Repository<UsersTemp>,
-        @InjectRepository(Account, 'postgre') private readonly accountRepository: Repository<Account>,
+        // @InjectRepository(Account, 'postgre') private readonly accountRepository: Repository<Account>,
+        // private readonly accountService: AccountService
+        @Inject('AccountService') private readonly accountService: AccountService
     ) { }
 
     getUsers(): Promise<UsersTemp[]> {
@@ -120,7 +123,8 @@ export class UserServiceImpl implements UserService {
 
 
     async multiPleDBInsert(accountId: number): Promise<UsersTemp> {
-        const account = await this.accountRepository.findOneBy({ id: accountId })
+        // const account = await this.accountRepository.findOneBy({ id: accountId })
+        const account = await this.accountService.findOneBy(accountId)
         if (!account) {
             throw new Error(`조회 대상 테이블에 accountId: "${accountId}"가 존재하지 않습니다.`);
         }

@@ -21,6 +21,7 @@ export class LoggingInterceptor implements NestInterceptor {
 
         const ctx = GqlExecutionContext.create(context);
         const { req } = ctx.getContext();
+
         
         const bypassAuth = this.reflector.get<string>('bypassAuth', context.getHandler());
         if (bypassAuth) {

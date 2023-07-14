@@ -10,16 +10,16 @@ export class StoreResolver {
         @Inject('StoreService') private readonly storeService: StoreService
     ) { }
 
-    @Query('stores')
+    @Query(() => [StoreSystem], { name: 'stores' })
     @Auth(...[Role.User, Role.Admin])
-    findAll(): Promise<StoreSystem[]> {
-        return this.storeService.findAll()
+    stores(): Promise<StoreSystem[]> {
+        return this.storeService.stores()
     }
 
-    @Query('store')
+    @Query(() => StoreSystem, { name: 'store' })
     @Auth(...[Role.User, Role.Admin])
-    findOne(@Args('msNo') msNo: string): Promise<StoreSystem> {
-        return this.storeService.findOne(msNo);
+    store(@Args('msNo') msNo: string): Promise<StoreSystem> {
+        return this.storeService.store(msNo);
     }
 
 }

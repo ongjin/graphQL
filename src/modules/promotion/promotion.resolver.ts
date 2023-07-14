@@ -10,10 +10,16 @@ export class PromotionResolver {
         @Inject('PromotionService') private readonly promotionService: PromotionService
     ) { }
 
-    @Query('promotion')
+    @Query(() => [PromotionHeader], { name: 'promotions' })
     @bypassAuth(true)
-    findOne(@Args('msNo') msNo: string): Promise<PromotionHeader[]> {
-        return this.promotionService.findOne(msNo);
+    promotions(): Promise<PromotionHeader[]> {
+        return this.promotionService.promotions();
+    }
+
+    @Query(() => [PromotionHeader], { name: 'promotions' })
+    @bypassAuth(true)
+    promotionsOne(@Args('msNo') msNo: string): Promise<PromotionHeader[]> {
+        return this.promotionService.promotionsOne(msNo);
     }
 }
 

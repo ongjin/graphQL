@@ -89,7 +89,7 @@ type PromotionDetail{
 
 
 type Query {
-  promotion: [PromotionHeader]
-  promotion(msNo: String): [PromotionHeader]
+  promotions: [PromotionHeader]
+  promotions(msNo: String): [PromotionHeader]
 }
 
