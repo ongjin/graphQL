@@ -9,7 +9,6 @@ export class MemberServiceImpl implements MemberService {
 
     constructor(
         @InjectRepository(Member) private readonly memberRepository: Repository<Member>,
-        @InjectRepository(Member, 'shinsun') private readonly memberRepository2: Repository<Member>,
     ) { }
 
     getMembers(): Promise<Member[]> {
@@ -17,12 +16,12 @@ export class MemberServiceImpl implements MemberService {
         return result
     }
 
-    getMembersPage(current: number = 1, limit: number = 100): Promise<Member[]> {
-        const offset = (current - 1) * limit;
+    getMembersPage(current: number = 1, take: number = 100): Promise<Member[]> {
+        const offset = (current - 1) * take;
 
         return this.memberRepository.find({
             skip: offset,
-            take: limit,
+            take,
         })
     }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { SalesHD, SalesDT } from './entities/sales.entity';
+import { Strnhdtb } from './entities/sales.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SalesService } from './interface/sales.service.interface';
@@ -7,11 +7,11 @@ import { SalesService } from './interface/sales.service.interface';
 @Injectable()
 export class SalesServiceImpl implements SalesService {
     constructor(
-        @InjectRepository(SalesHD) private readonly salesHDRepository: Repository<SalesHD>,
+        @InjectRepository(Strnhdtb) private readonly salesHDRepository: Repository<Strnhdtb>,
     ) { }
 
     /** 두가지 방법 있음 */
-    getSales(): Promise<SalesHD[]> {
+    getSales(): Promise<Strnhdtb[]> {
         // const sales = this.salesHDRepository.createQueryBuilder('salesHD')
         //     .leftJoinAndSelect('salesHD.salesDTs', 'salesDTs')
         //     .leftJoinAndSelect('salesHD.mgoodstbs', 'mgoodstbs')
@@ -21,7 +21,7 @@ export class SalesServiceImpl implements SalesService {
             // where: {
             //     SALE_DATE: '20230531'
             // }
-            relations: ['salesDTs'],
+            relations: ['strndttbs'],
         });
 
         // console.log('길이', sales.length);
@@ -29,13 +29,13 @@ export class SalesServiceImpl implements SalesService {
     }
     
 
-    getSalesPage(current: number = 1, limit: number = 100): Promise<SalesHD[]> {
+    getSalesPage(current: number = 1, limit: number = 100): Promise<Strnhdtb[]> {
         const offset = (current - 1) * limit;
 
         const sales = this.salesHDRepository.find({
             skip: offset,
             take: limit,
-            relations: ['salesDTs'],
+            relations: ['strndttbs'],
         });
         return sales
     }

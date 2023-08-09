@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 
 import { Auth, Role } from 'src/shared';
-import { SalesHD } from './entities/sales.entity';
+import { Strnhdtb } from './entities/sales.entity';
 import { Inject } from '@nestjs/common';
 import { SalesService } from './interface/sales.service.interface';
 
@@ -11,15 +11,16 @@ export class SalesResolver {
         @Inject('SalesService') private readonly salesService: SalesService
     ) { }
 
-    @Query(() => [SalesHD], { name: 'getSales' })
+    @Query(() => [Strnhdtb], { name: 'getSales' })
     @Auth(...[Role.User, Role.Admin])
-    getSales(): Promise<SalesHD[]> {
+    getSales(): Promise<Strnhdtb[]> {
         return this.salesService.getSales();
     }
 
-    @Query(() => [SalesHD], { name: 'getSales' })
+    @Query(() => [Strnhdtb], { name: 'getSales' })
     @Auth(...[Role.User, Role.Admin])
-    getSalesPage(@Args('current') current: number, @Args('limit') limit: number): Promise<SalesHD[]> {
+    getSalesPage(@Args('current') current: number, @Args('limit') limit: number): Promise<Strnhdtb[]> {
         return this.salesService.getSalesPage(current, limit);
     }
 }
+

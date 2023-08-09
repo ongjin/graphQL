@@ -1,4 +1,4 @@
-import { Controller, Get, Res, Param, Req, Body, Post, Inject } from '@nestjs/common';
+import { Controller, Get, Res, Param, Req, Body, Post, Inject, Ip, HostParam, Session, Render } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { bypassAuth } from 'src/shared';
 import { JwtokenService } from './interface/jwtoken.service.interface';
@@ -9,6 +9,13 @@ export class JwtokenController {
         @Inject('JwtokenService') private readonly jwtokenService: JwtokenService
     ) { }
 
+    
+    @Get('/daily')
+    @bypassAuth(true)
+    getHtml1(@Res() res: Response, @Req() req: Request): Object {
+        return this.jwtokenService.getHtml('src/views/daily.html', res)
+    }
+
     @Get('/jwt')
     @bypassAuth(true)
     getHtml(@Res() res: Response, @Req() req: Request): Response {
@@ -17,7 +24,7 @@ export class JwtokenController {
 
     @Post('/jwt')
     @bypassAuth(true)
-    jwtGenerate(@Body() formData: object, @Res() res: Response): Response {
+    jwtGenerate(@Body() formData: object, @Res() res: Response, @Session() ip: string): Response {
         return this.jwtokenService.jwtGenerate(formData, res)
     }
 

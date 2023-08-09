@@ -29,7 +29,6 @@ const SHINSUN_DB_SID: string = process.env.SHINSUN_DB_SID || 'xe'
 const SHINSUN_DB_USERNAME: string = process.env.SHINSUN_DB_USERNAME || 'neoib'
 const SHINSUN_DB_PASSWORD: string = process.env.SHINSUN_DB_PASSWORD || 'neoib0'
 
-
 const POSTGRES_DB_TYPE: string = process.env.POSTGRES_DB_TYPE || 'postgres'
 const POSTGRES_DB_PORT: number = Number(process.env.POSTGRES_DB_PORT) || 9069
 const POSTGRES_DB_NAME: string = process.env.POSTGRES_DB_NAME || 'postgre'
@@ -38,6 +37,12 @@ const POSTGRES_DB_USERNAME: string = process.env.POSTGRES_DB_USERNAME || 'odoo'
 const POSTGRES_DB_PASSWORD: string = process.env.POSTGRES_DB_PASSWORD || 'odoo'
 const POSTGRES_DB_DATABASE: string = process.env.POSTGRES_DB_DATABASE || 'astems'
 
+const ASP1_DB_PORT: number = Number(process.env.ASP1_DB_PORT) || 1521
+const ASP1_DB_NAME: string = process.env.ASP1_DB_NAME || 'asp1.0'
+const ASP1_DB_HOST: string = process.env.ASP1_DB_HOST || '140.238.10.35'
+const ASP1_DB_SID: string = process.env.ASP1_DB_SID || 'pdb2.subnet.vcn.oraclevcn.com'
+const ASP1_DB_USERNAME: string = process.env.ASP1_DB_USERNAME || 'neoib'
+const ASP1_DB_PASSWORD: string = process.env.ASP1_DB_PASSWORD || 'SUrepos2468#_dv'
 
 // author
 const AUTHOR: string = process.env.AUTHOR || 'CJY'
@@ -96,6 +101,13 @@ export {
     POSTGRES_DB_USERNAME,
     POSTGRES_DB_PASSWORD,
     POSTGRES_DB_DATABASE,
+
+    ASP1_DB_PORT,
+    ASP1_DB_NAME,
+    ASP1_DB_HOST,
+    ASP1_DB_SID,
+    ASP1_DB_USERNAME,
+    ASP1_DB_PASSWORD,
 
     // author
     AUTHOR,

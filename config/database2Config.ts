@@ -29,5 +29,11 @@ export default {
     dropSchema: false,
     synchronize: false,
     keepConnectionAlive: true,
+    extra: {
+        poolMax: 20,       // 최대 연결 수
+        poolMin: 2,        // 최소 연결 수
+        poolIncrement: 5,  // 연결 증가 수
+        poolTimeout: 5000, // 연결 타임아웃 (밀리초)
+    },
     // logging: true,
 } as TypeOrmModuleAsyncOptions;

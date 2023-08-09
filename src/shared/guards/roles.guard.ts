@@ -1,4 +1,4 @@
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, UnauthorizedException, HttpException, HttpStatus } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
@@ -24,7 +24,7 @@ export class RolesGuard implements CanActivate {
         const roles = this.reflector.get<string[]>(ROLES_KEY, context.getHandler());
         // const roles = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [context.getHandler(), context.getClass()]);
 
-        console.log('ip block test', req.ip);
+        // console.log('ip block test', req.ip);
 
         const bypassAuth = this.reflector.get<string>('bypassAuth', context.getHandler());
         if (bypassAuth) {
@@ -48,8 +48,10 @@ export class RolesGuard implements CanActivate {
             //     exp: 1686556812
             // }
             const decoded = this.jwtService.verify(token)
-            decoded.msNo = this.encryptionLibrary.decrypt(decoded.msNo || '')
-            decoded.chainNo = this.encryptionLibrary.decrypt(decoded.chainNo || '')
+            decoded.msNo = this.encryptionLibrary.decrypt(decoded?.msNo || '')
+            decoded.chainNo = this.encryptionLibrary.decrypt(decoded?.chainNo || '')
+            if (decoded.msNo === '' || decoded.chainNo === '') throw new UnauthorizedException('잘못된 토큰입니다.');
+
 
             // 토큰을 검증하여 사용자 정보를 추출하는 로직
             req.user = decoded; // 요청 객체에 사용자 정보 추가
@@ -61,7 +63,7 @@ export class RolesGuard implements CanActivate {
 
             return hasRequiredRoles; // 권한 검사 결과 반환
         } catch (error) {
-            throw new UnauthorizedException('Unauthenticated');
+            throw new UnauthorizedException(error.response?.message ?? 'Unauthenticated');
             return false; // 토큰 검증 실패로 인증 실패
         }
     }

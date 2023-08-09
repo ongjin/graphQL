@@ -1,6 +1,6 @@
-import { SalesHD } from "../entities/sales.entity"
+import { Strnhdtb } from "../entities/sales.entity"
 
 export interface SalesService {
-    getSales(): Promise<SalesHD[]>
-    getSalesPage(current: number, limit: number): Promise<SalesHD[]>
+    getSales(): Promise<Strnhdtb[]>
+    getSalesPage(current: number, limit: number): Promise<Strnhdtb[]>
 }

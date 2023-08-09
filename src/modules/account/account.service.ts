@@ -23,5 +23,4 @@ export class AccountServiceImpl implements AccountService {
         return this.accountRepository.findOneBy({ id })
     }
 
-
 }

@@ -5,3 +5,4 @@
 export * from './common.service'
 export * from './encryption.service'
 export * from './result.interface'
+export * from './dete.service'

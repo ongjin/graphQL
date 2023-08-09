@@ -4,7 +4,7 @@ import { UsersResolver } from './user.resolver';
 
 import { UsersTemp } from './entities/user.entity';
 import { UserServiceImpl } from './user.service';
-import { Account, AccountModule, AccountServiceImpl } from '../account';
+import { AccountModule } from '../account';
 import { TokenTemp } from './entities/token.entity';
 
 @Module({

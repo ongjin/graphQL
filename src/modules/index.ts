@@ -12,3 +12,5 @@ export * from './promotion'
 export * from './goods'
 export * from './store'
 export * from './language'
+
+export * from './dailyReport'

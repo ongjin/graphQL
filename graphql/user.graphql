@@ -19,7 +19,7 @@ type TokenTemp{
 
 type Query {
   getUsers: [Users_Temp]
-  getUsers(limit: Int, current: Int): [Users_Temp]
+  getUsers(take: Int, current: Int): [Users_Temp]
 
   getUser(userNo: Int!): Users_Temp
 }
@@ -30,6 +30,11 @@ type Mutation {
   updateUser(input: UpdateUserInput!): ResultInterface
 
   multiPleDBInsert(accountId: Int!): Users_Temp
+}
+
+type paging {
+  skip: Int
+  take: Int
 }
 
 

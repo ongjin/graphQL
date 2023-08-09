@@ -1,0 +1,390 @@
+scalar Date
+
+type Prolmstb {
+  sortNo: String
+  lastId: String
+  lastDate: String
+  hplNm: String
+  hplCd: String
+  createId: String
+  createDate: String
+
+  prommstbs: [Prommstb]
+}
+
+type Prommstb {
+  sortNo: String
+  lastId: String
+  lastDate: String
+  hpmNm: String
+  hpmCd: String
+  hplCd: String
+  createId: String
+  createDate: String
+
+  prolmstb: Prolmstb
+  prosmstbs: [Prosmstb]
+}
+
+type Prosmstb {
+  sundayFg: String
+  sortNo: String
+  lastId: String
+  lastDate: String
+  hpsNm: String
+  hpsCd: String
+  hpmCd: String
+  hplCd: String
+  createId: String
+  createDate: String
+
+  prommstb: Prommstb
+}
+
+
+type Empinftb {
+  zipNo: String
+  usePoint: Int
+  userId: String
+  timeFg: String
+  telNo: String
+  teamCd: String
+  streetFg: String
+  statusFg: String
+  startDate: String
+  sex: String
+  sawonFg: String
+  rollFg: String
+  pssPoint: Int
+  photo: String
+  pgAdminFg: String
+  passwdResetFg: String
+  passwd: String
+  oldPasswd: String
+  newZipNo: String
+  newAddressBunji: String
+  newAddress: String
+  mainTechFg: String
+  lsFg: String
+  losPoint: Int
+  latPoint: Int
+  lastLoginDate: String
+  lastDate: String
+  ipAddress: String
+  ipcontrolFg: String
+  inline: String
+  hpNo: String
+  gradeFg: String
+  eMail: String
+  endDate: String
+  empNo: String
+  empNm: String
+  empLevel: String
+  emergencyTel: String
+  editFg: String
+  deptCd: String
+  createDate: String
+  confirmFg: String
+  classFg: String
+  changePwDate: String
+  birthDay: String
+  addressBunji: String
+  address: String
+}
+
+type Gwdlwktb {
+  workType: String
+  workDate: String
+  workContent: String
+  seq: String
+  reqNm: String
+  reqContent: String
+  procRate: Int
+  procFg: String
+  planContent: String
+  mSupport: String
+  menuGn_1: String
+  menuGn: String
+  manDay: Float
+  lastId: String
+  lastDtime: String
+  hpsCd: String
+  hpmCd: String
+  hplCd: String
+  empNo: String
+  dSeq: String
+  ctrtMd: Float
+  createId: String
+  createDtime: String
+  confirmMd: Float
+  confirmFg: String
+  bSeq: String
+  asGropCd: String
+
+  gwgroptb: Gwgroptb
+  gwsimatb: Gwsimatb
+  prosmstb: Prosmstb
+  prommstb: Prommstb
+  prolmstb: Prolmstb
+  empinftb: Empinftb
+}
+
+type Gwsimatb {
+  takeContent: String
+  symptomContent: String
+  siViewYn: String
+  seq: Int
+  receiveNm: String
+  receiveDate: String
+  procFg: String
+  payFg: String
+  mTenanceYn: String
+  mSrYn: String
+  modifyContent: String
+  maYn: String
+  manDay: Int
+  lastId: String
+  lastDate: String
+  hpsCd: String
+  hpmCd: String
+  hplCd: String
+  handlingNm3: String
+  handlingNm2: String
+  handlingNm: String
+  handlingEmpNo: String
+  handlingDate: String
+  handlingContent: String
+  dSeq: String
+  devCost: Int
+  createId: String
+  createDate: String
+  clientTel: String
+  clientNm: String
+  clientContent: String
+  causeContent: String
+  businessFg: String
+  asGropCd: String
+}
+
+type Gwgroptb {
+  smsPrc: Int
+  smsFreeCnt: Int
+  siApplyDate: String
+  remark: String
+  maFg: String
+  lastId: String
+  lastDate: String
+  gropOrder: String
+  dlYn: String
+  dlDate: String
+  createId: String
+  createDate: String
+  asShowFg: String
+  asOrdYn: String
+  asGropNm: String
+  asGropId: String
+  asGropCd: String
+}
+
+type Bugpchtb {
+  webFg: String
+  transFg: String
+  svrFg: String
+  remark: String
+  posFg: String
+  noteFg: String
+  msGroup: String
+  limitDate: String
+  discoveryDate: String
+  createTime: String
+  createEmpNo: String
+  createDate: String
+  completeDate: String
+  bSeq: String
+  bugSeq: String
+  bugName: String
+  bugDetail: String
+  apprFg: String
+}
+
+type Bugpcdtb {
+  transJobRate: Int
+  transFg: String
+  transEmpNo: String
+  slipNo: String
+  result: String
+  remark: String
+  moveEmpNo: String
+  lastId: String
+  lastDate: String
+  endDate: String
+  createEmpNo: String
+  createDate: String
+  bugSeq: String
+  apprFg: String
+}
+
+type Todo {
+  todoNo: Int
+  todoNm: String
+  todoId: Int
+  createDate: Date
+  updateDate: Date
+}
+
+type Query {
+  getSEQ(workDate: String, empNo: String, seq: String): [Gwdlwktb]
+  prolmstbs: [Prolmstb]
+  prolmstb(hplCd: String): [Prolmstb]
+
+  prosmstb(hplCd: String!, hpmCd: String!): [Prosmstb]
+  prommstbs: [Prommstb]
+  prommstb(hplCd: String): [Prommstb]
+
+  employee(empNm: String, empNo: String): Empinftb
+
+  dailyReport(empNm: [String]!, startDate: String!, endDate: String!): [Gwdlwktb]
+
+  getSeq(workDate: String!, empNo: String!): String
+  getDSeq: String
+  getBSeq: String
+  getBugSeq: String
+
+  getBugpchtb(bSeq: String!): Bugpchtb
+  getGwsimatbSeq: String
+  getSlipNo(bugSeq: String!): String
+
+  todo: [Todo]
+
+
+  # prommstb: [Prommstb]
+  # prommstb(hplCd: String, hpmCd: String): [Prommstb]
+
+  # prosmstb: Prosmstb
+  # prosmstb(hplCd: String, hpmCd: String, hpsCd: String): [Prosmstb]
+}
+
+type Mutation {
+  updateDailyReport(input: UpdateGwdlwktb): Boolean!
+  insertSI(input: UpdateGwsimatb): Boolean!
+  updateDSeq(workDate: String, empNo: String, seq: String, dSeq: String): Boolean!
+  deleteDailyReport(workDate: String, empNo: String, seq: String): Boolean!
+
+  insertBugpchtb(input: InsertBugpchtb): Boolean!
+  deleteBugpchtb(bSeq: String!): Boolean!
+  insertBugpcdtb(input: InsertBugpcdtb): Boolean!
+  deleteBugpcdtb(bugSeq: String!): Boolean!
+  deleteGwsimatb(dSeq: String!): Boolean!
+
+  updateBSeqGwdlwktb(menuGn_1: String!, bSeq: String!, workDate: String!, empNo: String!, seq: String!): Boolean!
+  insertDailyReport(input: InsertGwdlwktb): Boolean!
+  insertGwismatb(input: InsertGwismatb): Boolean!
+
+  updateTodo(from: Int, to: Int): Boolean!
+  deleteTodo(todoNo: Int): Boolean!
+  insertTodo(todoNm: String): Boolean!
+  nameUpdateTodo(todoNo: Int!, todoNm: String!): Boolean
+}
+
+
+input UpdateGwdlwktb {
+  asGropCd: String
+  confirmMd: Float
+  ctrtMd: Float
+  workDate: String
+  empNo: String
+  hpsCd: String
+  hpmCd: String
+  hplCd: String
+  mSupport: String
+  manDay: Float
+  planContent: String
+  procRate: Int
+  procFg: String
+  reqNm: String
+  reqContent: String
+  seq: String
+  workType: String
+  workContent: String
+}
+
+input UpdateGwsimatb{
+  srData: String
+  maintenanceData: String
+  empNo: String
+  dSeq: String
+  workContent: String
+  hpsCd: String
+  hpmCd: String
+  hplCd: String
+  userId: String
+  planContent: String
+  reqContent: String
+  procFg: String
+  manDay: Float
+  workDate: String
+  empNm: String
+  reqNm: String
+  siSeq: Int
+  asGropCd: String
+}
+
+input InsertBugpchtb {
+  bugSeq: String
+  msGroup: String
+  bugName: String
+  createEmpNo: String
+  bugDetail: String
+  remark: String
+  bSeq: String
+}
+
+input InsertBugpcdtb {
+  bugSeq: String
+  slipNo: String
+  empNo: String
+}
+
+input InsertGwdlwktb {
+  workDate:String
+  empNo: String
+  seq: String
+  asGropCd: String
+  reqNm: String
+  reqContent: String
+  procFg: String
+  procRate: Float
+  manDay: Float
+  workContent: String
+  planContent: String
+  confirmFg: String
+  hplCd: String
+  hpmCd: String
+  hpsCd: String
+  userId: String
+  workType: String
+  confirmMd: Float
+  mSupport: String
+  ctrtMd: Float
+}
+
+input InsertGwismatb {
+  asGropCd: String
+  date: String
+  siSeq: Int
+  reqNm: String
+  empNm: String
+  manDay: Float
+  procFg: String
+  reqContent: String
+  planContent: String
+  userId: String
+  hplCd: String
+  hpmCd: String
+  hpsCd: String
+  workContent: String
+  dSeq: String
+  empNo: String
+  mTenanceYn: String
+  mSrYn: String
+}

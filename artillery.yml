@@ -1,0 +1,46 @@
+config:
+  target: 'http://localhost:3030/graphql'
+  phases:
+    - duration: 60
+      arrivalRate: 100
+
+scenarios:
+  - flow:
+      - post:
+          url: '/graphql'
+          json:
+            query: |
+              {
+                dailyReport(empNm: ["조용진"], startDate: "20230801", endDate: "20230802") {
+                  manDay
+                  workType
+                  workDate
+                  workContent
+                  seq
+                  reqNm
+                  reqContent
+                  procRate
+                  procFg
+                  planContent
+                  mSupport
+                  menuGn_1
+                  menuGn
+                  lastId
+                  lastDtime
+                  hpsCd
+                  hpmCd
+                  hplCd
+                  empNo
+                  dSeq
+                  ctrtMd
+                  createId
+                  createDtime
+                  confirmMd
+                  confirmFg
+                  bSeq
+                  asGropCd
+                }
+              }
+          headers:
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtc05vIjoiMnk5N1ZHMnciLCJjaGFpbk5vIjoiMnk5NVZ3PT0iLCJyb2xlcyI6WyJ1c2VyIiwiYWRtaW4iXSwidXVpZCI6IjUwYjhiOGU0LTZkYzctNDFkZi04YmIzLTc4NzMzNjg1MjAxNiIsImp1bmN0aW9uIjoic2hpbnN1biIsImlhdCI6MTY5MDQyNDg3NCwiZXhwIjoxNjkxNzIwODc0fQ.O0hF8hdYiNXSjO6LnUkGlfR85GTBd1nj1BZ2JusjHh0'
+      - log: 'Response: {{ JSON.stringify(response.body) }}'

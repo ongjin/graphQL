@@ -5,6 +5,7 @@ import { Auth, CustomRequest, Header, Role } from 'src/shared';
 import { Inject } from '@nestjs/common';
 import { AccountService } from './interface/account.service.interface';
 
+
 @Resolver()
 export class AccountResolver {
 

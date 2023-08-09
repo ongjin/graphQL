@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import asp1Config from 'config/asp1Config';
 
 import database1Config from 'config/database1Config';
 import database2Config from 'config/database2Config';
@@ -11,6 +12,7 @@ import database3Config from 'config/database3Config';
 @Module({
     imports: [
         TypeOrmModule.forRoot(database1Config),
+        TypeOrmModule.forRoot(asp1Config),
         TypeOrmModule.forRoot(database2Config),
         TypeOrmModule.forRoot(database3Config),
         // TypeOrmModule.forRoot({

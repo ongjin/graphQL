@@ -1,5 +1,5 @@
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
 import {
@@ -16,6 +16,7 @@ import {
     GoodsModule,
     StoreModule,
     LanguageModule,
+    DailyReportModule,
 
 } from './modules';
 
@@ -36,6 +37,7 @@ import {
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
 import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
+
 
 
 @Module({
@@ -75,6 +77,8 @@ import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
         GoodsModule,
         StoreModule,
         LanguageModule,
+
+        DailyReportModule
     ],
     providers: [
         EncryptionLibrary,
@@ -91,3 +95,4 @@ import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
     ]
 })
 export class AppModule { }
+

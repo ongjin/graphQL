@@ -1,54 +1,150 @@
-type SalesHD {
-  SALE_DATE: String
-  MS_NO: String
-  POS_NO: String
-  BILL_NO: String
-  CHAIN_NO: String
-  CHAIN_AREA: String
-  SALE_FG: String
-  SALE_DTIME: String
-  SALE_TOT: Int
-  SALE_AMT: Int
-  CASH_AMT: Int
-  CARD_AMT: Int
-  ETC_AMT: Int
-  DC_AMT: Int
-  salesDTs: [SalesDT]
-
+type Strnhdtb {
+  forderEmpid: String
+  custDcAmt: Int
+  couponDcAmt: Int
+  cardDcAmt: Int
+  serviceDcAmt: Int
+  normDcAmt: Int
+  pointAmt: Int
+  giftAmt: Int
+  vatAmt: Int
+  foreign: Int
+  nation: Int
+  empId: String
+  tableNo: String
+  groupId: String
+  firstFg: String
+  usePoint: Int
+  salePoint: Int
+  pointCardNo: String
+  chainMsNo: String
+  orgBillNo: String
+  cancelYn: String
+  dcType: String
+  custNo: String
+  slipCnt: Int
+  detailCnt: Int
+  dcAmt: Int
+  etcAmt: Int
+  cardAmt: Int
+  cashAmt: Int
+  saleAmt: Int
+  saleTot: Int
+  datetime: String
+  saleFg: String
+  chainArea: String
+  chainNo: String
+  billNo: String
+  posNo: String
+  msNo: String
+  saleDate: String
+  okcashAmt: Int
+  myoneFg: String
+  custFg: String
+  eCashAmt: Int
+  extraAmt: Int
+  extraFg: String
+  tempCardNo: String
+  tempCardCorpNo: String
+  giftReAmt: Int
+  cashReAmt: Int
+  tmpCardCo: String
+  prepaidCardNo: String
+  prepaidDeposit: Int
+  tipAmt: Int
+  orderTime: String
+  orderDate: String
+  lorderEmpid: String
+  strndttbs: [Strndttb]
 }
-type SalesDT {
-  SALE_DATE: String
-  MS_NO: String
-  POS_NO: String
-  BILL_NO: String
-  LINE_NO: String
 
-  CHAIN_NO: String
-  CHAIN_AREA: String
-  SALE_FG: String
-  GOODS_CD: String
-  PACK_FG: String
-
-  UPRICE: Int
-  UCOST: Int
-  SALE_QTY: Int
-  SALE_TOT: Int
-  SALE_AMT: Int
-  DC_AMT: Int
-  salesHD: SalesHD
-
-  mgoodstb: Mgoodstb
+type Strndttb {
+  upgradeFg: String
+  promGoodFg: String
+  tipFg: String
+  orderEmpid: String
+  saleType: String
+  subMenuNm: String
+  subMemuCd: String
+  parGoodsCd: String
+  custDcAmt: Int
+  couponDcAmt: Int
+  cardDcAmt: Int
+  serviceDcAmt: Int
+  normDcAmt: Int
+  vatAmt: Int
+  stockFg: String
+  point: Int
+  dcAmt: Int
+  saleAmt: Int
+  saleTot: Int
+  saleQty: Int
+  ucost: Int
+  uprice: Int
+  packFg: String
+  goodsCd: String
+  saleFg: String
+  chainArea: String
+  chainNo: String
+  lineNo: String
+  billNo: String
+  posNo: String
+  msNo: String
+  saleDate: String
+  strnhdtb: Strnhdtb
 }
 
-type Mgoodstb{
-  MS_NO: String
-  GOODS_CD: String
-  GOODS_NM: String
+# type SalesHD {
+#   SALE_DATE: String
+#   MS_NO: String
+#   POS_NO: String
+#   BILL_NO: String
+#   CHAIN_NO: String
+#   CHAIN_AREA: String
+#   SALE_FG: String
+#   # SALE_DTIME: String
+#   SALE_TOT: Int
+#   SALE_AMT: Int
+#   CASH_AMT: Int
+#   CARD_AMT: Int
+#   ETC_AMT: Int
+#   DC_AMT: Int
+#   salesDTs: [SalesDT]
 
-  salesDT: SalesDT
-}
+# }
+# type SalesDT {
+#   SALE_DATE: String
+#   MS_NO: String
+#   POS_NO: String
+#   BILL_NO: String
+#   LINE_NO: String
+
+#   CHAIN_NO: String
+#   CHAIN_AREA: String
+#   SALE_FG: String
+#   GOODS_CD: String
+#   PACK_FG: String
+
+#   UPRICE: Int
+#   UCOST: Int
+#   SALE_QTY: Int
+#   SALE_TOT: Int
+#   SALE_AMT: Int
+#   DC_AMT: Int
+#   salesHD: SalesHD
+
+#   mgoodstb: Mgoodstb
+# }
+
+# type Mgoodstb{
+#   MS_NO: String
+#   GOODS_CD: String
+#   GOODS_NM: String
+
+#   salesDT: SalesDT
+# }
 
 type Query {
-  getSales: [SalesHD]
-  getSales(current: Int, limit: Int): [SalesHD]
+  getSales: [Strnhdtb]
+  getSales(current: Int, limit: Int): [Strnhdtb]
 }

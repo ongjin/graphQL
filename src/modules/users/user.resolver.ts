@@ -11,6 +11,7 @@ import { Observable, of } from 'rxjs';
 import { UserService } from './interface/user.serveice.interface'
 
 @Resolver()
+@Auth(...[Role.User, Role.Admin])
 // @UseFilters(CatchException)
 export class UsersResolver {
     constructor(
@@ -19,7 +20,7 @@ export class UsersResolver {
     ) { }
 
     @Query(() => [UsersTemp], { name: 'getUsers' })
-    @Auth(...[Role.User, Role.Admin])
+    // @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
     getUsers(@Header('authorization') authorization: string): Observable<Promise<UsersTemp[]>> {
         return of(this.userService.getUsers())
@@ -28,8 +29,8 @@ export class UsersResolver {
     @Query(() => [UsersTemp], { name: 'getUsers' })
     @Auth(...[Role.User, Role.Admin])
     // @CacheResult()
-    getUsersPage(@Args('current') current: number, @Args('limit') limit: number): Promise<UsersTemp[]> {
-        return this.userService.getUsersPage(current, limit);
+    getUsersPage(@Args('current') current: number, @Args('take') take: number): Promise<UsersTemp[]> {
+        return this.userService.getUsersPage(current, take);
     }
 
     @Query(() => UsersTemp, { name: 'getUser' })

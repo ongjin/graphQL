@@ -9,7 +9,6 @@ import { Result } from 'src/shared';
 import { UserService } from './interface/user.serveice.interface'
 import { AccountService } from '../account/interface/account.service.interface';
 
-
 @Injectable()
 // @UseFilters(CatchException)
 export class UserServiceImpl implements UserService {
@@ -28,16 +27,21 @@ export class UserServiceImpl implements UserService {
         })
     }
 
-    getUsersPage(current: number = 1, limit: number = 100): Promise<UsersTemp[]> {
+    getUsersPage(current: number = 1, take: number = 100): Promise<UsersTemp[]> {
         // 페이지네이션
-        const offset = (current - 1) * limit;
+        const offset = (current - 1) * take;
+        const object: Object = {
+            skip: offset,
+            take
+        }
 
         // 쿼리 실행
-        const users = this.usersTempRepository.find({
-            skip: offset,
-            take: limit,
-            // order: {USER_NO: 'ASC'}
-        });
+        const users = this.usersTempRepository.find(object);
+        // const users = this.usersTempRepository.find({
+        //     skip: offset,
+        //     take,
+        //     // order: {USER_NO: 'ASC'}
+        // });
         return users;
     }
 

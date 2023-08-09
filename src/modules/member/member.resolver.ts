@@ -32,12 +32,12 @@ export class MemberResolver {
 
     @Query(() => [Member], { name: 'getMembers' })
     @Auth(...[Role.User, Role.Admin])
-    getMembersPage(@Args('current') current: number, @Args('limit') limit: number, @CustomRequest('user') user: object): Promise<Member[]> {
+    getMembersPage(@Args('current') current: number, @Args('take') take: number, @CustomRequest('user') user: object): Promise<Member[]> {
         console.log(user);
 
         // const dbName = user['junction']
 
-        return this.memberService.getMembersPage(current, limit);
+        return this.memberService.getMembersPage(current, take);
     }
 
     @Query(() => Member, { name: 'getMember' })
