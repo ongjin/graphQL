@@ -42,8 +42,8 @@ export class UsersTemp {
 
     @OneToOne(() => TokenTemp)
     @JoinColumn([
-        { name: 'USER_NO', referencedColumnName: 'userNo' }
+        { name: 'USER_NO' }
     ])
-    tokenTemp: Promise<TokenTemp>;
+    tokenTemp: TokenTemp;
 }
 

@@ -115,26 +115,26 @@ export class Gwdlwktb {
     @JoinColumn(
         { name: "EMP_NO", referencedColumnName: "empNo" }
     )
-    empinftb: Promise<Empinftb>
+    empinftb: Empinftb
 
     @OneToOne(() => Gwgroptb)
     @JoinColumn(
         { name: 'AS_GROP_CD', referencedColumnName: "asGropCd" }
     )
-    gwgroptb: Promise<Gwgroptb>
+    gwgroptb: Gwgroptb
 
     @OneToOne(() => Prolmstb)
     @JoinColumn(
         { name: "HPL_CD", referencedColumnName: "hplCd" }
     )
-    prolmstb: Promise<Prolmstb>
+    prolmstb: Prolmstb
 
     @OneToOne(() => Prommstb)
     @JoinColumn([
         { name: "HPL_CD", referencedColumnName: "hplCd" },
         { name: "HPM_CD", referencedColumnName: "hpmCd" }
     ])
-    prommstb: Promise<Prommstb>
+    prommstb: Prommstb
 
     @OneToOne(() => Prosmstb)
     @JoinColumn([
@@ -142,12 +142,12 @@ export class Gwdlwktb {
         { name: "HPM_CD", referencedColumnName: "hpmCd" },
         { name: "HPS_CD", referencedColumnName: "hpsCd" }
     ])
-    prosmstb: Promise<Prosmstb>
+    prosmstb: Prosmstb
 
     @OneToOne(() => Gwsimatb)
     @JoinColumn(
         { name: "D_SEQ", referencedColumnName: "dSeq" }
     )
-    gwsimatb: Promise<Gwsimatb>
+    gwsimatb: Gwsimatb
 
 }

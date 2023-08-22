@@ -2,7 +2,19 @@ config:
   target: 'http://localhost:3030/graphql'
   phases:
     - duration: 60
+      arrivalRate: 3
+      name: Warm up phase
+    - duration: 120
+      arrivalRate: 3
+      rampTo: 100
+      name: Ramp up load
+    - duration: 600
       arrivalRate: 100
+      name: Sustained load
+  defaults:
+    headers:
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtc05vIjoiMnk5N1ZHMnciLCJjaGFpbk5vIjoiMnk5NVZ3PT0iLCJyb2xlcyI6WyJ1c2VyIiwiYWRtaW4iXSwidXVpZCI6IjA2YjI5OTlhLTE1MTUtNDI4Mi04Nzc5LWRhZmJmNmU4Mjc5NiIsImp1bmN0aW9uIjoic2hpbnN1biIsImlhdCI6MTY5MDc5MzU1MSwiZXhwIjoxNjkyMDg5NTUxfQ.deeH21wnl551cLyIJClpXMi8kaxdPCBaGOUcoFD_jDE'
+
 
 scenarios:
   - flow:
@@ -41,6 +53,6 @@ scenarios:
                   asGropCd
                 }
               }
-          headers:
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtc05vIjoiMnk5N1ZHMnciLCJjaGFpbk5vIjoiMnk5NVZ3PT0iLCJyb2xlcyI6WyJ1c2VyIiwiYWRtaW4iXSwidXVpZCI6IjUwYjhiOGU0LTZkYzctNDFkZi04YmIzLTc4NzMzNjg1MjAxNiIsImp1bmN0aW9uIjoic2hpbnN1biIsImlhdCI6MTY5MDQyNDg3NCwiZXhwIjoxNjkxNzIwODc0fQ.O0hF8hdYiNXSjO6LnUkGlfR85GTBd1nj1BZ2JusjHh0'
+          # headers:
+          #   Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtc05vIjoiMnk5N1ZHMnciLCJjaGFpbk5vIjoiMnk5NVZ3PT0iLCJyb2xlcyI6WyJ1c2VyIiwiYWRtaW4iXSwidXVpZCI6IjUwYjhiOGU0LTZkYzctNDFkZi04YmIzLTc4NzMzNjg1MjAxNiIsImp1bmN0aW9uIjoic2hpbnN1biIsImlhdCI6MTY5MDQyNDg3NCwiZXhwIjoxNjkxNzIwODc0fQ.O0hF8hdYiNXSjO6LnUkGlfR85GTBd1nj1BZ2JusjHh0'
       - log: 'Response: {{ JSON.stringify(response.body) }}'

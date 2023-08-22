@@ -17,6 +17,7 @@ import { InsertGwismatb } from './dto/insert-gwismatb.input';
 import { Todo } from './entities/todo.entity';
 import { DateService } from 'src/shared';
 
+
 @Injectable()
 export class DailyReportServiceImpl implements DailyReportService {
 
@@ -140,8 +141,8 @@ export class DailyReportServiceImpl implements DailyReportService {
 					),
 					empinftb: {
 						empNm: In(empNm),
+						empNo: '0962'
 					},
-					empNo: '0962'
 				},
 			],
 			relations: ['gwgroptb', 'gwsimatb', 'prosmstb', 'prommstb', 'prolmstb', 'empinftb']

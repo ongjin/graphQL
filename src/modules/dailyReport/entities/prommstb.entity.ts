@@ -37,5 +37,5 @@ export class Prommstb {
     prolmstb: Prolmstb
 
     @OneToMany(() => Prosmstb, prosmstb => prosmstb.prommstb)
-    prosmstbs: Promise<Prosmstb[]>
+    prosmstbs: Prosmstb[]
 }

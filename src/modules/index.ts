@@ -9,7 +9,6 @@ export * from './category'
 export * from './sub-menu'
 
 export * from './promotion'
-export * from './goods'
 export * from './store'
 export * from './language'
 

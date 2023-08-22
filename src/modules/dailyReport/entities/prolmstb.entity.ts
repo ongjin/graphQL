@@ -26,5 +26,5 @@ export class Prolmstb {
     createDate: string;
 
     @OneToMany(() => Prommstb, v => v.prolmstb)
-    prommstbs: Promise<Prommstb[]>
+    prommstbs: Prommstb[]
 }

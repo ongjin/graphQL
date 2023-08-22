@@ -318,7 +318,7 @@ export class PromotionHeader {
     })
     cradeCardRate: number | null;
 
-    
+
     @Column("number", {
         name: "POINT_CARD_RATE",
         nullable: true,
@@ -354,7 +354,7 @@ export class PromotionHeader {
     promotionNm: string;
 
     @OneToMany(() => PromotionDetail, res => res.promotionHeader)
-    promotionDetails: Promise<PromotionDetail>[]
+    promotionDetails: PromotionDetail[]
 }
 
 

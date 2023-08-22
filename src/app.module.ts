@@ -13,11 +13,9 @@ import {
     CategoryModule,
     SubMenuModule,
     PromotionModule,
-    GoodsModule,
     StoreModule,
     LanguageModule,
     DailyReportModule,
-
 } from './modules';
 
 import {
@@ -32,21 +30,27 @@ import {
     HttpExceptionFilter,
     JWT_SECRET_KEY,
     EncryptionLibrary,
+    CacheableModule,
 } from './shared';
 
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig, ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
-import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
+import { CacheInterceptor, CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
 
-
+// npm uninstall cache-manager-ioredis --save
+// npm uninstall -D @types/cache-manager-ioredis
+import * as redisStore from 'cache-manager-ioredis';
 
 @Module({
     imports: [
-        // CacheModule.register({
-        //     max: 100,
-        //     isGlobal: true,
-        //     ttl: 1000 * 60,
-        // }),
+        CacheModule.register({
+            store: redisStore,
+            host: 'localhost',
+            port: 6379,
+            isGlobal: true,
+            // ttl: 5
+        }),
+        CacheableModule.register(),
         JwtModule.register({
             secret: JWT_SECRET_KEY,
             signOptions: { expiresIn: '365d' },
@@ -74,7 +78,6 @@ import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
         CategoryModule,
         SubMenuModule,
         PromotionModule,
-        GoodsModule,
         StoreModule,
         LanguageModule,
 
@@ -92,6 +95,11 @@ import { CacheModule, CacheStoreFactory } from '@nestjs/cache-manager';
         { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
 
         // { provide: APP_PIPE, useClass: ValidationPipe },
+
+        // {
+        //     provide: APP_INTERCEPTOR,
+        //     useClass: CacheInterceptor,
+        // },
     ]
 })
 export class AppModule { }

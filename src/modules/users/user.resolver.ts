@@ -6,7 +6,7 @@ import { Injectable, Inject, Catch, UseFilters, HttpException, HttpStatus, Heade
 // import { UsersTemp, UserService } from 'src/modules/users';
 import { UsersTemp } from './entities/user.entity';
 import { CreateUserInput, UpdateUserInput } from './dto';
-import { Header, Auth, Log, CacheResult, MeasureTime, Role, Result, bypassAuth } from 'src/shared';
+import { Header, Auth, Log, MeasureTime, Role, Result, bypassAuth, Cacheable } from 'src/shared';
 import { Observable, of } from 'rxjs';
 import { UserService } from './interface/user.serveice.interface'
 
@@ -21,24 +21,23 @@ export class UsersResolver {
 
     @Query(() => [UsersTemp], { name: 'getUsers' })
     // @Auth(...[Role.User, Role.Admin])
-    // @CacheResult()
     getUsers(@Header('authorization') authorization: string): Observable<Promise<UsersTemp[]>> {
         return of(this.userService.getUsers())
     }
 
     @Query(() => [UsersTemp], { name: 'getUsers' })
     @Auth(...[Role.User, Role.Admin])
-    // @CacheResult()
     getUsersPage(@Args('current') current: number, @Args('take') take: number): Promise<UsersTemp[]> {
         return this.userService.getUsersPage(current, take);
     }
 
     @Query(() => UsersTemp, { name: 'getUser' })
     @Auth(Role.User)
-    // @CacheResult()
     // @Log()
+    @Cacheable({ ttl: 1000 * 3 })
     getUser(@Args('userNo') userNo: number): Promise<UsersTemp> {
-        return this.userService.getUser(userNo)
+        const result = this.userService.getUser(userNo)
+        return result
     }
 
     @Mutation(() => Result, { name: 'createUser' })

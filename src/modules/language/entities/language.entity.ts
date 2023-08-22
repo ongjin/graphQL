@@ -73,7 +73,7 @@ export class Mlanustb {
     @JoinColumn([
         { name: 'LANG_FG', referencedColumnName: 'langFg' },
     ])
-    langmstb: Promise<Langmstb>
+    langmstb: Langmstb
 
 }
 
