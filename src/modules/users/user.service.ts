@@ -47,9 +47,10 @@ export class UserServiceImpl implements UserService {
 
     getUser(userNo: number): Promise<UsersTemp> {
         return this.usersTempRepository.findOne({
+            comment: "asdasdasd",
             where: { userNo },
             relations: ['tokenTemp'],
-            relationLoadStrategy: 'query'
+            relationLoadStrategy: 'query',
         })
     }
 

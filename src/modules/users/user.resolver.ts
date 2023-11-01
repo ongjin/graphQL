@@ -1,14 +1,15 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { InjectRepository, InjectDataSource } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Injectable, Inject, Catch, UseFilters, HttpException, HttpStatus, Headers, Body, UseInterceptors } from '@nestjs/common';
+import { Injectable, Inject, Catch, UseFilters, HttpException, HttpStatus, Headers, Body, UseInterceptors, Req, UseGuards } from '@nestjs/common';
 
 // import { UsersTemp, UserService } from 'src/modules/users';
 import { UsersTemp } from './entities/user.entity';
 import { CreateUserInput, UpdateUserInput } from './dto';
-import { Header, Auth, Log, MeasureTime, Role, Result, bypassAuth, Cacheable } from 'src/shared';
+import { Header, Auth, Log, MeasureTime, Role, Result, bypassAuth, Cacheable, CustomRequest, RolesGuard } from 'src/shared';
 import { Observable, of } from 'rxjs';
 import { UserService } from './interface/user.serveice.interface'
+import { Request } from 'express';
 
 @Resolver()
 @Auth(...[Role.User, Role.Admin])
@@ -33,9 +34,12 @@ export class UsersResolver {
 
     @Query(() => UsersTemp, { name: 'getUser' })
     @Auth(Role.User)
+    // @UseGuards(RolesGuard)
     // @Log()
     @Cacheable({ ttl: 1000 * 3 })
-    getUser(@Args('userNo') userNo: number): Promise<UsersTemp> {
+    getUser(@Args('userNo') userNo: number, @CustomRequest('user') user: Request): Promise<UsersTemp> {
+        console.log(user);
+        
         const result = this.userService.getUser(userNo)
         return result
     }

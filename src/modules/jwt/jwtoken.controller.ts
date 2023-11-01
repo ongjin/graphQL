@@ -1,6 +1,6 @@
-import { Controller, Get, Res, Param, Req, Body, Post, Inject, Ip, HostParam, Session, Render } from '@nestjs/common';
+import { Controller, Get, Res, Param, Req, Body, Post, Inject, Ip, HostParam, Session, Render, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { bypassAuth } from 'src/shared';
+import { bypassAuth, RolesGuard } from 'src/shared';
 import { JwtokenService } from './interface/jwtoken.service.interface';
 
 @Controller()
@@ -18,6 +18,7 @@ export class JwtokenController {
 
     @Get('/jwt')
     @bypassAuth(true)
+    // @UseGuards(RolesGuard)
     getHtml(@Res() res: Response, @Req() req: Request): Response {
         return this.jwtokenService.getHtml('src/views/1.html', res)
     }

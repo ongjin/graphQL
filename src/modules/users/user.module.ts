@@ -13,7 +13,7 @@ import { TokenTemp } from './entities/token.entity';
         // TypeOrmModule.forFeature([UsersTemp], 'webkiosk'), 
         TypeOrmModule.forFeature([UsersTemp, TokenTemp]),
         // TypeOrmModule.forFeature([Account], 'postgre'),
-        AccountModule
+        AccountModule,
     ],
     providers: [
         { provide: UsersResolver, useClass: UsersResolver },

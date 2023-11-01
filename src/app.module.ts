@@ -60,7 +60,8 @@ import * as redisStore from 'cache-manager-ioredis';
             driver: ApolloFederationDriver,
             playground: true,
             formatError,
-            context: ({ req }) => ({ headers: req.headers }),
+            context: ({ req }) => ({ req }),
+            // context: ({ req }) => ({ headers: req.headers }),
             introspection: true,
             typePaths: ['./**/*.graphql'],
             // autoSchemaFile: true,
@@ -92,7 +93,7 @@ import * as redisStore from 'cache-manager-ioredis';
         { provide: APP_GUARD, useClass: RolesGuard, },
 
         { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
-        { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
+        // { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
 
         // { provide: APP_PIPE, useClass: ValidationPipe },
 
